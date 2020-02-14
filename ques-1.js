@@ -62,6 +62,20 @@ function ques_5(){
         }
     }
 
+    console.log("Group employees on the bassis of their age");
+    res = {}
+    list.forEach(myfunction);
+    function myfunction(item){
+        if(!res.hasOwnProperty(item.age)){
+            res[item.age]=[];
+        }
+        res[item.age].push(item);
+    }
+    console.log(res);
+    console.log(JSON.stringify(res));
+    
+
+
     console.log("Fetch employees with salary less than 1000 and age greater than 20. Then give them an increment 5 times their salary.")
     for(var i = 0 ;i<list.length;i++){
         if(list[i].salary > 20 && list[i].salary < 5000) {
