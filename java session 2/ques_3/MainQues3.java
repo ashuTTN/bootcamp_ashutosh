@@ -3,11 +3,11 @@ package ques_3;
 public class MainQues3 {
     public static void main(String[] args) {
 
-        /*try{
-            obj o = new obj();
+        try{
+            Class.forName("obj"); //No class obj       
         }
-        catch (NoClassDefFoundError e){
+        catch (ClassNotFoundException e){
             System.out.println(e);
-        }*/
+        }
     }
 }
