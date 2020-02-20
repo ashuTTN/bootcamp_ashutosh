@@ -11,7 +11,6 @@ public class MainQues5 {
         System.out.println(obj1);
         System.out.println(obj);
 
-
         xyz a1 = new xyz(20,30);
         System.out.println(a1);
         xyz copyOfa1 = new xyz(a1);
@@ -20,35 +19,3 @@ public class MainQues5 {
     }
 }
 
-
-class xyz{
-    int x ;
-    int y ;
-    xyz(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-    xyz(xyz copy){
-        this.x = copy.x;
-        this.y = copy.y;
-    }
-    public String  toString(){
-        return("x = "+ x + "y = "+ y);
-    }
-}
-
-
-
-class Abc implements Cloneable
-{
-    int i;
-    int j;
-
-    public String toString(){
-        return "Abc("+" i = "+ i +"j="+j+")";
-    }
-    public Object clone() throws CloneNotSupportedException
-    {
-        return super.clone();
-    }
-}
