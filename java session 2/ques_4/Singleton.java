@@ -5,7 +5,7 @@ class Singleton
     public String s;
     private Singleton()
     {
-        s = "Hello, my name is Subarno!";
+        s = "Hello, my name is Ashutosh!";
     }
 
     // static method to create instance of Singleton class
