@@ -1,6 +1,6 @@
 package ques_1;
 
-public class Student extends Library {
+public class Student extends Library implements Book {
     String studentName;
     int rollNum;
     int deptID;
@@ -18,6 +18,9 @@ public class Student extends Library {
         this.bookID = bookID;
         this.bookName = bookName;
         this.bookCount++;
+    }
+    public void returnBook(){
+        this.bookCount--;
     }
 
     public void getDetails(){
