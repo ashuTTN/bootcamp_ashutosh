@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LOGIN</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="username_hint">xyz@tothenew.com</string>
+    <string name="password_hint">**********</string>
+</resources>
