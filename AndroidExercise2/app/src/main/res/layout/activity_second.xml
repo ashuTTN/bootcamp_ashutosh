@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Second"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_margin="15sp"
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/input_heading"
+        android:textSize="36sp"
+        android:textColor="#000000"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="29dp"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_margin="15sp"
+        android:id="@+id/userResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_margin="15sp"
+        android:id="@+id/emailResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_margin="15sp"
+        android:id="@+id/passResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_margin="15sp"
+        android:id="@+id/phoneResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        />
+    <EditText
+        android:layout_margin="15sp"
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/input_url_hint"
+        android:inputType="textPersonName"
+        android:layout_gravity="center"
+        />
+    <Button
+        android:layout_margin="15sp"
+        android:id="@+id/open_url_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="openWeb"
+        android:text="Open Url"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:layout_margin="15sp"
+        android:id="@+id/check_permission_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="openWeb"
+        android:text="Check Permission"
+        android:layout_gravity="center"
+        />
+</LinearLayout>

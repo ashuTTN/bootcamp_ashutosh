@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AndroidExercise2</string>
+    <string name="username">User Name</string>
+    <string name="password">Password</string>
+    <string name="phone">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="password_hint">******</string>
+    <string name="email_hint">xyz@tothenew.com</string>
+    <string name="phone_hint">+91-XXXXXXXXXX</string>
+    <string name="signup">SIGNUP</string>
+    <string name="input_url_hint">Enter URL here</string>
+    <string name="input_heading">INPUT RECEIVED </string>
+</resources>
