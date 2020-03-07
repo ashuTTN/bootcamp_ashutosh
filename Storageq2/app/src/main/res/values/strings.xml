@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Storageq2</string>
+    <string name="enter_text_here">Enter Text</string>
+    <string name="submit">submit</string>
+    <string name="retrieve">Retrieve</string>
+    <string name="textview">TextView</string>
+    <string name="read">Read</string>
+    <string name="write">Write</string>
+</resources>
