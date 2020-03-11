@@ -6,12 +6,12 @@ class ModelClass {
     public static final int LARGE_LAYOUT = 0;
     public static final int SMALL_LAYOUT = 1;
     private int viewType;
-    String largeTitle;
-    String largeText;
-    String smallText;
-    String smallTitle;
-    int largeImage;
-    int smallImage;
+    private String largeTitle;
+    private String largeText;
+    private String smallText;
+    private String smallTitle;
+    private int largeImage;
+    private int smallImage;
 
     public int getViewType() {
         return viewType;
