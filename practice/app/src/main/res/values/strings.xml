@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="download_using_async">Download Using Async</string>
+    <string name="download_using_service">Download Using Service</string>
+</resources>
