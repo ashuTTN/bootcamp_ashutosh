@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AlarmManagerDemo</string>
+    <string name="remind_me_in_10_sec">remind me in 10 sec</string>
+    <string name="generate">GENERATE</string>
+</resources>
