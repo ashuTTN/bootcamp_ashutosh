@@ -19,8 +19,8 @@ public class MyAlarm extends BroadcastReceiver{
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,CHANNEL_1_ID)
                 .setSmallIcon(android.R.drawable.ic_dialog_alert) //sets icon in notificaiton
                 .setContentTitle("REMINDER CH 1")//title of the notification
-                .setContentText("Hey this is channel 1 ") // Body text
-                .setPriority(NotificationCompat.PRIORITY_HIGH); // PRIORITY_HIGH -- makes phone ring and vibrate with notification popup
+                .setContentText("Hey this is channel 1 "); // Body text
+                //.setPriority(NotificationCompat.PRIORITY_HIGH); // PRIORITY_HIGH -- makes phone ring and vibrate with notification popup
 
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
@@ -36,8 +36,8 @@ public class MyAlarm extends BroadcastReceiver{
         NotificationCompat.Builder builder1 = new NotificationCompat.Builder(context,CHANNEL_2_ID)
                 .setSmallIcon(android.R.drawable.ic_dialog_alert)
                 .setContentTitle("REMINDER CH 2")
-                .setContentText("Hey this is channel 2 ")
-                .setPriority(NotificationCompat.PRIORITY_LOW);  // PRIORITY_LOW -- Does not make notification popup and ring + vibrate
+                .setContentText("Hey this is channel 2 ");
+                //.setPriority(NotificationCompat.PRIORITY_LOW);  // PRIORITY_LOW -- Does not make notification popup and ring + vibrate
         notificationManager.notify(2,builder1.build());
 
     }

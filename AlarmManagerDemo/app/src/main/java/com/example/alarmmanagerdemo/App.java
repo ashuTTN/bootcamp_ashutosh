@@ -26,7 +26,8 @@ public class App extends Application {
             channel1.setDescription("What this channel1 is for ");
             NotificationChannel channel2 = new NotificationChannel(CHANNEL_2_ID,
                     "channel 2",
-                    NotificationManager.IMPORTANCE_HIGH
+                    NotificationManager.IMPORTANCE_LOW
+
             );
             channel2.setDescription("what this channel 2 is for");
 

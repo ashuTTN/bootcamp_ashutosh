@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
+    Button generateButton;
+    Button cancelButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         notificationManager = NotificationManagerCompat.from(this);
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        generateButton = findViewById(R.id.button);
+        generateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Reminder Set!", Toast.LENGTH_SHORT).show();
@@ -45,5 +48,16 @@ public class MainActivity extends AppCompatActivity {
                  */
             }
         });
+        cancelButton = findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyAlarm.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                alarmManager.cancel(pendingIntent);
+            }
+        });
     }
+
 }
