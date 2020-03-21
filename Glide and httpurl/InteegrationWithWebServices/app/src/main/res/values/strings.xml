@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">InteegrationWithWebServices</string>
+    <string name="http_url_connection">Http Url Connection</string>
+    <string name="glide">GLIDE</string>
+</resources>
