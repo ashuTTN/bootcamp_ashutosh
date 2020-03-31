@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="db5b06e4-2f71-4529-a2ac-8dfccfc4b409" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZZcXZIdaHt2jZp68NdVxMgtlrI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../page35" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager" selected="Kotlin.Question2Kt">
+    <configuration name="Question2Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="pg15" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Question2Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Question3Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="pg15" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Question3Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Question4Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="pg15" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Question4Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Question5Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="pg15" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Question5Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Question6Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="pg15" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Question6Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.Question2Kt" />
+        <item itemvalue="Kotlin.Question3Kt" />
+        <item itemvalue="Kotlin.Question5Kt" />
+        <item itemvalue="Kotlin.Question6Kt" />
+        <item itemvalue="Kotlin.Question4Kt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="db5b06e4-2f71-4529-a2ac-8dfccfc4b409" name="Default Changelist" comment="" />
+      <created>1585050096562</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585050096562</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="278" y="30" width="800" height="677" key="#Project_Structure" timestamp="1585115142039">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state x="278" y="30" width="800" height="677" key="#Project_Structure/0.0.1366.739@0.0.1366.739" timestamp="1585115142039" />
+    <state x="690" y="61" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585563229972">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state x="690" y="61" width="424" height="484" key="FileChooserDialogImpl/0.0.1366.739@0.0.1366.739" timestamp="1585563229972" />
+    <state width="1322" height="192" key="GridCell.Tab.0.bottom" timestamp="1585552210410">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="192" key="GridCell.Tab.0.bottom/0.0.1366.739@0.0.1366.739" timestamp="1585552210410" />
+    <state width="1322" height="192" key="GridCell.Tab.0.center" timestamp="1585552210410">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="192" key="GridCell.Tab.0.center/0.0.1366.739@0.0.1366.739" timestamp="1585552210410" />
+    <state width="1322" height="192" key="GridCell.Tab.0.left" timestamp="1585552210409">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="192" key="GridCell.Tab.0.left/0.0.1366.739@0.0.1366.739" timestamp="1585552210409" />
+    <state width="1322" height="192" key="GridCell.Tab.0.right" timestamp="1585552210410">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="192" key="GridCell.Tab.0.right/0.0.1366.739@0.0.1366.739" timestamp="1585552210410" />
+    <state width="1322" height="239" key="GridCell.Tab.1.bottom" timestamp="1585051441544">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="239" key="GridCell.Tab.1.bottom/0.0.1366.739@0.0.1366.739" timestamp="1585051441544" />
+    <state width="1322" height="239" key="GridCell.Tab.1.center" timestamp="1585051441544">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="239" key="GridCell.Tab.1.center/0.0.1366.739@0.0.1366.739" timestamp="1585051441544" />
+    <state width="1322" height="239" key="GridCell.Tab.1.left" timestamp="1585051441544">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="239" key="GridCell.Tab.1.left/0.0.1366.739@0.0.1366.739" timestamp="1585051441544" />
+    <state width="1322" height="239" key="GridCell.Tab.1.right" timestamp="1585051441544">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="239" key="GridCell.Tab.1.right/0.0.1366.739@0.0.1366.739" timestamp="1585051441544" />
+    <state x="206" y="0" width="944" height="739" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585117856568">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state x="206" y="0" width="944" height="739" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.739@0.0.1366.739" timestamp="1585117856568" />
+    <state x="62" y="31" width="1294" height="545" key="new project wizard" timestamp="1585136426460">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state x="62" y="31" width="1294" height="545" key="new project wizard/0.0.1366.739@0.0.1366.739" timestamp="1585136426460" />
+    <state x="346" y="60" width="672" height="678" key="search.everywhere.popup" timestamp="1585115372988">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state x="346" y="60" width="672" height="678" key="search.everywhere.popup/0.0.1366.739@0.0.1366.739" timestamp="1585115372988" />
+  </component>
+</project>

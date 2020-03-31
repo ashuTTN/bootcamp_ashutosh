@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="597e1788-04ca-475e-b9e2-378a1eeb2a54" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZnlWbWggcu0wq6RpKP1AXeHBmm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="Kotlin.Question1Kt">
+    <configuration name="Question1Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="page35" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Question1Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Question4Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="page35" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Question4Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.Question1Kt" />
+        <item itemvalue="Kotlin.Question4Kt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="597e1788-04ca-475e-b9e2-378a1eeb2a54" name="Default Changelist" comment="" />
+      <created>1585482771504</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585482771504</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1322" height="192" key="GridCell.Tab.0.bottom" timestamp="1585491010640">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="192" key="GridCell.Tab.0.bottom/0.0.1366.739@0.0.1366.739" timestamp="1585491010640" />
+    <state width="1322" height="192" key="GridCell.Tab.0.center" timestamp="1585491010639">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="192" key="GridCell.Tab.0.center/0.0.1366.739@0.0.1366.739" timestamp="1585491010639" />
+    <state width="1322" height="192" key="GridCell.Tab.0.left" timestamp="1585491010639">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="192" key="GridCell.Tab.0.left/0.0.1366.739@0.0.1366.739" timestamp="1585491010639" />
+    <state width="1322" height="192" key="GridCell.Tab.0.right" timestamp="1585491010639">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state width="1322" height="192" key="GridCell.Tab.0.right/0.0.1366.739@0.0.1366.739" timestamp="1585491010639" />
+    <state x="31" y="96" width="1294" height="545" key="new project wizard" timestamp="1585570547915">
+      <screen x="0" y="0" width="1366" height="739" />
+    </state>
+    <state x="31" y="96" width="1294" height="545" key="new project wizard/0.0.1366.739@0.0.1366.739" timestamp="1585570547915" />
+  </component>
+</project>
