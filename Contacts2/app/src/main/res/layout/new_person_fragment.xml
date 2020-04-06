@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="@dimen/dp45"
+    tools:context=".model.View.NewPersonActivity">
+
+
+    <EditText
+        android:id="@+id/enteredName1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/enteredPhone1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp45"
+        android:hint="@string/phone"
+        app:layout_constraintStart_toStartOf="@+id/enteredEmail1"
+        app:layout_constraintTop_toBottomOf="@+id/enteredEmail1" />
+
+    <EditText
+        android:id="@+id/enteredEmail1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp45"
+        android:hint="@string/email"
+        app:layout_constraintStart_toStartOf="@+id/enteredName1"
+        app:layout_constraintTop_toBottomOf="@+id/enteredName1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
