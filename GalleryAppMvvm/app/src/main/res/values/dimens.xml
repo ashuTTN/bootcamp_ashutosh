@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dp45_login_padding">45dp</dimen>
+    <dimen name="login_margin_top">60dp</dimen>
+    <dimen name="heading_text_sizesp40">40sp</dimen>
+    <dimen name="edit_text_drwable_paddingdp10">10dp</dimen>
+    <dimen name="button_text_size21sp">21sp</dimen>
+    <dimen name="margin_dp20">20dp</dimen>
+</resources>

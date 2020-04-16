@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "776187592121",
+    "firebase_url": "https://galleryappmvvm.firebaseio.com",
+    "project_id": "galleryappmvvm",
+    "storage_bucket": "galleryappmvvm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776187592121:android:29704cd02ab5f2744d0a68",
+        "android_client_info": {
+          "package_name": "com.example.galleryappmvvm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776187592121-hqp3o918it6kb3ja7jsfqbrdv7e04rvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk6RZBWISzVhxFAH2zhKTYCuOWBOwm_Gg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776187592121-hqp3o918it6kb3ja7jsfqbrdv7e04rvh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

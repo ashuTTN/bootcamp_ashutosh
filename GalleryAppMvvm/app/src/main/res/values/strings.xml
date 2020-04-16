@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GalleryAppMvvm</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="signup_txt">First time here? SignUp</string>
+    <string name="sign_in">Sign In</string>
+    <string name="log_in_heading">Log In</string>
+</resources>
