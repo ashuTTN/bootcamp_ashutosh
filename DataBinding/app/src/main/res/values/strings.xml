@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">DataBinding</string>
+    <string-array name="namesList">
+        <item>Ashutosh</item>
+        <item>Anupam</item>
+        <item>Subarno</item>
+        <item>Lakshya</item>
+        <item>Tanvi</item>
+    </string-array>
+
+    <string-array name="EmailList">
+        <item>ashu46d@gmail.com</item>
+        <item>anupam69@hotmail.com</item>
+        <item>subarno@gmail.com</item>
+        <item>lakshya06@gmail.com</item>
+        <item>tanvi@gmail.com</item>
+    </string-array>
+
+    <string-array name="numbers">
+        <item>9659288290</item>
+        <item>9659288117</item>
+        <item>9659212134</item>
+        <item>9765431029</item>
+        <item>8364960971</item>
+    </string-array>
+
+</resources>
