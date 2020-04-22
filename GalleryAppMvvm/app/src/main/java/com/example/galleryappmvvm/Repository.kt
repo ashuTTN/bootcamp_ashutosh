@@ -1,8 +1,7 @@
 package com.example.galleryappmvvm
 
+import android.app.Activity
 import android.net.Uri
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.QuerySnapshot
 
 
 class Repository() {
@@ -15,11 +14,9 @@ class Repository() {
     fun currentUser() = firebase.currentUser()
     fun logout() = firebase.logout()
 
-    fun uploadCategoryProfileImage(selectedPhotoUri: Uri?, add_category_name: String) =
-        firebase.addCategory(selectedPhotoUri, add_category_name)
 
-    fun addCategory(selectedPhotoUri: Uri?, categoryName: String) =
-        firebase.addCategory(selectedPhotoUri, categoryName)
+    fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) =
+        firebase.addCategory(activity , selectedPhotoUri, categoryName)
 
     fun getSavedCategories() = firebase.getSavedCategories()
 
@@ -30,6 +27,5 @@ class Repository() {
         firebase.uploadCategoryImage(selectedPhotoUri, categoryId)
 
     fun fetchTimeline() = firebase.fetchTimeline()
-
 
 }

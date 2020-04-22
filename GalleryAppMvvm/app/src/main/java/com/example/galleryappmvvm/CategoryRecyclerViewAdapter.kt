@@ -15,7 +15,7 @@ import com.example.gallleryapp1.View.CategoryFragment
 class CategoryRecyclerViewAdapter (private val mContext:Context,_categoryFragment: CategoryFragment):RecyclerView.Adapter<CategoryRecyclerViewAdapter.RecyclerViewHolder>(){
     private val TAG = "RecyclerViewAdapter"
     private lateinit var mCategoryData: List<Category>
-    private lateinit var categoryFragment:CategoryFragment
+    private var categoryFragment:CategoryFragment
     fun setCategories(category:List<Category>){
         mCategoryData = category
         notifyDataSetChanged()

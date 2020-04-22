@@ -39,27 +39,10 @@ class CategoryFragment : Fragment() {
                 Log.d("hahahahahahahahahahaha", "$it")
                 recyclerAdapter.setCategories(it)
                 recyclerView.adapter = recyclerAdapter
-                recyclerView.layoutManager = GridLayoutManager(this.context,4)
+                recyclerView.layoutManager = GridLayoutManager(this.context,3)
             }
         })
 
-
-//        viewModel.fetchAllCategories()
-//            .addOnSuccessListener {documents ->
-//                var categoryData = mutableListOf<Category>()
-//                for (document in documents){
-//                    categoryData.add(Category(document.data.get("name"),document.data.get("categoryProfileImage")))
-//                    Log.d("DATA","${document.id} => ${document.data}")
-//                }
-//
-//                val manager = GridLayoutManager(this.context,3)
-//                recyclerView.layoutManager = manager
-//                recyclerView.setHasFixedSize(true)
-//                val adapter = CategoryRecyclerViewAdapter(this.context!!)
-//                adapter.setCategories(categoryData)
-//                recyclerView.adapter = adapter
-//                Log.d("DATA","categoryData = $categoryData")
-//            }
 
 
         view.addCategoryFloatingActionButton.setOnClickListener {

@@ -1,49 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardElevation="6dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:layout_editor_absoluteX="1dp"
-    android:layout_margin="15dp">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <ImageView
+        android:id="@+id/categoryImageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="108dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
-        <ImageView
-            android:id="@+id/categoryImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+    <TextView
+        android:id="@+id/categoryTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent_black"
+        android:text="Dummy Category"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@id/categoryImageView"
+        app:layout_constraintEnd_toEndOf="@id/categoryImageView"
+        app:layout_constraintStart_toStartOf="@id/categoryImageView" />
 
-        <TextView
-            android:id="@+id/categoryTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dummy Category"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/categoryImageView"
-            app:layout_constraintTop_toBottomOf="@id/categoryImageView" />
-        <androidx.constraintlayout.widget.Barrier
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:barrierDirection="bottom"
-            app:layout_constraintTop_toBottomOf="@id/categoryTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            android:orientation="horizontal"
-            app:constraint_referenced_ids="categoryImageView,categoryTitle"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="108dp" />
 
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

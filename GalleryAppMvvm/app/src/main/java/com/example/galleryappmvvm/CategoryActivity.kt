@@ -1,6 +1,5 @@
 package com.example.galleryappmvvm
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import com.example.gallleryapp1.View.CategoryFragment
 import kotlinx.android.synthetic.main.activity_category.*
-import java.sql.Time
+
 
 class CategoryActivity : AppCompatActivity() {
     private lateinit var fragment: Fragment
@@ -26,8 +25,8 @@ class CategoryActivity : AppCompatActivity() {
                 selectedFragment = CategoryFragment()
             if (it.itemId == R.id.nav_logout) {
                 val viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
-               viewModel.logout()
-                startActivity(Intent(this,MainActivity::class.java))
+                viewModel.logout()
+                startActivity(Intent(this, MainActivity::class.java))
             }
             if (it.itemId == R.id.nav_timeline)
                 selectedFragment = TimelineFragment()

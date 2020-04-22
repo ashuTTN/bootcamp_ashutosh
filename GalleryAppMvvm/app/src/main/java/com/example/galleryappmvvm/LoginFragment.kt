@@ -1,9 +1,7 @@
 package com.example.galleryappmvvm
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 import kotlinx.android.synthetic.main.login_fragment_layout.view.*
 
-class LoginFragment: Fragment(){
+class LoginFragment : Fragment() {
     private lateinit var viewModel: FirebaseViewModel
 
     override fun onCreateView(
@@ -21,31 +19,30 @@ class LoginFragment: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.login_fragment_layout,container,false)
+        val view = inflater.inflate(R.layout.login_fragment_layout, container, false)
         view.btn_login.setOnClickListener {
             val email = email_txt.text.toString()
             val pass = password_txt.text.toString()
 
-            if(email.isEmpty()){
+            if (email.isEmpty()) {
                 email_txt.setError("Email can't be blank")
             }
-            if(pass.isEmpty()){
+            if (pass.isEmpty()) {
                 password_txt.setError("Password can't be blank")
             }
-            if(!(email.isEmpty() || pass.isEmpty())){
-                val progressDialog = ProgressDialog(view.context)
-                progressDialog.setMessage("Loading..")
-                progressDialog.show()
+            if (!(email.isEmpty() || pass.isEmpty())) {
+                val loadingDialog = LoadingDialog(activity!!)
+                loadingDialog.startLoadingAnimation()
                 viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
-                viewModel.login(email,pass)
+                viewModel.login(email, pass)
                     .addOnSuccessListener {
-                        Toast.makeText(activity,"Login Successfull",Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "Login Successfull", Toast.LENGTH_LONG).show()
                         addCategoryActivity()
-                        progressDialog.hide()
+                        loadingDialog.dismissDialog()
                     }
-                    .addOnFailureListener{
-                        Toast.makeText(activity,"Login failed ${it.message}",Toast.LENGTH_LONG).show()
-                        progressDialog.hide()
+                    .addOnFailureListener {
+                        Toast.makeText(activity, "Login failed ${it.message}", Toast.LENGTH_LONG)
+                            .show()
                     }
             }
 
@@ -59,7 +56,7 @@ class LoginFragment: Fragment(){
     }
 
     private fun addCategoryActivity() {
-        val intent = Intent(activity,CategoryActivity::class.java)
+        val intent = Intent(activity, CategoryActivity::class.java)
         startActivity(intent)
         activity!!.finish()
     }
@@ -67,7 +64,7 @@ class LoginFragment: Fragment(){
     private fun addSignUpFragment() {
         val nextFrag = SignUpFragment()
         activity!!.supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container,nextFrag,"signup_fragment")
+            .replace(R.id.fragment_container, nextFrag, "signup_fragment")
             .addToBackStack(null)
             .commit()
     }

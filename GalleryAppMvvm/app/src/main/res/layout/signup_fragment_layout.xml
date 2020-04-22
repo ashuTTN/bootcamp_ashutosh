@@ -7,41 +7,39 @@
     android:background="@color/colorPrimary"
     android:padding="@dimen/dp45_login_padding">
 
+
     <TextView
         android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_margin_top"
-        android:text="New \nAccount"
+        android:layout_marginTop="30dp"
+        android:text="Register Yourself"
         android:textColor="@android:color/white"
         android:textSize="@dimen/heading_text_sizesp40"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:background="@drawable/ic_perm_identity_black_24dp"
-        android:id="@+id/image_view_signup"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="fitXY"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        app:cardCornerRadius="70dp"
         app:layout_constraintBottom_toTopOf="@id/name_txt_signup"
-        app:layout_constraintEnd_toEndOf="@id/heading"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/heading"
-        app:layout_constraintHorizontal_bias="0"
-         />
-    <TextView
-        android:textColor="@android:color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upload a profile picture"
-        app:layout_constraintStart_toEndOf="@id/image_view_signup"
-        app:layout_constraintTop_toTopOf="@id/image_view_signup"
-        app:layout_constraintBottom_toBottomOf="@id/image_view_signup"
-        />
+        app:cardBackgroundColor="@color/transparent"
+        >
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/image_view_signup"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_person_black_24dp"
+            android:layout_width="match_parent"
+            />
+    </androidx.cardview.widget.CardView>
 
     <EditText
         android:drawableLeft="@drawable/ic_sentiment_very_satisfied_black_24dp"

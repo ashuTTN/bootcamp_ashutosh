@@ -23,19 +23,16 @@ class TimelineFragment :Fragment(){
         val viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.timeline_recycler_view)
-        val recyclerAdapter = TimelineAdapter(this.context!!)
+        val recyclerAdapter = TimelineAdapter(this.context!!,this)
 
         viewModel.fetchTimeline().observe(viewLifecycleOwner, Observer { times ->
             times?.let {
-                Log.d("TAG", "$it")
+                Log.d(TAG, "$it")
                 recyclerAdapter.setImageTime(it)
                 recyclerView.adapter = recyclerAdapter
                 recyclerView.layoutManager = GridLayoutManager(this.context,4)
             }
         })
-
-
-
         return view
     }
 }

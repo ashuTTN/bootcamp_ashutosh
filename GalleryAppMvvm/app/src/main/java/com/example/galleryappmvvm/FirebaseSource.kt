@@ -1,7 +1,10 @@
 package com.example.galleryappmvvm
 
+import android.app.Activity
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnCompleteListener
@@ -15,7 +18,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageMetadata
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.withContext
 import java.util.*
+import kotlin.coroutines.coroutineContext
 
 class FirebaseSource {
     private val TAG = "FIREBASE_SOURCE"
@@ -25,6 +30,7 @@ class FirebaseSource {
     private var categoryProfileImageUrl: String = ""
     private var profileImageUrl: String = ""
     private var categoryImageUrl: String = ""
+
 
     fun fetchUserDetails(): Task<DocumentSnapshot> {
         userID = firebaseAuth.currentUser!!.uid
@@ -81,8 +87,9 @@ class FirebaseSource {
 
     fun currentUser() = firebaseAuth.currentUser
 
-    fun addCategory(selectedPhotoUri: Uri?, categoryName: String) {
-
+    fun addCategory(activity:Activity , selectedPhotoUri: Uri?, categoryName: String) {
+        var loadingDialog = LoadingDialog(activity)
+        loadingDialog.startLoadingAnimation()
         userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
         val storageRef = FirebaseStorage.getInstance()
@@ -92,10 +99,13 @@ class FirebaseSource {
                 storageRef.downloadUrl.addOnSuccessListener {
                     categoryProfileImageUrl = it.toString()
                     saveCategoryToFireStore(categoryName)
+                    loadingDialog.dismissDialog()
                 }
             }
             .addOnFailureListener {
                 Log.d(TAG, "category profile image upload failed ${it.message}")
+                Toast.makeText(CategoryActivity(),"category profile image upload failed ${it.message}",Toast.LENGTH_LONG).show()
+                loadingDialog.dismissDialog()
             }
     }
 
@@ -117,8 +127,7 @@ class FirebaseSource {
         return collectionReference
     }
 
-    fun fetchTimeline():StorageReference{
-        var time = mutableListOf<Long>()
+    fun fetchTimeline(): StorageReference {
         userID = firebaseAuth.currentUser!!.uid
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/category_images")

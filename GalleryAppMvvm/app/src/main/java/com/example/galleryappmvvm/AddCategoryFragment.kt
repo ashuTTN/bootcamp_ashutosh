@@ -29,7 +29,7 @@ class AddCategoryFragment:Fragment() {
 
         view.add_category_button.setOnClickListener {
             viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
-            viewModel.addCategory(selectedPhotoUri,add_category_name.text.toString())
+            viewModel.addCategory(activity!!,selectedPhotoUri,add_category_name.text.toString())
         }
         return view
     }

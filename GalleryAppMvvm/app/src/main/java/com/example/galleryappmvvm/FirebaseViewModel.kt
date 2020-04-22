@@ -1,6 +1,7 @@
 package com.example.galleryappmvvm
 
 
+import android.app.Activity
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -36,12 +37,9 @@ class FirebaseViewModel() : ViewModel() {
         repository.logout()
     }
 
-    fun uploadCategoryProfileImage(selectedPhotoUri: Uri?, add_category_name: String) {
-        repository.uploadCategoryProfileImage(selectedPhotoUri, add_category_name)
-    }
 
-    fun addCategory(selectedPhotoUri: Uri?, categoryName: String) {
-        repository.addCategory(selectedPhotoUri, categoryName)
+    fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) {
+        repository.addCategory(activity , selectedPhotoUri, categoryName)
     }
 
     fun fetchTimeline(): LiveData<List<ImageTime>> {
