@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 import kotlinx.android.synthetic.main.login_fragment_layout.view.*
 
@@ -31,7 +33,8 @@ class LoginFragment : Fragment() {
                 password_txt.setError("Password can't be blank")
             }
             if (!(email.isEmpty() || pass.isEmpty())) {
-                val loadingDialog = LoadingDialog(activity!!)
+                val loadingDialog =
+                    LoadingDialog(activity!!)
                 loadingDialog.startLoadingAnimation()
                 viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
                 viewModel.login(email, pass)

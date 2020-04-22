@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 
 import android.app.Activity
 import android.content.Intent
@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.add_category_layout.*
 import kotlinx.android.synthetic.main.add_category_layout.view.*
 
 class AddCategoryFragment:Fragment() {
-    private lateinit var viewModel:FirebaseViewModel
+    private lateinit var viewModel: FirebaseViewModel
     private var selectedPhotoUri: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater,

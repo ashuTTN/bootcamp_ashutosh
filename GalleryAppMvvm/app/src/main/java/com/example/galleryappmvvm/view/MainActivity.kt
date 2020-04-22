@@ -1,10 +1,11 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.galleryappmvvm.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fragment: Fragment

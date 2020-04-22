@@ -1,6 +1,5 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 import java.io.Serializable
-import java.sql.Timestamp
 
 data class ImageTime(val imageUrl: Any?, val timestamp: Any?):Serializable{
     constructor():this("","")

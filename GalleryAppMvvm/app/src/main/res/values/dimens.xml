@@ -6,4 +6,5 @@
     <dimen name="edit_text_drwable_paddingdp10">10dp</dimen>
     <dimen name="button_text_size21sp">21sp</dimen>
     <dimen name="margin_dp20">20dp</dimen>
+    <dimen name="margin_40dp">40dp</dimen>
 </resources>

@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.*
+import com.example.galleryappmvvm.view.AddCategoryFragment
+import com.example.galleryappmvvm.view.CategoryRecyclerViewAdapter
+import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.category_fragment_layout.view.*
-import kotlinx.android.synthetic.main.signup_fragment_layout.*
 
 
 class CategoryFragment : Fragment() {
@@ -33,7 +33,11 @@ class CategoryFragment : Fragment() {
         recyclerView = view.findViewById(R.id.category_recycler_view)
 
         viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
-        recyclerAdapter = CategoryRecyclerViewAdapter(this.context!!,this)
+        recyclerAdapter =
+            CategoryRecyclerViewAdapter(
+                this.context!!,
+                this
+            )
         viewModel.getSavedCategories().observe(viewLifecycleOwner, Observer { categories ->
             categories?.let {
                 Log.d("hahahahahahahahahahaha", "$it")

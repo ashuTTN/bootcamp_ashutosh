@@ -1,26 +1,18 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.model
 
 import android.app.Activity
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnSuccessListener
+import com.example.galleryappmvvm.view.CategoryActivity
+import com.example.galleryappmvvm.view.LoadingDialog
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ListResult
-import com.google.firebase.storage.StorageMetadata
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.withContext
 import java.util.*
-import kotlin.coroutines.coroutineContext
 
 class FirebaseSource {
     private val TAG = "FIREBASE_SOURCE"
@@ -52,7 +44,18 @@ class FirebaseSource {
                 Log.d(TAG, it.message.toString())
             }
     }
-
+    private fun updateUserProfile(selectedPhotoUri: Uri?){
+        userID = firebaseAuth.currentUser!!.uid
+        val filename = UUID.randomUUID().toString()
+        val storageRef = FirebaseStorage.getInstance()
+            .getReference("/images/$userID/profile_images/$filename")
+        storageRef.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener {
+                storageRef.downloadUrl.addOnSuccessListener {
+                    profileImageUrl = it.toString()
+                }
+            }
+    }
     private fun uploadUser(selectedPhotoUri: Uri?, name: String, email: String) {
         userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
@@ -88,7 +91,8 @@ class FirebaseSource {
     fun currentUser() = firebaseAuth.currentUser
 
     fun addCategory(activity:Activity , selectedPhotoUri: Uri?, categoryName: String) {
-        var loadingDialog = LoadingDialog(activity)
+        var loadingDialog =
+            LoadingDialog(activity)
         loadingDialog.startLoadingAnimation()
         userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()

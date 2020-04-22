@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.galleryappmvvm.R
 
 
 class CategoryInfoAdapter(private val mContext:Context) :RecyclerView.Adapter<CategoryInfoAdapter.RecyclerViewHolder>(){
@@ -24,7 +25,13 @@ class CategoryInfoAdapter(private val mContext:Context) :RecyclerView.Adapter<Ca
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
-        return RecyclerViewHolder(LayoutInflater.from(mContext).inflate(R.layout.category_info_item,parent,false))
+        return RecyclerViewHolder(
+            LayoutInflater.from(mContext).inflate(
+                R.layout.category_info_item,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {

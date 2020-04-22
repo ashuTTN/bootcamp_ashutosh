@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.viewmodel
 
 
 import android.app.Activity
@@ -6,14 +6,16 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.example.galleryappmvvm.view.Category
+import com.example.galleryappmvvm.view.CategoryImages
+import com.example.galleryappmvvm.view.ImageTime
+import com.example.galleryappmvvm.model.Repository
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
-import kotlin.time.days
 
 class FirebaseViewModel() : ViewModel() {
 
@@ -22,7 +24,8 @@ class FirebaseViewModel() : ViewModel() {
     var saveImagesUrl: MutableLiveData<List<CategoryImages>> = MutableLiveData()
     var time1: MutableLiveData<List<ImageTime>> = MutableLiveData()
 
-    var repository: Repository = Repository()
+    var repository: Repository =
+        Repository()
     private val savedUsers = mutableMapOf<String, String>()
 
     fun login(email: String, password: String): Task<AuthResult> {
@@ -48,10 +51,11 @@ class FirebaseViewModel() : ViewModel() {
                 var time = mutableListOf<ImageTime>()
                 for (i in it.items) {
                     i.metadata.addOnSuccessListener {
-                        var imageTime = ImageTime(
-                            i.downloadUrl,
-                            it.creationTimeMillis
-                        )
+                        var imageTime =
+                            ImageTime(
+                                i.downloadUrl,
+                                it.creationTimeMillis
+                            )
                         time.add(imageTime)
                         time1.value = time
                     }
@@ -71,9 +75,10 @@ class FirebaseViewModel() : ViewModel() {
                 }
                 var savedImagesList: MutableList<CategoryImages> = mutableListOf()
                 for (doc in value!!) {
-                    var imageItem = CategoryImages(
-                        "${doc.get("categoryImageUrl")}"
-                    )
+                    var imageItem =
+                        CategoryImages(
+                            "${doc.get("categoryImageUrl")}"
+                        )
                     savedImagesList.add(imageItem)
                 }
                 saveImagesUrl.value = savedImagesList
@@ -115,6 +120,10 @@ class FirebaseViewModel() : ViewModel() {
 
     fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) {
         repository.uploadCategoryImage(selectedPhotoUri, categoryId)
+    }
+
+    fun editProfileImage() {
+        TODO("Not yet implemented")
     }
 
 

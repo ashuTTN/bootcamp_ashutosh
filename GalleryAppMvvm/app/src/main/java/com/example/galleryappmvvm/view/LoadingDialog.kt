@@ -1,9 +1,9 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 
 
 import android.app.Activity
 import android.app.AlertDialog
-import androidx.fragment.app.FragmentActivity
+import com.example.galleryappmvvm.R
 
 class LoadingDialog(_activity: Activity){
     private var activity = Activity()

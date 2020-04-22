@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 
 import android.app.Activity
 import android.content.Intent
@@ -13,6 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.category_inforamtion_fragment_layout.view.*
 
 class CategoryInformationFragment : Fragment() {
@@ -40,7 +42,8 @@ class CategoryInformationFragment : Fragment() {
         val recyclerView:RecyclerView = view.findViewById(R.id.category_information_recyclerview)
 
 
-        val recyclerAdapter = CategoryInfoAdapter(this.context!!)
+        val recyclerAdapter =
+            CategoryInfoAdapter(this.context!!)
         viewModel.fetchCategoryInfo(categoryId).observe(viewLifecycleOwner, Observer { categories ->
             categories?.let {
                 Log.d(TAG,it.toString())

@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.galleryappmvvm.R
 import com.google.android.gms.tasks.Task
 
 
@@ -34,7 +35,11 @@ class TimelineAdapter(private val mContext: Context,_timelineFragment: TimelineF
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         return RecyclerViewHolder(
-            LayoutInflater.from(mContext).inflate(R.layout.time_item, parent, false)
+            LayoutInflater.from(mContext).inflate(
+                R.layout.time_item,
+                parent,
+                false
+            )
         )
     }
 
@@ -51,7 +56,8 @@ class TimelineAdapter(private val mContext: Context,_timelineFragment: TimelineF
         }
         holder.itemView.setOnClickListener {
             imageUrl.addOnSuccessListener {
-                val fullscreenViewFragment = FullscreenViewFragment()
+                val fullscreenViewFragment =
+                    FullscreenViewFragment()
                 var args:Bundle = Bundle()
                 args.putString("data",it.toString())
                 fullscreenViewFragment.setArguments(args)

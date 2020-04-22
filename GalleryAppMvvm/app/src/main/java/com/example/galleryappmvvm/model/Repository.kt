@@ -1,11 +1,12 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.model
 
 import android.app.Activity
 import android.net.Uri
 
 
 class Repository() {
-    private val firebase: FirebaseSource = FirebaseSource()
+    private val firebase: FirebaseSource =
+        FirebaseSource()
     fun login(email: String, password: String) = firebase.login(email, password)
 
     fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri?) =

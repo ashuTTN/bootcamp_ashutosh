@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm
+package com.example.galleryappmvvm.view
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.galleryappmvvm.R
 import com.example.gallleryapp1.View.CategoryFragment
 
 class CategoryRecyclerViewAdapter (private val mContext:Context,_categoryFragment: CategoryFragment):RecyclerView.Adapter<CategoryRecyclerViewAdapter.RecyclerViewHolder>(){
@@ -31,8 +32,14 @@ class CategoryRecyclerViewAdapter (private val mContext:Context,_categoryFragmen
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CategoryRecyclerViewAdapter.RecyclerViewHolder {
-        return RecyclerViewHolder(LayoutInflater.from(mContext).inflate(R.layout.category_item,parent,false))
+    ): RecyclerViewHolder {
+        return RecyclerViewHolder(
+            LayoutInflater.from(mContext).inflate(
+                R.layout.category_item,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -40,7 +47,7 @@ class CategoryRecyclerViewAdapter (private val mContext:Context,_categoryFragmen
     }
 
     override fun onBindViewHolder(
-        holder: CategoryRecyclerViewAdapter.RecyclerViewHolder,
+        holder: RecyclerViewHolder,
         position: Int
     ) {
         val currentCategory = mCategoryData[position]
@@ -48,7 +55,8 @@ class CategoryRecyclerViewAdapter (private val mContext:Context,_categoryFragmen
         Glide.with(mContext).load(currentCategory.categoryProfileImage.toString()).into(holder.categoryImage);
         holder.itemView.setOnClickListener {
             Log.d(TAG,"Recler item clicked,${currentCategory.categoryID}")
-            val categoryInformationFragment = CategoryInformationFragment()
+            val categoryInformationFragment =
+                CategoryInformationFragment()
             var args:Bundle = Bundle()
             args.putString("data","${currentCategory.categoryID}")
             categoryInformationFragment.setArguments(args)
