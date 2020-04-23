@@ -17,18 +17,18 @@ import java.util.*
 class FirebaseSource {
     private val TAG = "FIREBASE_SOURCE"
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private var userID: String = ""
     private var fStore = FirebaseFirestore.getInstance()
     private var categoryProfileImageUrl: String = ""
     private var profileImageUrl: String = ""
     private var categoryImageUrl: String = ""
+    private val userID = firebaseAuth.currentUser!!.uid
 
 
     fun fetchUserDetails(): Task<DocumentSnapshot> {
-        userID = firebaseAuth.currentUser!!.uid
         val documentSnapshot = fStore.collection("users").document(userID).get()
         return documentSnapshot
     }
+
 
     fun login(email: String, password: String): Task<AuthResult> {
         return firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -45,24 +45,7 @@ class FirebaseSource {
             }
     }
 
-    fun updateUserProfile(selectedPhotoUri: Uri?) {
-        userID = firebaseAuth.currentUser!!.uid
-        val filename = UUID.randomUUID().toString()
-        val storageRef = FirebaseStorage.getInstance()
-            .getReference("/images/$userID/profile_images/$filename")
-        storageRef.putFile(selectedPhotoUri!!)
-            .addOnSuccessListener {
-                storageRef.downloadUrl.addOnSuccessListener {
-                    profileImageUrl = it.toString()
-                    fStore.collection("users")
-                        .document(userID)
-                        .update(mapOf("profileImage" to profileImageUrl))
-                }
-            }
-    }
-
     private fun uploadUser(selectedPhotoUri: Uri?, name: String, email: String) {
-        userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/profile_images/$filename")
@@ -76,6 +59,21 @@ class FirebaseSource {
             }
             .addOnFailureListener {
                 Log.d(TAG, "profile image upload failed ${it.message}")
+            }
+    }
+
+    fun updateUserProfile(selectedPhotoUri: Uri?) {
+        val filename = UUID.randomUUID().toString()
+        val storageRef = FirebaseStorage.getInstance()
+            .getReference("/images/$userID/profile_images/$filename")
+        storageRef.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener {
+                storageRef.downloadUrl.addOnSuccessListener {
+                    profileImageUrl = it.toString()
+                    fStore.collection("users")
+                        .document(userID)
+                        .update(mapOf("profileImage" to profileImageUrl))
+                }
             }
     }
 
@@ -96,10 +94,9 @@ class FirebaseSource {
     fun currentUser() = firebaseAuth.currentUser
 
     fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) {
-        var loadingDialog =
+        val loadingDialog =
             LoadingDialog(activity)
         loadingDialog.startLoadingAnimation()
-        userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/category_profile_images/${categoryName}/$filename")
@@ -127,21 +124,18 @@ class FirebaseSource {
             "name" to categoryName,
             "categoryProfileImage" to categoryProfileImageUrl
         )
-        val userID = firebaseAuth.currentUser!!.uid
         val documentReference: DocumentReference = fStore.collection("users").document(userID)
         documentReference.collection("category").add(category)
     }
 
     fun getSavedCategories(): CollectionReference {
-        userID = firebaseAuth.currentUser!!.uid
-        var collectionReference = fStore.collection("users")
+        val collectionReference = fStore.collection("users")
             .document(userID)
             .collection("category")
         return collectionReference
     }
 
     fun fetchTimeline(): StorageReference {
-        userID = firebaseAuth.currentUser!!.uid
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/category_images")
         return storageRef
@@ -149,8 +143,7 @@ class FirebaseSource {
     }
 
     fun fetchCategoryInfo(categoryId: String): CollectionReference {
-        userID = firebaseAuth.currentUser!!.uid
-        var collectionReference = fStore.collection("users")
+        val collectionReference = fStore.collection("users")
             .document(userID)
             .collection("category").document(categoryId).collection("CategoryImages")
         return collectionReference
@@ -158,11 +151,9 @@ class FirebaseSource {
 
 
     fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) {
-        userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/category_images/$filename")
-//            .getReference("/images/$userID/category_images/$categoryId/$filename")
         storageRef.putFile(selectedPhotoUri!!)
             .addOnSuccessListener {
                 storageRef.downloadUrl.addOnSuccessListener {
@@ -184,5 +175,25 @@ class FirebaseSource {
             .add(categoryUrl)
     }
 
+    fun deleteImage(imageUrl: String?, categoryId: String?, currentImageId: String?) {
 
+        //delete from firebase storage
+        val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl!!)
+        storageReference.delete().addOnSuccessListener {
+            Log.d(TAG, "delete success")
+        }
+            .addOnFailureListener {
+                Log.d("FAILED", "${it.message}")
+            }
+        //delete from firestore
+        if (categoryId != null && imageUrl != null && currentImageId != null) {
+            val docRef = fStore.collection("users")
+                .document(FirebaseAuth.getInstance().currentUser!!.uid)
+                .collection("category")
+                .document(categoryId)
+                .collection("CategoryImages")
+                .document(currentImageId)
+            docRef.delete()
+        }
+    }
 }

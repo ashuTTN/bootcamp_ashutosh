@@ -78,6 +78,8 @@ class FirebaseViewModel() : ViewModel() {
                 for (doc in value!!) {
                     val imageItem =
                         CategoryImages(
+                            categoryId,
+                            "${doc.id}",
                             "${doc.get("categoryImageUrl")}"
                         )
                     savedImagesList.add(imageItem)
@@ -106,11 +108,9 @@ class FirebaseViewModel() : ViewModel() {
                         "${doc.get("categoryProfileImage")}",
                         "${doc.id}"
                     )
-
                     savedCategoryList.add(categoryItem)
                 }
                 savedCaategories.value = savedCategoryList
-
             })
         return savedCaategories
     }
@@ -121,6 +121,11 @@ class FirebaseViewModel() : ViewModel() {
 
     fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) {
         repository.uploadCategoryImage(selectedPhotoUri, categoryId)
+    }
+
+    fun deleteImage(imageUrl:String?,categoryId:String?,currentImageId:String?) {
+        repository.deleteImage(imageUrl,categoryId,currentImageId)
+
     }
 
 

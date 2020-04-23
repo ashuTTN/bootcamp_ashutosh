@@ -41,13 +41,11 @@ class CategoryFragment : Fragment() {
             )
         viewModel.getSavedCategories().observe(viewLifecycleOwner, Observer { categories ->
             categories?.let {
-                Log.d("hahahahahahahahahahaha", "$it")
                 recyclerAdapter.setCategories(it)
                 recyclerView.adapter = recyclerAdapter
                 recyclerView.layoutManager = GridLayoutManager(this.context,3)
             }
         })
-
 
 
         view.addCategoryFloatingActionButton.setOnClickListener {

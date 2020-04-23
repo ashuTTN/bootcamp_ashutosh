@@ -30,5 +30,6 @@ class Repository() {
     fun fetchTimeline() = firebase.fetchTimeline()
 
     fun updateUserProfile(selectedPhotoUri: Uri?) = firebase.updateUserProfile(selectedPhotoUri)
+    fun deleteImage(imageUrl: String? , categoryId: String? , currentImageId:String?) = firebase.deleteImage(imageUrl,categoryId,currentImageId)
 
 }

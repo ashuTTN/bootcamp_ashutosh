@@ -43,7 +43,7 @@ class CategoryInformationFragment : Fragment() {
 
 
         val recyclerAdapter =
-            CategoryInfoAdapter(this.context!!)
+            CategoryInfoAdapter(this.context!!,this)
         viewModel.fetchCategoryInfo(categoryId).observe(viewLifecycleOwner, Observer { categories ->
             categories?.let {
                 Log.d(TAG,it.toString())

@@ -54,20 +54,6 @@ class TimelineAdapter(private val mContext: Context,_timelineFragment: TimelineF
         imageUrl.addOnSuccessListener {
             Glide.with(mContext).load(it.toString()).into(holder.timelineImageView)
         }
-        holder.itemView.setOnClickListener {
-            imageUrl.addOnSuccessListener {
-                val fullscreenViewFragment =
-                    FullscreenViewFragment()
-                var args:Bundle = Bundle()
-                args.putString("data",it.toString())
-                fullscreenViewFragment.setArguments(args)
-                val transaction = timelineFragment.activity!!.supportFragmentManager.beginTransaction()
-                transaction.add(R.id.fragment_container2,fullscreenViewFragment)
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-
-        }
     }
 
 
