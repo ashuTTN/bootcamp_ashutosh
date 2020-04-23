@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
@@ -26,7 +27,7 @@ class CategoryActivity : AppCompatActivity() {
             if (it.itemId == R.id.nav_category)
                 selectedFragment = CategoryFragment()
             if (it.itemId == R.id.nav_logout) {
-                val viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+                val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
                 viewModel.logout()
                 startActivity(Intent(this, MainActivity::class.java))
             }

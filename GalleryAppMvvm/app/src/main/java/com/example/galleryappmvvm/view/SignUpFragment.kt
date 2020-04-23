@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
@@ -42,16 +42,16 @@ class SignUpFragment : Fragment() {
                 Toast.makeText(activity, "Please select a profile image", Toast.LENGTH_LONG).show()
             }
             if (name.isEmpty()) {
-                name_txt_signup.setError("Name can't be empty")
+                name_txt_signup.error = "Name can't be empty"
             }
             if (pass.isEmpty()) {
-                password_txt_signup.setError("Password can't be empty")
+                password_txt_signup.error = "Password can't be empty"
             }
             if (email.isEmpty()) {
-                email_txt_signup.setError("Email can't be empty")
+                email_txt_signup.error = "Email can't be empty"
             }
             if (!(email.isEmpty() || pass.isEmpty() || name.isEmpty() || selectedPhotoUri == null)) {
-                viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+                viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
                 viewModel.signup(
                     name_txt_signup.text.toString(),
                     email_txt_signup.text.toString(),

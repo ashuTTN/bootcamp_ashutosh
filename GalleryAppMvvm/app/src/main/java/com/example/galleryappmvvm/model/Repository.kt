@@ -29,4 +29,6 @@ class Repository() {
 
     fun fetchTimeline() = firebase.fetchTimeline()
 
+    fun updateUserProfile(selectedPhotoUri: Uri?) = firebase.updateUserProfile(selectedPhotoUri)
+
 }

@@ -19,13 +19,11 @@ import com.google.firebase.firestore.QuerySnapshot
 
 class FirebaseViewModel() : ViewModel() {
 
-    val TAG = "FIRESTORE_VIEW_MODEL"
-    var savedCaategories: MutableLiveData<List<Category>> = MutableLiveData()
-    var saveImagesUrl: MutableLiveData<List<CategoryImages>> = MutableLiveData()
-    var time1: MutableLiveData<List<ImageTime>> = MutableLiveData()
-
-    var repository: Repository =
-        Repository()
+    private val TAG = "FIRESTORE_VIEW_MODEL"
+    private var savedCaategories: MutableLiveData<List<Category>> = MutableLiveData()
+    private var saveImagesUrl: MutableLiveData<List<CategoryImages>> = MutableLiveData()
+    private var time1: MutableLiveData<List<ImageTime>> = MutableLiveData()
+    private var repository: Repository = Repository()
     private val savedUsers = mutableMapOf<String, String>()
 
     fun login(email: String, password: String): Task<AuthResult> {
@@ -40,18 +38,21 @@ class FirebaseViewModel() : ViewModel() {
         repository.logout()
     }
 
+    fun updateUserProfile(selectedPhotoUri: Uri?) {
+        repository.updateUserProfile(selectedPhotoUri)
+    }
 
     fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) {
-        repository.addCategory(activity , selectedPhotoUri, categoryName)
+        repository.addCategory(activity, selectedPhotoUri, categoryName)
     }
 
     fun fetchTimeline(): LiveData<List<ImageTime>> {
         repository.fetchTimeline().listAll()
             .addOnSuccessListener {
-                var time = mutableListOf<ImageTime>()
+                val time = mutableListOf<ImageTime>()
                 for (i in it.items) {
                     i.metadata.addOnSuccessListener {
-                        var imageTime =
+                        val imageTime =
                             ImageTime(
                                 i.downloadUrl,
                                 it.creationTimeMillis
@@ -73,9 +74,9 @@ class FirebaseViewModel() : ViewModel() {
                     saveImagesUrl.value = null
                     return@EventListener
                 }
-                var savedImagesList: MutableList<CategoryImages> = mutableListOf()
+                val savedImagesList: MutableList<CategoryImages> = mutableListOf()
                 for (doc in value!!) {
-                    var imageItem =
+                    val imageItem =
                         CategoryImages(
                             "${doc.get("categoryImageUrl")}"
                         )
@@ -98,9 +99,9 @@ class FirebaseViewModel() : ViewModel() {
 
                 var savedCategoryList: MutableList<Category> = mutableListOf()
                 for (doc in value!!) {
-                    Log.d(TAG, "${doc.id}")
+                    Log.d(TAG, doc.id)
                     //var categoryItem = doc.toObject(Category::class.java)
-                    var categoryItem = Category(
+                    val categoryItem = Category(
                         "${doc.get("name")}",
                         "${doc.get("categoryProfileImage")}",
                         "${doc.id}"
@@ -120,10 +121,6 @@ class FirebaseViewModel() : ViewModel() {
 
     fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) {
         repository.uploadCategoryImage(selectedPhotoUri, categoryId)
-    }
-
-    fun editProfileImage() {
-        TODO("Not yet implemented")
     }
 
 

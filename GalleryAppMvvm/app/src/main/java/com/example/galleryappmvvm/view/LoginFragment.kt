@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.login_fragment_layout.*
@@ -27,16 +27,16 @@ class LoginFragment : Fragment() {
             val pass = password_txt.text.toString()
 
             if (email.isEmpty()) {
-                email_txt.setError("Email can't be blank")
+                email_txt.error = "Email can't be blank"
             }
             if (pass.isEmpty()) {
-                password_txt.setError("Password can't be blank")
+                password_txt.error = "Password can't be blank"
             }
             if (!(email.isEmpty() || pass.isEmpty())) {
                 val loadingDialog =
                     LoadingDialog(activity!!)
                 loadingDialog.startLoadingAnimation()
-                viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+                viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
                 viewModel.login(email, pass)
                     .addOnSuccessListener {
                         Toast.makeText(activity, "Login Successfull", Toast.LENGTH_LONG).show()

@@ -41,7 +41,7 @@ class CategoryInfoAdapter(private val mContext:Context) :RecyclerView.Adapter<Ca
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val currentCategory = mCategoryData[position]
         val imageUrl = currentCategory.categoryImageUrl.toString()
-        Glide.with(mContext).load(imageUrl).into(holder.imageView);
+        Glide.with(mContext).load(imageUrl).into(holder.imageView)
     }
 
 }

@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.add_category_layout.*
@@ -30,7 +30,7 @@ class AddCategoryFragment:Fragment() {
         }
 
         view.add_category_button.setOnClickListener {
-            viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+            viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
             viewModel.addCategory(activity!!,selectedPhotoUri,add_category_name.text.toString())
         }
         return view

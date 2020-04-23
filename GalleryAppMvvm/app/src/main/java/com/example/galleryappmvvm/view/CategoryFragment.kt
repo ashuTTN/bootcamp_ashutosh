@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +33,7 @@ class CategoryFragment : Fragment() {
         val view = inflater.inflate(R.layout.category_fragment_layout, container, false)
         recyclerView = view.findViewById(R.id.category_recycler_view)
 
-        viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
         recyclerAdapter =
             CategoryRecyclerViewAdapter(
                 this.context!!,

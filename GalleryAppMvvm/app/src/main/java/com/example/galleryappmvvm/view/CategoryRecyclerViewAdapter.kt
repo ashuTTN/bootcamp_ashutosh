@@ -52,18 +52,18 @@ class CategoryRecyclerViewAdapter (private val mContext:Context,_categoryFragmen
     ) {
         val currentCategory = mCategoryData[position]
         holder.categoryTitle.text = currentCategory.name.toString()
-        Glide.with(mContext).load(currentCategory.categoryProfileImage.toString()).into(holder.categoryImage);
+        Glide.with(mContext).load(currentCategory.categoryProfileImage.toString()).into(holder.categoryImage)
         holder.itemView.setOnClickListener {
             Log.d(TAG,"Recler item clicked,${currentCategory.categoryID}")
             val categoryInformationFragment =
                 CategoryInformationFragment()
-            var args:Bundle = Bundle()
+            val args = Bundle()
             args.putString("data","${currentCategory.categoryID}")
-            categoryInformationFragment.setArguments(args)
+            categoryInformationFragment.arguments = args
             val transaction = categoryFragment.activity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container2,categoryInformationFragment)
-            transaction.addToBackStack(null);
-            transaction.commit();
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
     }
 

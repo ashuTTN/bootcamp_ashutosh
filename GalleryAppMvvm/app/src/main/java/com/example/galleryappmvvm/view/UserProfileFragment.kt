@@ -1,9 +1,7 @@
 package com.example.galleryappmvvm.view
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -14,20 +12,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
-
-
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
-import kotlinx.android.synthetic.main.image_picker_dialog.*
-import kotlinx.android.synthetic.main.image_picker_dialog.view.*
 import kotlinx.android.synthetic.main.userprofile_fragment_layout.*
 import kotlinx.android.synthetic.main.userprofile_fragment_layout.view.*
 
 class UserProfileFragment : Fragment() {
+    private var selectedPhotoUri: Uri? = null
     private val CAMERA_REQUEST = 0
     private val GALLERY_REQUEST = 1
     private val TAG = "UserProfileFragment"
@@ -41,7 +35,10 @@ class UserProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.userprofile_fragment_layout, container, false)
 
-        viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+//        viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+
+        viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+
         val loadingDialog =
             LoadingDialog(activity!!)
         loadingDialog.startLoadingAnimation()
@@ -50,7 +47,7 @@ class UserProfileFragment : Fragment() {
                 text_username.text = it.get("name").toString()
                 text_email.text = it.get("email").toString()
                 userProfileImageUrl = it.get("profileImage").toString()
-                Glide.with(this).load(userProfileImageUrl).into(image_view_userprofile);
+                Glide.with(this).load(userProfileImageUrl).into(image_view_userprofile)
                 loadingDialog.dismissDialog()
             }
 
@@ -58,22 +55,31 @@ class UserProfileFragment : Fragment() {
 
 
         view.btn_logout.setOnClickListener {
-            viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+            viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
             viewModel.logout()
             startActivity(Intent(activity, MainActivity::class.java))
         }
+
         view.edit_profile_image_fab.setOnClickListener{
             val d = Dialog(activity!!)
             d.setContentView(R.layout.image_picker_dialog)
             d.setTitle("Add Content")
             d.show()
-            var btn1 = d.findViewById(R.id.button1) as Button
-            btn1.setOnClickListener {
-                val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+            d.setTitle("Select a Method")
+            val openCamBtn = d.findViewById(R.id.open_camera_button) as Button
+            openCamBtn.setOnClickListener {
+                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 startActivityForResult(cameraIntent,CAMERA_REQUEST)
+                d.cancel()
+            }
+            val openGalleryBtn = d.findViewById(R.id.open_gallery_button) as Button
+            openGalleryBtn.setOnClickListener {
+                val galleryIntent = Intent(Intent.ACTION_PICK)
+                galleryIntent.type = "image/*"
+                startActivityForResult(galleryIntent,GALLERY_REQUEST)
+                d.cancel()
             }
         }
-
         return view
     }
 
@@ -81,7 +87,20 @@ class UserProfileFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK){
             val photo = data?.extras?.get("data") as Bitmap
-            view!!.image_view_userprofile.setImageBitmap(photo)
+            val path = MediaStore.Images.Media.insertImage(context!!.contentResolver, photo,"Title",null)
+            selectedPhotoUri = Uri.parse(path)
+            Log.d(TAG,"$selectedPhotoUri")
+            view!!.image_view_userprofile.setImageURI(selectedPhotoUri)
+            viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+            viewModel.updateUserProfile(selectedPhotoUri)
+        }
+        if(requestCode == GALLERY_REQUEST && resultCode == Activity.RESULT_OK && data != null){
+            selectedPhotoUri = data.data
+            view!!.image_view_userprofile.setImageURI(selectedPhotoUri)
+            viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+            viewModel.updateUserProfile(selectedPhotoUri)
         }
     }
+
+
 }

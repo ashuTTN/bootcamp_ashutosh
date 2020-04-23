@@ -17,7 +17,7 @@ class FullscreenViewFragment: Fragment(){
     ): View? {
         val view = inflater.inflate(R.layout.fullscreen_fragment_layout, container, false)
         val bundle = this.arguments
-        var url = bundle!!.getString("data")!!
+        val url = bundle!!.getString("data")!!
         Glide.with(this).load(url).into(view.fullscreenImageView)
         return view
     }

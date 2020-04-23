@@ -44,7 +44,8 @@ class FirebaseSource {
                 Log.d(TAG, it.message.toString())
             }
     }
-    private fun updateUserProfile(selectedPhotoUri: Uri?){
+
+    fun updateUserProfile(selectedPhotoUri: Uri?) {
         userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
         val storageRef = FirebaseStorage.getInstance()
@@ -53,9 +54,13 @@ class FirebaseSource {
             .addOnSuccessListener {
                 storageRef.downloadUrl.addOnSuccessListener {
                     profileImageUrl = it.toString()
+                    fStore.collection("users")
+                        .document(userID)
+                        .update(mapOf("profileImage" to profileImageUrl))
                 }
             }
     }
+
     private fun uploadUser(selectedPhotoUri: Uri?, name: String, email: String) {
         userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
@@ -90,7 +95,7 @@ class FirebaseSource {
 
     fun currentUser() = firebaseAuth.currentUser
 
-    fun addCategory(activity:Activity , selectedPhotoUri: Uri?, categoryName: String) {
+    fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) {
         var loadingDialog =
             LoadingDialog(activity)
         loadingDialog.startLoadingAnimation()
@@ -108,7 +113,11 @@ class FirebaseSource {
             }
             .addOnFailureListener {
                 Log.d(TAG, "category profile image upload failed ${it.message}")
-                Toast.makeText(CategoryActivity(),"category profile image upload failed ${it.message}",Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    CategoryActivity(),
+                    "category profile image upload failed ${it.message}",
+                    Toast.LENGTH_LONG
+                ).show()
                 loadingDialog.dismissDialog()
             }
     }

@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
@@ -37,7 +37,7 @@ class CategoryInformationFragment : Fragment() {
             Log.d(TAG, "$selectedPhotoUri")
 
         }
-        val viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
 
         val recyclerView:RecyclerView = view.findViewById(R.id.category_information_recyclerview)
 
@@ -60,7 +60,7 @@ class CategoryInformationFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 2 && resultCode == Activity.RESULT_OK && data != null) {
             selectedPhotoUri = data.data!!
-            val viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
+            val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
             viewModel.uploadCategoryImage(selectedPhotoUri, categoryId)
             Log.d(TAG, "$selectedPhotoUri")
         }
