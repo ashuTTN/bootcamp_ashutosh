@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.AbsListView;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycler);
         layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(recyclerView.VERTICAL);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         modelClassList = new ArrayList<>();
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+//pagination
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        modelClassList.add(new ModelClass(Math.floor(Math.random()*100)+""));
+        modelClassList.add(new ModelClass(Math.floor(Math.random()*100)+"")); // adds a random number to the list
         adapter.notifyDataSetChanged();
     }
 }

@@ -8,22 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private List<ModelClass> modelClassList;
 
-    public List<ModelClass> getModelClassList() {
-        return modelClassList;
-    }
 
-    public void setModelClassList(List<ModelClass> modelClassList) {
-        this.modelClassList = modelClassList;
-    }
 
-    public Adapter(List<ModelClass> modelClassList) {
+    Adapter(List<ModelClass> modelClassList) {
         this.modelClassList = modelClassList;
     }
 
@@ -45,10 +38,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         return modelClassList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.studentName);
         }
