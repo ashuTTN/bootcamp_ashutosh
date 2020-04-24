@@ -21,12 +21,15 @@ class FirebaseSource {
     private var categoryProfileImageUrl: String = ""
     private var profileImageUrl: String = ""
     private var categoryImageUrl: String = ""
-    private val userID = firebaseAuth.currentUser!!.uid
+
+
 
     //Login User
     fun login(email: String, password: String): Task<AuthResult> {
-        return firebaseAuth.signInWithEmailAndPassword(email, password)
+        val auth =  firebaseAuth.signInWithEmailAndPassword(email, password)
+        return auth
     }
+
 
     //Signup on Auth and upload selected photo , name and email on firestore
     fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri) {
@@ -41,6 +44,7 @@ class FirebaseSource {
 
     //upload user profile image to firebase storage and calls saveUserToFireStoreDatabase
     private fun uploadUser(selectedPhotoUri: Uri, name: String, email: String) {
+        val userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/profile_images/$filename")
@@ -71,6 +75,7 @@ class FirebaseSource {
 
     //Add a new Category
     fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) {
+        val userID = firebaseAuth.currentUser!!.uid
         val loadingDialog = LoadingDialog(activity)
         loadingDialog.startLoadingAnimation()
         val filename = UUID.randomUUID().toString()
@@ -97,6 +102,7 @@ class FirebaseSource {
 
     //saves category name and its profile image to firestore
     private fun saveCategoryToFireStore(categoryName: String) {
+        val userID = firebaseAuth.currentUser!!.uid
         val category = hashMapOf(
             "name" to categoryName,
             "categoryProfileImage" to categoryProfileImageUrl
@@ -107,6 +113,7 @@ class FirebaseSource {
 
     //Return collection reference of category in which all categories are saved
     fun getSavedCategories(): CollectionReference {
+        val userID = firebaseAuth.currentUser!!.uid
         val collectionReference = fStore.collection("users")
             .document(userID)
             .collection("category")
@@ -115,6 +122,7 @@ class FirebaseSource {
 
     //returns collection reference -- categoryImages
     fun fetchCategoryInfo(categoryId: String): CollectionReference {
+        val userID = firebaseAuth.currentUser!!.uid
         val collectionReference = fStore.collection("users")
             .document(userID)
             .collection("category").document(categoryId).collection("CategoryImages")
@@ -123,6 +131,7 @@ class FirebaseSource {
 
     //Upload category Image to Firebase Storage
     fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) {
+        val userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/category_images/$filename")
@@ -140,6 +149,7 @@ class FirebaseSource {
 
     // save category image in firestore under respective categoryId
     private fun saveCategoryImageUrlToFirestore(categoryImageUrl: String, categoryId: String) {
+        val userID = firebaseAuth.currentUser!!.uid
         val categoryUrl = hashMapOf(
             "categoryImageUrl" to categoryImageUrl
         )
@@ -173,12 +183,14 @@ class FirebaseSource {
 
     //Fetch user details return Document Snapshot
     fun fetchUserDetails(): Task<DocumentSnapshot> {
+        val userID = firebaseAuth.currentUser!!.uid
         val documentSnapshot = fStore.collection("users").document(userID).get()
         return documentSnapshot
     }
 
     //update user profile image -- takes selected photo uri
     fun updateUserProfile(selectedPhotoUri: Uri?) {
+        val userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString() // generates a random file name
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/profile_images/$filename")  // path in firebase storage where image gets stored
@@ -195,6 +207,7 @@ class FirebaseSource {
 
 
     fun fetchTimeline(): StorageReference {
+        val userID = firebaseAuth.currentUser!!.uid
         val storageRef = FirebaseStorage.getInstance()
             .getReference("/images/$userID/category_images")
         return storageRef
@@ -203,6 +216,5 @@ class FirebaseSource {
 
 
     fun logout() = firebaseAuth.signOut()
-    fun currentUser() = firebaseAuth.currentUser
 
 }

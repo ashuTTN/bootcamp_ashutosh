@@ -31,6 +31,7 @@ class FirebaseViewModel() : ViewModel() {
         return repository.login(email, password)
     }
 
+
     fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri) {
         repository.signup(name, email, password, selectedPhotoUri)
     }
@@ -39,6 +40,7 @@ class FirebaseViewModel() : ViewModel() {
     fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) {
         repository.addCategory(activity, selectedPhotoUri, categoryName)
     }
+
 
     fun getSavedCategories(): LiveData<List<Category>> {
         repository.getSavedCategories()
@@ -63,38 +65,6 @@ class FirebaseViewModel() : ViewModel() {
                 savedCaategories.value = savedCategoryList
             })
         return savedCaategories
-    }
-
-
-
-
-    fun logout() {
-        repository.logout()
-    }
-
-    fun updateUserProfile(selectedPhotoUri: Uri?) {
-        repository.updateUserProfile(selectedPhotoUri)
-    }
-
-
-
-    fun fetchTimeline(): LiveData<List<ImageTime>> {
-        repository.fetchTimeline().listAll()
-            .addOnSuccessListener {
-                val time = mutableListOf<ImageTime>()
-                for (i in it.items) {
-                    i.metadata.addOnSuccessListener {
-                        val imageTime =
-                            ImageTime(
-                                i.downloadUrl,
-                                it.creationTimeMillis
-                            )
-                        time.add(imageTime)
-                        time1.value = time
-                    }
-                }
-            }
-        return time1
     }
 
 
@@ -123,19 +93,49 @@ class FirebaseViewModel() : ViewModel() {
     }
 
 
+    fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) {
+        repository.uploadCategoryImage(selectedPhotoUri, categoryId)
+    }
+
+
+    fun deleteImage(imageUrl: String?, categoryId: String?, currentImageId: String?) {
+        repository.deleteImage(imageUrl, categoryId, currentImageId)
+
+    }
+
 
     fun fetchUserDetails(): Task<DocumentSnapshot> {
         return repository.fetchUserDetails()
     }
 
-    fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) {
-        repository.uploadCategoryImage(selectedPhotoUri, categoryId)
+
+    fun updateUserProfile(selectedPhotoUri: Uri?) {
+        repository.updateUserProfile(selectedPhotoUri)
     }
 
-    fun deleteImage(imageUrl:String?,categoryId:String?,currentImageId:String?) {
-        repository.deleteImage(imageUrl,categoryId,currentImageId)
 
+    fun fetchTimeline(): LiveData<List<ImageTime>> {
+        repository.fetchTimeline().listAll()
+            .addOnSuccessListener {
+                val time = mutableListOf<ImageTime>()
+                for (i in it.items) {
+                    i.metadata.addOnSuccessListener {
+                        val imageTime =
+                            ImageTime(
+                                i.downloadUrl,
+                                it.creationTimeMillis
+                            )
+                        time.add(imageTime)
+                        time1.value = time
+                    }
+                }
+            }
+        return time1
     }
 
+
+    fun logout() {
+        repository.logout()
+    }
 
 }

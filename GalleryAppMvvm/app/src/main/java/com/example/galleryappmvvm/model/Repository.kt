@@ -13,29 +13,24 @@ class Repository() {
         firebase.signup(name, email, password, selectedPhotoUri)
 
     fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) =
-        firebase.addCategory(activity , selectedPhotoUri, categoryName)
+        firebase.addCategory(activity, selectedPhotoUri, categoryName)
 
     fun getSavedCategories() = firebase.getSavedCategories()
 
-
-
-    fun currentUser() = firebase.currentUser()
-
-    fun logout() = firebase.logout()
-
-
-
     fun fetchCategoryInfo(categoryId: String) = firebase.fetchCategoryInfo(categoryId)
-
-    fun fetchUserDetails() = firebase.fetchUserDetails()
 
     fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) =
         firebase.uploadCategoryImage(selectedPhotoUri, categoryId)
+
+    fun deleteImage(imageUrl: String?, categoryId: String?, currentImageId: String?) =
+        firebase.deleteImage(imageUrl, categoryId, currentImageId)
+
+    fun fetchUserDetails() = firebase.fetchUserDetails()
 
     fun fetchTimeline() = firebase.fetchTimeline()
 
     fun updateUserProfile(selectedPhotoUri: Uri?) = firebase.updateUserProfile(selectedPhotoUri)
 
-    fun deleteImage(imageUrl: String? , categoryId: String? , currentImageId:String?) = firebase.deleteImage(imageUrl,categoryId,currentImageId)
+    fun logout() = firebase.logout()
 
 }
