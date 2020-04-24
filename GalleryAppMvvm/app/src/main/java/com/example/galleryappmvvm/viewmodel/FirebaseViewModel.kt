@@ -26,13 +26,47 @@ class FirebaseViewModel() : ViewModel() {
     private var repository: Repository = Repository()
     private val savedUsers = mutableMapOf<String, String>()
 
+
     fun login(email: String, password: String): Task<AuthResult> {
         return repository.login(email, password)
     }
 
-    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri?) {
+    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri) {
         repository.signup(name, email, password, selectedPhotoUri)
     }
+
+
+    fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) {
+        repository.addCategory(activity, selectedPhotoUri, categoryName)
+    }
+
+    fun getSavedCategories(): LiveData<List<Category>> {
+        repository.getSavedCategories()
+            .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    savedCaategories.value = null
+                    return@EventListener
+                }
+
+                var savedCategoryList: MutableList<Category> = mutableListOf()
+                for (doc in value!!) {
+                    Log.d(TAG, doc.id)
+                    //var categoryItem = doc.toObject(Category::class.java)
+                    val categoryItem = Category(
+                        "${doc.get("name")}",
+                        "${doc.get("categoryProfileImage")}",
+                        "${doc.id}"
+                    )
+                    savedCategoryList.add(categoryItem)
+                }
+                savedCaategories.value = savedCategoryList
+            })
+        return savedCaategories
+    }
+
+
+
 
     fun logout() {
         repository.logout()
@@ -42,9 +76,7 @@ class FirebaseViewModel() : ViewModel() {
         repository.updateUserProfile(selectedPhotoUri)
     }
 
-    fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) {
-        repository.addCategory(activity, selectedPhotoUri, categoryName)
-    }
+
 
     fun fetchTimeline(): LiveData<List<ImageTime>> {
         repository.fetchTimeline().listAll()
@@ -90,30 +122,7 @@ class FirebaseViewModel() : ViewModel() {
         return saveImagesUrl
     }
 
-    fun getSavedCategories(): LiveData<List<Category>> {
-        repository.getSavedCategories()
-            .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
-                if (e != null) {
-                    Log.w(TAG, "Listen failed.", e)
-                    savedCaategories.value = null
-                    return@EventListener
-                }
 
-                var savedCategoryList: MutableList<Category> = mutableListOf()
-                for (doc in value!!) {
-                    Log.d(TAG, doc.id)
-                    //var categoryItem = doc.toObject(Category::class.java)
-                    val categoryItem = Category(
-                        "${doc.get("name")}",
-                        "${doc.get("categoryProfileImage")}",
-                        "${doc.id}"
-                    )
-                    savedCategoryList.add(categoryItem)
-                }
-                savedCaategories.value = savedCategoryList
-            })
-        return savedCaategories
-    }
 
     fun fetchUserDetails(): Task<DocumentSnapshot> {
         return repository.fetchUserDetails()

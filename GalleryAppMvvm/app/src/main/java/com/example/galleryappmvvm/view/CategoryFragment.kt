@@ -1,26 +1,24 @@
 package com.example.gallleryapp1.View
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.*
 import com.example.galleryappmvvm.view.AddCategoryFragment
-import com.example.galleryappmvvm.view.CategoryRecyclerViewAdapter
+import com.example.galleryappmvvm.view.CategoryAdapter
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.category_fragment_layout.view.*
 
 
 class CategoryFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerAdapter: CategoryRecyclerViewAdapter
+    private lateinit var recyclerAdapter: CategoryAdapter
     private lateinit var viewModel: FirebaseViewModel
 
 
@@ -34,11 +32,8 @@ class CategoryFragment : Fragment() {
         recyclerView = view.findViewById(R.id.category_recycler_view)
 
         viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-        recyclerAdapter =
-            CategoryRecyclerViewAdapter(
-                this.context!!,
-                this
-            )
+        recyclerAdapter = CategoryAdapter(this.context!!, this)
+
         viewModel.getSavedCategories().observe(viewLifecycleOwner, Observer { categories ->
             categories?.let {
                 recyclerAdapter.setCategories(it)

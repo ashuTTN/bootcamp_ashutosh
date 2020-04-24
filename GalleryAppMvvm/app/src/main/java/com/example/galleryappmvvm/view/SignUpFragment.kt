@@ -35,6 +35,7 @@ class SignUpFragment : Fragment() {
         }
 
         view.btn_login_signup.setOnClickListener {
+
             val name = name_txt_signup.text.toString().trim()
             val email = email_txt_signup.text.toString().trim()
             val pass = password_txt_signup.text.toString()
@@ -56,7 +57,7 @@ class SignUpFragment : Fragment() {
                     name_txt_signup.text.toString(),
                     email_txt_signup.text.toString(),
                     password_txt_signup.text.toString(),
-                    selectedPhotoUri
+                    selectedPhotoUri!!
                 )
             }
         }

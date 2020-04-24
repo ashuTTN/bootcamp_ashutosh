@@ -17,7 +17,7 @@ import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.category_inforamtion_fragment_layout.view.*
 
-class CategoryInformationFragment : Fragment() {
+class CategoryInfoFragment : Fragment() {
     private var selectedPhotoUri: Uri? = null
     private val TAG = "CateInformationFragment"
     private lateinit var categoryId: String

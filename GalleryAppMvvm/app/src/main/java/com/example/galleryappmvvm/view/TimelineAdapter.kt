@@ -56,6 +56,4 @@ class TimelineAdapter(private val mContext: Context,_timelineFragment: TimelineF
         }
     }
 
-
-
 }

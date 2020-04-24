@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
 import com.example.gallleryapp1.View.CategoryFragment
 
-class CategoryRecyclerViewAdapter (private val mContext:Context,_categoryFragment: CategoryFragment):RecyclerView.Adapter<CategoryRecyclerViewAdapter.RecyclerViewHolder>(){
+class CategoryAdapter (private val mContext:Context, _categoryFragment: CategoryFragment):RecyclerView.Adapter<CategoryAdapter.RecyclerViewHolder>(){
     private val TAG = "RecyclerViewAdapter"
     private lateinit var mCategoryData: List<Category>
     private var categoryFragment:CategoryFragment
@@ -56,7 +56,7 @@ class CategoryRecyclerViewAdapter (private val mContext:Context,_categoryFragmen
         holder.itemView.setOnClickListener {
             Log.d(TAG,"Recler item clicked,${currentCategory.categoryID}")
             val categoryInformationFragment =
-                CategoryInformationFragment()
+                CategoryInfoFragment()
             val args = Bundle()
             args.putString("data","${currentCategory.categoryID}")
             categoryInformationFragment.arguments = args

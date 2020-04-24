@@ -50,6 +50,5 @@ class CategoryActivity : AppCompatActivity() {
         fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fragment_container2, fragment)
         fragmentTransaction.commit()
-
     }
 }
