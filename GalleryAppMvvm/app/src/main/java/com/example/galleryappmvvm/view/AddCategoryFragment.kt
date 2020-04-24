@@ -1,4 +1,5 @@
 package com.example.galleryappmvvm.view
+
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -6,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
@@ -13,7 +15,7 @@ import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.add_category_layout.*
 import kotlinx.android.synthetic.main.add_category_layout.view.*
 
-class AddCategoryFragment:Fragment() {
+class AddCategoryFragment : Fragment() {
     private lateinit var viewModel: FirebaseViewModel
     private var selectedPhotoUri: Uri? = null
     override fun onCreateView(
@@ -21,24 +23,40 @@ class AddCategoryFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.add_category_layout,container,false)
-        view.add_category_image_view.setOnClickListener{
+        val view = inflater.inflate(R.layout.add_category_layout, container, false)
+        view.add_category_image_view.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
-            startActivityForResult(intent,1)
+            startActivityForResult(intent, 1)
         }
 
         view.add_category_button.setOnClickListener {
-            viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-            viewModel.addCategory(activity!!,selectedPhotoUri,add_category_name.text.toString())
+            if (add_category_name.text.toString() == "") {
+                add_category_name.error = "Please Enter Category Name"
+            } else if (selectedPhotoUri == null) {
+                Toast.makeText(
+                    activity,
+                    "Please select a category display image",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+                viewModel.addCategory(
+                    activity!!,
+                    selectedPhotoUri,
+                    add_category_name.text.toString()
+                )
+            }
+
         }
         return view
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 1 && resultCode == Activity.RESULT_OK && data != null){
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
             selectedPhotoUri = data.data
+            view!!.add_category_image_view.setImageURI(selectedPhotoUri)
         }
     }
 }

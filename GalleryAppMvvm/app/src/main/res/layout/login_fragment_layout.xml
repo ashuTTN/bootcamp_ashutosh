@@ -38,7 +38,7 @@
 
     <EditText
         android:id="@+id/password_txt"
-        android:text="1234567"
+        android:text="12345678"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

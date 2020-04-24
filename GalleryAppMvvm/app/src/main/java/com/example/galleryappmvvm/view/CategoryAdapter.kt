@@ -66,5 +66,4 @@ class CategoryAdapter (private val mContext:Context, _categoryFragment: Category
             transaction.commit()
         }
     }
-
 }

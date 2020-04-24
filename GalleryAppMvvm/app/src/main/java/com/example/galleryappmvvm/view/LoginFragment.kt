@@ -46,6 +46,7 @@ class LoginFragment : Fragment() {
                     .addOnFailureListener {
                         Toast.makeText(activity, "Login failed ${it.message}", Toast.LENGTH_LONG)
                             .show()
+                        loadingDialog.dismissDialog()
                     }
             }
 
