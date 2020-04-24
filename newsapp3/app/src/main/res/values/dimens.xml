@@ -9,4 +9,9 @@
     <dimen name="large_title_text18sp">18sp</dimen>
     <dimen name="margin_dp10">10dp</dimen>
     <dimen name="padding20dp">20dp</dimen>
+    <dimen name="margin_top_30dp">30dp</dimen>
+    <dimen name="small_title_text18sp">18sp</dimen>
+    <dimen name="margin18dp">18dp</dimen>
+    <dimen name="small_text_width234dp">234dp</dimen>
+    <dimen name="small_text_height_103dp">103dp</dimen>
 </resources>
