@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top_40dp">40dp</dimen>
+    <dimen name="large_image_height_208dp">208dp</dimen>
+    <dimen name="large_text_height_102dp">102dp</dimen>
+    <dimen name="large_text_margin_top_20dp">20dp</dimen>
+    <dimen name="large_text_size_24sp">24sp</dimen>
+    <dimen name="large_title_margin_top13dp">13dp</dimen>
+    <dimen name="large_title_text18sp">18sp</dimen>
+    <dimen name="margin_dp10">10dp</dimen>
+    <dimen name="padding20dp">20dp</dimen>
+</resources>

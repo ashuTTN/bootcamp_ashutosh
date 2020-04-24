@@ -12,7 +12,7 @@
         android:layout_height="103dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="72dp"
-        android:text="With no trade deal signed, Donald Trump-Narendra Modi jamboree was about two men, not two countries"
+        android:text="@string/with_no_trade_deal_signed_donald_trump_narendra_modi_jamboree_was_about_two_men_not_two_countries"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/smallImage"
@@ -40,7 +40,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="TextView"
-        android:textColor="#000000"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="18dp"
-        android:text="Headlines 5 hours ago"
+        android:text="@string/headlines_5_hours_ago"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/smallText" />
 
@@ -63,5 +63,5 @@
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/smallImage"
-        app:srcCompat="@drawable/messaage" />
+        app:srcCompat="@drawable/ic_chat_black_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

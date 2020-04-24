@@ -3,69 +3,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:paddingStart="@dimen/padding20dp"
+    android:paddingEnd="@dimen/padding20dp">
+
+    <TextView
+        android:id="@+id/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aman_s_briefing"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/heading2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/top_5_stories_at_the_moment"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/heading1"
+        app:layout_constraintTop_toBottomOf="@id/heading1" />
 
     <ImageView
-        android:id="@+id/largeImage"
-        android:layout_width="393dp"
-        android:layout_height="208dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="7dp"
-        android:scaleType="fitXY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/largeImageHolder"
+        app:layout_constraintTop_toTopOf="@id/heading1"
+        app:srcCompat="@drawable/weather_icon" />
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:id="@+id/largeImageHolder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintStart_toStartOf="@id/heading1"
+        app:layout_constraintTop_toBottomOf="@id/heading2"
+        android:layout_height="@dimen/large_image_height_208dp"
+        android:layout_marginTop="@dimen/margin_top_40dp"
+        app:cardCornerRadius="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/largeImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/largeText"
-        android:layout_width="384dp"
-        android:layout_height="102dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/large_text_height_102dp"
         android:singleLine="false"
-        android:text="TextView"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:text="@string/textview"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/large_text_size_24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/largeImage"
-        app:layout_constraintVertical_bias="0.01" />
+        app:layout_constraintEnd_toEndOf="@id/largeImageHolder"
+        app:layout_constraintStart_toStartOf="@id/largeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/largeTitle" />
 
     <TextView
         android:id="@+id/largeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="13dp"
-        android:text="TextView"
+        android:layout_marginTop="@dimen/large_title_margin_top13dp"
+        android:text="@string/textview"
         android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/largeImage" />
+        android:textSize="@dimen/large_title_text18sp"
+        app:layout_constraintStart_toStartOf="@id/largeImageHolder"
+        app:layout_constraintTop_toBottomOf="@+id/largeImageHolder" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:text="Headlines - 10 minutes ago"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_dp10"
+        android:text="@string/headlines_10_minutes_ago"
+        app:layout_constraintStart_toStartOf="@id/largeText"
         app:layout_constraintTop_toBottomOf="@+id/largeText" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/largeText"
-        app:srcCompat="@drawable/messaage" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@drawable/ic_chat_black_24dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,22 +17,20 @@ import static com.example.newsapp3.ModelClass.SMALL_LAYOUT;
 class Adapter extends RecyclerView.Adapter {
     private List<ModelClass> modelClassList;
 
-    public Adapter(List<ModelClass> modelClassList) {
+    Adapter(List<ModelClass> modelClassList) {
         this.modelClassList = modelClassList;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType){
-            case LARGE_LAYOUT:
-                View large_layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.large_layout,parent,false);
-                return new LargeLayout(large_layout);
-            case SMALL_LAYOUT:
-                View small_layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.small_layout,parent,false);
-                return new SmallLayout(small_layout);
-            default:
-                return null;
+        if(viewType == LARGE_LAYOUT){
+            View large_layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.large_layout,parent,false);
+            return new LargeLayout(large_layout);
+        }
+        else{
+            View small_layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.small_layout,parent,false);
+            return new SmallLayout(small_layout);
         }
     }
 
@@ -79,7 +77,7 @@ class Adapter extends RecyclerView.Adapter {
         ImageView large_image1;
         TextView large_text1;
         TextView large_title1;
-        public LargeLayout(View large_layout) {
+        LargeLayout(View large_layout) {
             super(large_layout);
             large_image1 = large_layout.findViewById(R.id.largeImage);
             large_text1 = large_layout.findViewById(R.id.largeText);
@@ -98,7 +96,7 @@ class Adapter extends RecyclerView.Adapter {
         private TextView small_text1;
         private TextView small_title1;
 
-        public SmallLayout(View small_layout) {
+        SmallLayout(View small_layout) {
             super(small_layout);
             small_image1 = small_layout.findViewById(R.id.smallImage);
             small_text1 = small_layout.findViewById(R.id.smallText);
