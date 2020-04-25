@@ -2,7 +2,6 @@ package com.example.storageq1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences("file", MainActivity.this.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences("file", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 switch (v.getId()){
                     case(R.id.submit):

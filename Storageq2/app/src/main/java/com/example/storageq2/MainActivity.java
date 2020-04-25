@@ -53,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 try{
                     FileInputStream fIn = openFileInput(file);
                     int c;
-                    String temp = "";
+                    StringBuilder temp = new StringBuilder();
 
                     while((c = fIn.read())!= -1){
-                        temp = temp + Character.toString((char)c);
+                        temp.append((char) c);
                     }
-                    result.setText(temp);
+                    result.setText(temp.toString());
                 }
                 catch (Exception e){
                     e.printStackTrace();

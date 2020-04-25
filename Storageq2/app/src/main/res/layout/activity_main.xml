@@ -10,7 +10,7 @@
         android:id="@+id/input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="@dimen/margin_top"
         android:ems="10"
         android:hint="@string/enter_text_here"
         android:inputType="textPersonName"
@@ -23,7 +23,7 @@
         android:id="@+id/write"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/margin_top_dp40"
         android:text="@string/write"
         app:layout_constraintEnd_toStartOf="@+id/read"
         app:layout_constraintHorizontal_bias="0.711"
@@ -34,19 +34,20 @@
         android:id="@+id/read"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="@dimen/margin_top_dp40"
+        android:layout_marginEnd="@dimen/margin_end_dp100"
         android:text="@string/read"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input" />
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="211dp"
-        android:layout_height="204dp"
-        android:layout_marginTop="160dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp68"
         android:text="@string/textview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input" />
+        app:layout_constraintEnd_toEndOf="@id/read"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/write"
+        app:layout_constraintTop_toBottomOf="@id/write" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dp68">68dp</dimen>
+    <dimen name="margin_end_dp100">100dp</dimen>
+    <dimen name="margin_top_dp40">40dp</dimen>
+    <dimen name="margin_top">116dp</dimen>
+</resources>
