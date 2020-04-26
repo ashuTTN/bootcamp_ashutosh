@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_title_24sp">24sp</dimen>
+    <dimen name="margin_top_20dp">20dp</dimen>
+    <dimen name="padding_50dp">50dp</dimen>
+</resources>
