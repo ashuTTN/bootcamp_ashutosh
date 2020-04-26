@@ -1,7 +1,14 @@
 package com.example.inteegrationwithwebservices;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -10,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -25,11 +33,14 @@ import static android.os.Environment.getExternalStorageDirectory;
 import static android.os.Environment.getExternalStorageState;
 
 public class MainActivity extends AppCompatActivity {
+
+    private int STORAGE_PERMISSION_CODE = 1;
     private static final int MAX_LENGTH = 7;
 
     Button httpButton,glideButton ;
     ImageView imageV ;
     ProgressBar progressBar;
+
 
 //    public String strUrl = "https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg";
     public String strUrl = "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80";
@@ -38,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED
+         ){
+            Toast.makeText(MainActivity.this,"Permission already granted",Toast.LENGTH_LONG).show();
+        }
+        else{
+            requestStoragePermission();
+        }
 
         httpButton = findViewById(R.id.httpButton);
         glideButton = findViewById(R.id.glideButton);
@@ -60,6 +80,44 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void requestStoragePermission() {
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)){
+            new AlertDialog.Builder(this)
+            .setTitle("Permission needed")
+            .setMessage("this permission is needed to download images..")
+            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+                }
+            })
+            .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            })
+            .create()
+            .show();
+        }
+        else{
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == STORAGE_PERMISSION_CODE){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"Permission granted",Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(this,"Permission denied",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     private class ImageDownloader extends AsyncTask<String, Integer, String>{
         private String PATH = getExternalStorageDirectory().getAbsolutePath() + "/" + randomString()+".jpg";
         @Override
@@ -128,4 +186,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return randomStringBuilder.toString();
     }
+
 }
