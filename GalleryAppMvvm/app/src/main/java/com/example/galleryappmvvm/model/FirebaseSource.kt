@@ -9,6 +9,7 @@ import com.example.galleryappmvvm.view.LoadingDialog
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -23,6 +24,9 @@ class FirebaseSource {
     private var categoryImageUrl: String = ""
 
 
+//    fun currentUser(): FirebaseUser? {
+//        return FirebaseAuth.getInstance().currentUser
+//    }
 
     //Login User
     fun login(email: String, password: String): Task<AuthResult> {
@@ -170,7 +174,7 @@ class FirebaseSource {
                 Log.d("FAILED", "${it.message}")
             }
         //delete from firestore
-        if (categoryId != null && imageUrl != null && currentImageId != null) {
+        if (categoryId != null && currentImageId != null) {
             val docRef = fStore.collection("users")
                 .document(FirebaseAuth.getInstance().currentUser!!.uid)
                 .collection("category")
@@ -216,5 +220,6 @@ class FirebaseSource {
 
 
     fun logout() = firebaseAuth.signOut()
+
 
 }

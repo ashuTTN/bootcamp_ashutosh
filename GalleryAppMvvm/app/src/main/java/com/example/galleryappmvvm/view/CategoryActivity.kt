@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.gallleryapp1.View.CategoryFragment
@@ -18,27 +17,26 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var fragment: Fragment
     private lateinit var fragmentManager: FragmentManager
     private lateinit var fragmentTransaction: FragmentTransaction
+    private lateinit var selectedFragment:Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
+
         bottom_nav_bar.setOnNavigationItemSelectedListener {
-            var selectedFragment: Fragment? = null
+
             if (it.itemId == R.id.nav_category)
                 selectedFragment = CategoryFragment()
-            if (it.itemId == R.id.nav_logout) {
-                val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-                viewModel.logout()
-                startActivity(Intent(this, MainActivity::class.java))
-            }
+
             if (it.itemId == R.id.nav_timeline)
-                selectedFragment =
-                    TimelineFragment()
+                selectedFragment = TimelineFragment()
+
             if (it.itemId == R.id.nav_user)
-                selectedFragment =
-                    UserProfileFragment()
+                selectedFragment = UserProfileFragment()
+
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container2, selectedFragment!!).commit()
+                .replace(R.id.fragment_container2, selectedFragment).commit()
+
             true
         }
         addCategoryFragment()

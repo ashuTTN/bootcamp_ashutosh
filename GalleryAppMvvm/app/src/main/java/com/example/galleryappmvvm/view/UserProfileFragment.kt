@@ -58,6 +58,7 @@ class UserProfileFragment : Fragment() {
             viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
             viewModel.logout()
             startActivity(Intent(activity, MainActivity::class.java))
+            this.activity!!.finish()
         }
 
         view.edit_profile_image_fab.setOnClickListener{
@@ -96,7 +97,7 @@ class UserProfileFragment : Fragment() {
         }
         if(requestCode == GALLERY_REQUEST && resultCode == Activity.RESULT_OK && data != null){
             selectedPhotoUri = data.data
-            view!!.image_view_userprofile.setImageURI(selectedPhotoUri)
+            Glide.with(view!!).load(selectedPhotoUri).into(view!!.image_view_userprofile)
             viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
             viewModel.updateUserProfile(selectedPhotoUri)
         }

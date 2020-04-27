@@ -1,5 +1,6 @@
 package com.example.galleryappmvvm.view
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +10,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 
 class MainActivity : AppCompatActivity() {
     private var TAG = "MainActivity"
@@ -21,18 +24,34 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setupPermissions()
         addLoginFragment()
+
+
+//        val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+//        if (viewModel.currentUser() == null) {
+//            addLoginFragment()
+//        } else {
+//            val intent = Intent(this, CategoryActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
+
     }
 
     private fun setupPermissions() {
-        val permission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.CAMERA)
-        if(permission != PackageManager.PERMISSION_GRANTED){
-            Log.d(TAG,"Permission to camera denied")
+        val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "Permission to camera denied")
             makePermissionRequest()
         }
     }
+
     private var CAMERA_REQUEST_CODE = 101
     private fun makePermissionRequest() {
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA),CAMERA_REQUEST_CODE)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(android.Manifest.permission.CAMERA),
+            CAMERA_REQUEST_CODE
+        )
     }
 
     override fun onRequestPermissionsResult(
@@ -40,13 +59,12 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when(requestCode){
+        when (requestCode) {
             CAMERA_REQUEST_CODE -> {
-                if(grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED){
-                    Log.d(TAG,"Permission has been denied by user")
-                }
-                else{
-                    Log.d(TAG,"Permission has been granted by user")
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "Permission has been denied by user")
+                } else {
+                    Log.d(TAG, "Permission has been granted by user")
                 }
             }
         }
@@ -56,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         fragment = LoginFragment()
         fragmentManager = supportFragmentManager
         fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.fragment_container,fragment)
+        fragmentTransaction.add(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
     }
 

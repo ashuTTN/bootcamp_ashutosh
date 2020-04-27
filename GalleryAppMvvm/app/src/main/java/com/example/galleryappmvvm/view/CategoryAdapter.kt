@@ -64,6 +64,7 @@ class CategoryAdapter (private val mContext:Context, _categoryFragment: Category
             transaction.replace(R.id.fragment_container2,categoryInformationFragment)
             transaction.addToBackStack(null)
             transaction.commit()
+
         }
     }
 }

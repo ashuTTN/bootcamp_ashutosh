@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_40dp"
         android:background="@drawable/button_background"
-        android:text="Logout"
+        android:text="@string/logout"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/text_email"

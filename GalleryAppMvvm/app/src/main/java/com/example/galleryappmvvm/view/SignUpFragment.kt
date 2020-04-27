@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
@@ -28,6 +29,7 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.signup_fragment_layout, container, false)
+        Log.d(TAG,"SIGNING UP ")
         view.image_view_signup.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -53,12 +55,15 @@ class SignUpFragment : Fragment() {
             }
             if (!(email.isEmpty() || pass.isEmpty() || name.isEmpty() || selectedPhotoUri == null)) {
                 viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+
                 viewModel.signup(
                     name_txt_signup.text.toString(),
                     email_txt_signup.text.toString(),
                     password_txt_signup.text.toString(),
                     selectedPhotoUri!!
                 )
+
+                startActivity(Intent(activity, MainActivity::class.java))
             }
         }
         view.btn_already_existing.setOnClickListener {

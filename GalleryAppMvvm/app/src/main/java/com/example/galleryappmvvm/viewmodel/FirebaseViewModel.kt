@@ -13,11 +13,13 @@ import com.example.galleryappmvvm.view.ImageTime
 import com.example.galleryappmvvm.model.Repository
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 
 class FirebaseViewModel() : ViewModel() {
+
 
     private val TAG = "FIRESTORE_VIEW_MODEL"
     private var savedCaategories: MutableLiveData<List<Category>> = MutableLiveData()
@@ -25,7 +27,12 @@ class FirebaseViewModel() : ViewModel() {
     private var time1: MutableLiveData<List<ImageTime>> = MutableLiveData()
     private var repository: Repository = Repository()
     private val savedUsers = mutableMapOf<String, String>()
+//    var isLoaded:MutableLiveData<Boolean> = MutableLiveData(false)
 
+
+//    fun currentUser(): FirebaseUser? {
+//        return repository.currentUser()
+//    }
 
     fun login(email: String, password: String): Task<AuthResult> {
         return repository.login(email, password)
@@ -137,5 +144,6 @@ class FirebaseViewModel() : ViewModel() {
     fun logout() {
         repository.logout()
     }
+
 
 }

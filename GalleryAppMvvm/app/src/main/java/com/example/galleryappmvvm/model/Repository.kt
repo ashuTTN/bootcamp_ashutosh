@@ -7,6 +7,8 @@ import android.net.Uri
 class Repository() {
     private val firebase: FirebaseSource = FirebaseSource()
 
+//    fun currentUser() = firebase.currentUser()
+
     fun login(email: String, password: String) = firebase.login(email, password)
 
     fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri) =
@@ -32,5 +34,6 @@ class Repository() {
     fun updateUserProfile(selectedPhotoUri: Uri?) = firebase.updateUserProfile(selectedPhotoUri)
 
     fun logout() = firebase.logout()
+
 
 }

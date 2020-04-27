@@ -25,6 +25,8 @@ class FullscreenViewFragment : Fragment() {
         val currentImageId = bundle.getString("currentImageId")
 
         Glide.with(this).load(imageUrl).into(view.fullscreenImageView)
+
+
         view.deleteFab.setOnClickListener {
             val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
             viewModel.deleteImage(imageUrl, categoryId, currentImageId)
