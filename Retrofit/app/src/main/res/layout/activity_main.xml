@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/padding"
+    android:paddingStart="@dimen/margin_top_20dp"
+    android:paddingEnd="@dimen/margin_top_20dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/retroButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/retrofit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/https"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_20dp"
+        android:text="@string/https"
+        app:layout_constraintLeft_toLeftOf="@id/retroButton"
+        app:layout_constraintTop_toBottomOf="@id/retroButton" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/https"
+        app:layout_constraintStart_toStartOf="@id/https"
+        app:layout_constraintTop_toBottomOf="@id/https" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

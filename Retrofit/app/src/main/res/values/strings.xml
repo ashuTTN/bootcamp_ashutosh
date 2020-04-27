@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Retrofit</string>
+    <string name="retrofit">retrofit</string>
+    <string name="https">https</string>
+    <string name="message_text">message text</string>
+    <string name="name_text">name text</string>
+</resources>
