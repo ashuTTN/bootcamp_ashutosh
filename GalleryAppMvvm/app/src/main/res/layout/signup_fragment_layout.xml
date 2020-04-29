@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:padding="@dimen/dp45_login_padding">
+    android:padding="@dimen/login_padding_45dp">
 
 
     <TextView
@@ -13,86 +12,94 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Register Yourself"
+        android:text="@string/sign_up"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/heading_text_sizesp40"
+        android:textSize="@dimen/heading_text_sizesp_40sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        app:cardCornerRadius="70dp"
-        app:layout_constraintBottom_toTopOf="@id/name_txt_signup"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_photo"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/image_view_signup"
+        app:layout_constraintEnd_toEndOf="@id/image_view_signup"
+        app:layout_constraintStart_toStartOf="@id/image_view_signup"
+        app:layout_constraintTop_toTopOf="@id/image_view_signup" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_view_signup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_80dp"
+        android:layout_marginTop="@dimen/margin_40dp"
+        android:layout_marginEnd="@dimen/margin_80dp"
+        app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heading"
-        app:cardBackgroundColor="@color/transparent"
-        >
-        <ImageView
-            android:scaleType="fitXY"
-            android:id="@+id/image_view_signup"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_person_black_24dp"
-            android:layout_width="match_parent"
-            />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@id/heading" />
+
 
     <EditText
-        android:drawableLeft="@drawable/ic_sentiment_very_satisfied_black_24dp"
-        android:drawablePadding="10dp"
         android:id="@+id/name_txt_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:autofillHints="username"
         android:background="@drawable/edit_text_background"
-        android:hint="Name"
+        android:drawableStart="@drawable/ic_sentiment_very_satisfied_black_24dp"
+        android:drawablePadding="@dimen/edit_text_drwable_padding_10dp"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.50" />
+        app:layout_constraintTop_toBottomOf="@id/image_view_signup" />
 
     <EditText
-        android:drawableLeft="@drawable/ic_email_black_24dp"
-        android:drawablePadding="10dp"
         android:id="@+id/email_txt_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:autofillHints="email"
         android:background="@drawable/edit_text_background"
-        android:hint="Email"
+        android:drawableStart="@drawable/ic_email_black_24dp"
+        android:drawablePadding="@dimen/edit_text_drwable_padding_10dp"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintTop_toBottomOf="@id/name_txt_signup" />
 
     <EditText
-        android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
-        android:drawablePadding="10dp"
         android:id="@+id/password_txt_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:autofillHints="password"
         android:background="@drawable/edit_text_background"
-        android:hint="Password"
+        android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+        android:drawablePadding="@dimen/edit_text_drwable_padding_10dp"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintTop_toBottomOf="@id/email_txt_signup" />
 
     <Button
-        android:background="@color/transparent"
-        android:textColor="@android:color/white"
         android:id="@+id/btn_already_existing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/btn_login_signup"
-        app:layout_constraintEnd_toEndOf="@id/btn_login_signup"
+        android:background="@color/transparent"
+        android:text="@string/already_have_an_account"
         android:textAllCaps="false"
-        android:text="Already have an Account ?"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/btn_login_signup"
+        app:layout_constraintStart_toStartOf="@id/btn_login_signup"
         app:layout_constraintTop_toBottomOf="@id/btn_login_signup" />
 
 
@@ -102,10 +109,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_background"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/button_text_size21sp"
+        android:textSize="@dimen/button_text_size_21sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

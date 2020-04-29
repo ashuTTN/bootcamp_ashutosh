@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dp45_login_padding">45dp</dimen>
-    <dimen name="login_margin_top">60dp</dimen>
-    <dimen name="heading_text_sizesp40">40sp</dimen>
-    <dimen name="edit_text_drwable_paddingdp10">10dp</dimen>
-    <dimen name="button_text_size21sp">21sp</dimen>
-    <dimen name="margin_dp20">20dp</dimen>
+    <dimen name="login_padding_45dp">45dp</dimen>
+    <dimen name="login_margin_top_60dp">60dp</dimen>
+    <dimen name="heading_text_sizesp_40sp">40sp</dimen>
+    <dimen name="edit_text_drwable_padding_10dp">10dp</dimen>
+    <dimen name="button_text_size_21sp">21sp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
     <dimen name="margin_40dp">40dp</dimen>
+    <dimen name="margin_80dp">80dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="edit_text_font_24sp">24sp</dimen>
 </resources>

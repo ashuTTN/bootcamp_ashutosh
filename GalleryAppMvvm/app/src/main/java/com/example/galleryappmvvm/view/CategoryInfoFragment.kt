@@ -49,7 +49,7 @@ class CategoryInfoFragment : Fragment() {
                 Log.d(TAG,it.toString())
                 recyclerAdapter.setCategoriesInfo(it)
                 recyclerView.adapter = recyclerAdapter
-                recyclerView.layoutManager = GridLayoutManager(this.context,4)
+                recyclerView.layoutManager = GridLayoutManager(this.context,2)
             }
         })
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="@dimen/dp45_login_padding"
+    android:padding="@dimen/login_padding_45dp"
     android:background="@color/colorPrimary">
 
 
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/loading"
-        android:textSize="@dimen/button_text_size21sp"
+        android:textSize="@dimen/button_text_size_21sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteY="24dp" />
 
@@ -26,7 +26,7 @@
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_dp20"
+        android:layout_marginTop="@dimen/margin_20dp"
         app:layout_constraintStart_toStartOf="@id/loadingHeading"
         app:layout_constraintEnd_toEndOf="@id/loadingHeading"
         app:layout_constraintTop_toBottomOf="@id/loadingHeading" />

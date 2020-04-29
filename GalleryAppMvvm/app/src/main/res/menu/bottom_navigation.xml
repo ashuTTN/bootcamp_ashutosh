@@ -9,6 +9,7 @@
         android:icon="@drawable/ic_timeline_icon_24dp"
         android:title="@string/timeline"/>
     <item
+        android:iconTint="#636363"
         android:id="@+id/nav_user"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/profile"/>

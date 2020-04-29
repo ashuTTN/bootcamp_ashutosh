@@ -7,12 +7,12 @@ import android.net.Uri
 class Repository() {
     private val firebase: FirebaseSource = FirebaseSource()
 
-//    fun currentUser() = firebase.currentUser()
+    fun currentUser() = firebase.currentUser()
 
     fun login(email: String, password: String) = firebase.login(email, password)
 
-    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri) =
-        firebase.signup(name, email, password, selectedPhotoUri)
+    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri,activity: Activity) =
+        firebase.signup(name, email, password, selectedPhotoUri,activity)
 
     fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) =
         firebase.addCategory(activity, selectedPhotoUri, categoryName)

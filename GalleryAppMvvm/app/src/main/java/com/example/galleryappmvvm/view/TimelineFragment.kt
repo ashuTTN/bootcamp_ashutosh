@@ -32,7 +32,7 @@ class TimelineFragment :Fragment(){
                 Log.d(TAG, "$it")
                 recyclerAdapter.setImageTime(it)
                 recyclerView.adapter = recyclerAdapter
-                recyclerView.layoutManager = GridLayoutManager(this.context,4)
+                recyclerView.layoutManager = GridLayoutManager(this.context,2)
             }
         })
         return view

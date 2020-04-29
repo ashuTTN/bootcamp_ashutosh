@@ -4,21 +4,28 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.userprofile_fragment_layout.*
 import kotlinx.android.synthetic.main.userprofile_fragment_layout.view.*
+import javax.sql.DataSource
+import com.bumptech.glide.request.target.Target
 
 class UserProfileFragment : Fragment() {
     private var selectedPhotoUri: Uri? = null
@@ -34,9 +41,6 @@ class UserProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.userprofile_fragment_layout, container, false)
-
-//        viewModel = ViewModelProviders.of(this).get(FirebaseViewModel::class.java)
-
         viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
 
         val loadingDialog =
@@ -47,7 +51,30 @@ class UserProfileFragment : Fragment() {
                 text_username.text = it.get("name").toString()
                 text_email.text = it.get("email").toString()
                 userProfileImageUrl = it.get("profileImage").toString()
-                Glide.with(this).load(userProfileImageUrl).into(image_view_userprofile)
+                image_view_userprofile_progress.visibility = View.VISIBLE
+                Glide.with(this).load(userProfileImageUrl)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onResourceReady(
+                            resource: Drawable?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            dataSource: com.bumptech.glide.load.DataSource?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            image_view_userprofile_progress.visibility = View.GONE
+                            return false
+                        }
+                        override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            TODO("Not yet implemented")
+                            return false
+                        }
+                    })
+                    .into(image_view_userprofile)
                 loadingDialog.dismissDialog()
             }
 

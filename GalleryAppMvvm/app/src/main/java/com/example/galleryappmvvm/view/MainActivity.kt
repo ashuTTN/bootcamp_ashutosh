@@ -23,17 +23,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupPermissions()
-        addLoginFragment()
 
 
-//        val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-//        if (viewModel.currentUser() == null) {
-//            addLoginFragment()
-//        } else {
-//            val intent = Intent(this, CategoryActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
+        val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+        val currentUser = viewModel.currentUser()
+        if(currentUser != null){
+            startActivity(Intent(this,CategoryActivity::class.java))
+        }
+        else{
+            addLoginFragment()
+        }
 
     }
 

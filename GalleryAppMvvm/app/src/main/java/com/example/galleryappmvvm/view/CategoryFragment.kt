@@ -1,19 +1,15 @@
-package com.example.gallleryapp1.View
+package com.example.galleryappmvvm.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.*
-import com.example.galleryappmvvm.view.AddCategoryFragment
-import com.example.galleryappmvvm.view.CategoryAdapter
-import com.example.galleryappmvvm.view.LoadingDialog
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.category_fragment_layout.view.*
 
@@ -40,7 +36,7 @@ class CategoryFragment : Fragment() {
             categories?.let {
                 recyclerAdapter.setCategories(it)
                 recyclerView.adapter = recyclerAdapter
-                recyclerView.layoutManager = GridLayoutManager(this.context,3)
+                recyclerView.layoutManager = GridLayoutManager(this.context,2)
             }
         })
 

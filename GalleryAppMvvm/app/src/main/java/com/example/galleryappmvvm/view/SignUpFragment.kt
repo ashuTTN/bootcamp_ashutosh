@@ -60,9 +60,10 @@ class SignUpFragment : Fragment() {
                     name_txt_signup.text.toString(),
                     email_txt_signup.text.toString(),
                     password_txt_signup.text.toString(),
-                    selectedPhotoUri!!
+                    selectedPhotoUri!!,
+                    activity!!
                 )
-
+//                val loadingDialog = LoadingDialog(activity!!)
                 startActivity(Intent(activity, MainActivity::class.java))
             }
         }

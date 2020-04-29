@@ -30,17 +30,17 @@ class FirebaseViewModel() : ViewModel() {
 //    var isLoaded:MutableLiveData<Boolean> = MutableLiveData(false)
 
 
-//    fun currentUser(): FirebaseUser? {
-//        return repository.currentUser()
-//    }
+    fun currentUser(): FirebaseUser? {
+        return repository.currentUser()
+    }
 
     fun login(email: String, password: String): Task<AuthResult> {
         return repository.login(email, password)
     }
 
 
-    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri) {
-        repository.signup(name, email, password, selectedPhotoUri)
+    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri,activity: Activity) {
+        repository.signup(name, email, password, selectedPhotoUri,activity)
     }
 
 
@@ -144,6 +144,5 @@ class FirebaseViewModel() : ViewModel() {
     fun logout() {
         repository.logout()
     }
-
 
 }

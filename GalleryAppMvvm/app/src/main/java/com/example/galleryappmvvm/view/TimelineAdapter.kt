@@ -1,14 +1,18 @@
 package com.example.galleryappmvvm.view
 
 import android.content.Context
-import android.os.Bundle
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.galleryappmvvm.R
 import com.google.android.gms.tasks.Task
 
@@ -30,7 +34,8 @@ class TimelineAdapter(private val mContext: Context,_timelineFragment: TimelineF
     }
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var timelineImageView: ImageView = itemView.findViewById(R.id.timelineImageView)
+        var timelineItemImageView: ImageView = itemView.findViewById(R.id.timelineItemImageView)
+        var tiemlineItemProgressBar: ProgressBar = itemView.findViewById(R.id.timelineItemProgressBar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -51,8 +56,30 @@ class TimelineAdapter(private val mContext: Context,_timelineFragment: TimelineF
         val currentTime = mTimelineData[position]
         val imageUrl: Task<*> = currentTime.imageUrl as Task<*>
         Log.d(TAG, imageUrl.toString())
+        holder.tiemlineItemProgressBar.visibility = View.VISIBLE
         imageUrl.addOnSuccessListener {
-            Glide.with(mContext).load(it.toString()).into(holder.timelineImageView)
+            Glide.with(mContext).load(it.toString())
+                .listener(object : RequestListener<Drawable> {
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: com.bumptech.glide.load.DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        holder.tiemlineItemProgressBar.visibility = View.GONE
+                        return false
+                    }
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        TODO("Not yet implemented")
+                    }
+                })
+                .into(holder.timelineItemImageView)
         }
     }
 

@@ -15,6 +15,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.util.*
 
+
 class FirebaseSource {
     private val TAG = "FIREBASE_SOURCE"
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -24,9 +25,9 @@ class FirebaseSource {
     private var categoryImageUrl: String = ""
 
 
-//    fun currentUser(): FirebaseUser? {
-//        return FirebaseAuth.getInstance().currentUser
-//    }
+    fun currentUser(): FirebaseUser? {
+        return FirebaseAuth.getInstance().currentUser
+    }
 
     //Login User
     fun login(email: String, password: String): Task<AuthResult> {
@@ -35,11 +36,14 @@ class FirebaseSource {
     }
 
 
+
     //Signup on Auth and upload selected photo , name and email on firestore
-    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri) {
+    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri,activity: Activity) {
+        val loadingDialog = LoadingDialog(activity)
+        loadingDialog.startLoadingAnimation()
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
-                uploadUser(selectedPhotoUri, name, email)
+                uploadUser(selectedPhotoUri, name, email,loadingDialog)
             }
             .addOnFailureListener {
                 Log.d(TAG, it.message.toString())
@@ -47,7 +51,7 @@ class FirebaseSource {
     }
 
     //upload user profile image to firebase storage and calls saveUserToFireStoreDatabase
-    private fun uploadUser(selectedPhotoUri: Uri, name: String, email: String) {
+    private fun uploadUser(selectedPhotoUri: Uri, name: String, email: String,loadingDialog: LoadingDialog) {
         val userID = firebaseAuth.currentUser!!.uid
         val filename = UUID.randomUUID().toString()
         val storageRef = FirebaseStorage.getInstance()
@@ -57,7 +61,7 @@ class FirebaseSource {
                 storageRef.downloadUrl.addOnSuccessListener {
                     Log.d(TAG, it.toString())
                     profileImageUrl = it.toString()
-                    saveUserToFireStoreDatabase(name, email) //saves name and email to firesotre
+                    saveUserToFireStoreDatabase(name, email,loadingDialog) //saves name and email to firesotre
                 }
             }
             .addOnFailureListener {
@@ -66,7 +70,7 @@ class FirebaseSource {
     }
 
     //save name , email and profile Image url to firestore
-    private fun saveUserToFireStoreDatabase(name: String, email: String) {
+    private fun saveUserToFireStoreDatabase(name: String, email: String,loadingDialog: LoadingDialog) {
         Log.d(TAG, "saveUserToFirestoreDB")
         val user = hashMapOf(
             "name" to name,
@@ -75,6 +79,7 @@ class FirebaseSource {
         )
         fStore.collection("users").document(FirebaseAuth.getInstance().currentUser!!.uid)
             .set(user)
+        loadingDialog.dismissDialog()
     }
 
     //Add a new Category

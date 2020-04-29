@@ -1,14 +1,11 @@
 package com.example.galleryappmvvm.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.gallleryapp1.View.CategoryFragment
 import kotlinx.android.synthetic.main.activity_category.*
 

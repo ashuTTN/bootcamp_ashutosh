@@ -23,7 +23,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation"
         android:background="@color/colorPrimaryDark"
+        app:itemIconTint="@drawable/tab_color"
         app:itemRippleColor="@android:color/white"
         app:itemTextColor="@android:color/white"
-        app:itemIconTint="@android:color/white"/>
+        app:itemHorizontalTranslationEnabled="true"
+        app:labelVisibilityMode="selected"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
