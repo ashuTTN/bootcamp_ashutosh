@@ -19,8 +19,6 @@ import java.util.List;
 
 
 public class frag extends Fragment {
-    private FragLayoutBinding fragLayoutBinding;
-    Adapter adapter;
 
     public frag(){
 
@@ -28,11 +26,11 @@ public class frag extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       fragLayoutBinding = DataBindingUtil.inflate(inflater,R.layout.frag_layout,container,false);
+        com.example.databinding.databinding.FragLayoutBinding fragLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.frag_layout, container, false);
        View output = fragLayoutBinding.getRoot();
 
        fragLayoutBinding.recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-       adapter = new Adapter(getContext(),userList());
+        Adapter adapter = new Adapter(getContext(), userList());
        fragLayoutBinding.recycler.setAdapter(adapter);
        return output;
 

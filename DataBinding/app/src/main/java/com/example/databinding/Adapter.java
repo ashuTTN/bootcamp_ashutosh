@@ -19,7 +19,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private Context context;
     private List<User> users= new ArrayList<>();
 
-    public Adapter(Context context, List<User> users) {
+    Adapter(Context context, List<User> users) {
         this.context = context;
         this.users = users;
     }
@@ -32,7 +32,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                 R.layout.item_layout,parent,false);
 
         MyViewHolder myViewHolder = new MyViewHolder(itemLayoutBinding);
-
         return myViewHolder;
     }
 
@@ -47,9 +46,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         return users.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         ItemLayoutBinding itemLayoutBinding;
-        public MyViewHolder(@NonNull ItemLayoutBinding itemView) {
+        MyViewHolder(@NonNull ItemLayoutBinding itemView) {
             super(itemView.getRoot());
             itemLayoutBinding = itemView;
         }
