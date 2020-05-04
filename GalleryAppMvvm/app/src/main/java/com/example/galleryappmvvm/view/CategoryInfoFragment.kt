@@ -14,55 +14,79 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.viewmodel.CategoryInfoViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
+import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.category_inforamtion_fragment_layout.view.*
 
+
+private val TAG = CategoryInfoViewModel::class.java.simpleName
+
 class CategoryInfoFragment : Fragment() {
+    private lateinit var loadingDialog: LoadingDialog
+    private val mViewModel by lazy {
+        ViewModelProvider(this, MyViewModelfactory()).get(CategoryInfoViewModel::class.java)
+    }
     private var selectedPhotoUri: Uri? = null
-    private val TAG = "CateInformationFragment"
     private lateinit var categoryId: String
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        loadingDialog = LoadingDialog(activity!!)
         val view = inflater.inflate(R.layout.category_inforamtion_fragment_layout, container, false)
         val bundle = this.arguments
-        categoryId = bundle!!.getString("data")!!
+        categoryId = bundle!!.getString("categoryID")!!
+        setObserver()
+        setListeners(view)
+        val recyclerView: RecyclerView = view.findViewById(R.id.category_information_recyclerview)
+        val recyclerAdapter = CategoryInfoAdapter(this.context!!, this)
 
+        mViewModel.fetchCategoryInfo(categoryId)
+            .observe(viewLifecycleOwner, Observer { categories ->
+                categories?.let {
+                    Log.d(TAG, it.toString())
+                    recyclerAdapter.setCategoriesInfo(it)
+                    recyclerView.adapter = recyclerAdapter
+                    recyclerView.layoutManager = GridLayoutManager(this.context, 2)
+                }
+            })
+        return view
+    }
+
+    private fun setObserver() {
+        mViewModel.getStatus().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                CategoryInfoViewModel.Status.SHOW_PROGRESS -> showProgress()
+                CategoryInfoViewModel.Status.HIDE_PROGRESS -> hideProgress()
+            }
+        })
+        mViewModel.getError()
+    }
+
+    private fun hideProgress() {
+        loadingDialog.dismissDialog()
+    }
+
+    private fun showProgress() {
+        loadingDialog.startLoadingAnimation()
+    }
+
+    private fun setListeners(view: View) {
         view.floatingActionButtonCategoryInformation.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 2)
             Log.d(TAG, "$selectedPhotoUri")
-
         }
-        val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-
-        val recyclerView:RecyclerView = view.findViewById(R.id.category_information_recyclerview)
-
-
-        val recyclerAdapter =
-            CategoryInfoAdapter(this.context!!,this)
-        viewModel.fetchCategoryInfo(categoryId).observe(viewLifecycleOwner, Observer { categories ->
-            categories?.let {
-                Log.d(TAG,it.toString())
-                recyclerAdapter.setCategoriesInfo(it)
-                recyclerView.adapter = recyclerAdapter
-                recyclerView.layoutManager = GridLayoutManager(this.context,2)
-            }
-        })
-
-        return view
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 2 && resultCode == Activity.RESULT_OK && data != null) {
             selectedPhotoUri = data.data!!
-            val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-            viewModel.uploadCategoryImage(selectedPhotoUri, categoryId)
-            Log.d(TAG, "$selectedPhotoUri")
+            mViewModel.uploadCategoryImage(selectedPhotoUri!!, categoryId)
         }
     }
 }

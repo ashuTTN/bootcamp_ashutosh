@@ -9,14 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.viewmodel.AddCategoryViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
+import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.add_category_layout.*
 import kotlinx.android.synthetic.main.add_category_layout.view.*
+import kotlinx.android.synthetic.main.custom_dialog.*
 
 class AddCategoryFragment : Fragment() {
+    private val mViewModel by lazy {
+        ViewModelProvider(this, MyViewModelfactory()).get(AddCategoryViewModel::class.java)
+    }
+    private lateinit var loadingDialog: LoadingDialog
     private lateinit var viewModel: FirebaseViewModel
     private var selectedPhotoUri: Uri? = null
     override fun onCreateView(
@@ -25,32 +33,49 @@ class AddCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_category_layout, container, false)
+        loadingDialog = LoadingDialog(activity!!)
+
+        setObservers()
+        setListeners(view)
+
+        return view
+    }
+
+    private fun setObservers() {
+        mViewModel.getStatus().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                AddCategoryViewModel.AddCatStat.HIDE_PROGRESS -> hideProgress()
+                AddCategoryViewModel.AddCatStat.COMPLETE -> complete()
+                AddCategoryViewModel.AddCatStat.SHOW_PROGRESS -> showProgress()
+            }
+        })
+        mViewModel.getErrMessage().observe(viewLifecycleOwner, Observer {
+            Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
+        })
+    }
+
+    private fun hideProgress() {
+        loadingDialog.dismissDialog()
+    }
+
+    private fun complete() {
+        loadingDialog.dismissDialog()
+        Toast.makeText(activity,"Category Added",Toast.LENGTH_LONG).show()
+    }
+
+    private fun showProgress() {
+        loadingDialog.startLoadingAnimation()
+    }
+
+    private fun setListeners(view: View) {
         view.add_category_image_view.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 1)
         }
-
         view.add_category_button.setOnClickListener {
-            if (add_category_name.text.toString() == "") {
-                add_category_name.error = "Please Enter Category Name"
-            } else if (selectedPhotoUri == null) {
-                Toast.makeText(
-                    activity,
-                    "Please select a category display image",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else {
-                viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-                viewModel.addCategory(
-                    activity!!,
-                    selectedPhotoUri,
-                    add_category_name.text.toString()
-                )
-            }
-
+            mViewModel.addCategory(selectedPhotoUri, add_category_name.text.toString())
         }
-        return view
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

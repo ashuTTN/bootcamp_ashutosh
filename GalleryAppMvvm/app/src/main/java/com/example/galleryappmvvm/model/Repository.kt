@@ -1,39 +1,161 @@
 package com.example.galleryappmvvm.model
 
-import android.app.Activity
 import android.net.Uri
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.galleryappmvvm.view.CategoryImages
+import com.example.galleryappmvvm.view.ImageTime
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentSnapshot
 
-
-class Repository() {
+private const val TAG = "REPOSITORY"
+class Repository {
     private val firebase: FirebaseSource = FirebaseSource()
+
+
+    fun isLoggedIn(): LiveData<Boolean> {
+        return firebase.isLoggedIn()
+    }
+
+    fun login1(email: String, password: String): LiveData<Result<Boolean>> {
+        val result: MutableLiveData<Result<Boolean>> = MutableLiveData()
+        firebase.login1(email, password).observeForever {
+            it.onSuccess {
+                result.value = Result.success(true)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
+
+    fun signup1(
+        name: String,
+        email: String,
+        password: String,
+        selectedPhotoUri: Uri
+    ): LiveData<Result<Boolean>> {
+        val result: MutableLiveData<Result<Boolean>> = MutableLiveData()
+        firebase.signup1(name, email, password, selectedPhotoUri).observeForever {
+            it.onSuccess {
+                result.value = Result.success(true)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
+
+    fun fetchUserDetails1(): LiveData<Result<DocumentSnapshot>> {
+        val result: MutableLiveData<Result<DocumentSnapshot>> = MutableLiveData()
+        firebase.fetchUserDetails1().observeForever {
+            it.onSuccess {
+                result.value = Result.success(it)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
+
+
+    fun getSavedCategories1(): CollectionReference {
+        return firebase.getSavedCategories1()
+    }
+
+    fun addCategory1(selectedPhotoUri: Uri, addCategoryName: String): LiveData<Result<Boolean>> {
+        val result: MutableLiveData<Result<Boolean>> = MutableLiveData()
+        firebase.addCategory1(selectedPhotoUri, addCategoryName).observeForever {
+            it.onSuccess {
+                result.value = Result.success(true)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
+
+    fun uploadCategoryImage1(selectedPhotoUri: Uri, categoryId: String): LiveData<Result<Boolean>> {
+        val result: MutableLiveData<Result<Boolean>> = MutableLiveData()
+        firebase.uploadCategoryImage1(selectedPhotoUri, categoryId).observeForever {
+            it.onSuccess {
+                result.value = Result.success(it)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
+
+    fun fetchCategoryInfo1(categoryId: String): MutableLiveData<List<CategoryImages>> {
+        return firebase.fetchCategoryInfo1(categoryId)
+    }
+
+    fun updateUserProfile(selectedPhotoUri: Uri?): LiveData<Result<Boolean>> {
+        val result = MutableLiveData<Result<Boolean>>()
+        firebase.updateUserProfile(selectedPhotoUri).observeForever {
+            it.onSuccess {
+                result.value = Result.success(true)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
 
     fun currentUser() = firebase.currentUser()
 
-    fun login(email: String, password: String) = firebase.login(email, password)
 
-    fun signup(name: String, email: String, password: String, selectedPhotoUri: Uri,activity: Activity) =
-        firebase.signup(name, email, password, selectedPhotoUri,activity)
+    fun deleteImage(imageUrl: String?, categoryId: String?, currentImageId: String?): MutableLiveData<Result<Boolean>> {
+        val result = MutableLiveData<Result<Boolean>>()
+        firebase.deleteImage(imageUrl, categoryId, currentImageId).observeForever {
+            it.onSuccess {
+                result.value = Result.success(true)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
 
-    fun addCategory(activity: Activity, selectedPhotoUri: Uri?, categoryName: String) =
-        firebase.addCategory(activity, selectedPhotoUri, categoryName)
 
-    fun getSavedCategories() = firebase.getSavedCategories()
 
-    fun fetchCategoryInfo(categoryId: String) = firebase.fetchCategoryInfo(categoryId)
 
-    fun uploadCategoryImage(selectedPhotoUri: Uri?, categoryId: String) =
-        firebase.uploadCategoryImage(selectedPhotoUri, categoryId)
+    // fun fetchTimeline1() = firebase.fetchTimeline()
 
-    fun deleteImage(imageUrl: String?, categoryId: String?, currentImageId: String?) =
-        firebase.deleteImage(imageUrl, categoryId, currentImageId)
+    fun fetchTimeline(): LiveData<Result<LiveData<List<ImageTime>>>> {
+        val result = MutableLiveData<Result<LiveData<List<ImageTime>>>>()
+        firebase.fetchTimeline().observeForever {
+            it.onSuccess {
+                result.value = Result.success(it)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
 
-    fun fetchUserDetails() = firebase.fetchUserDetails()
 
-    fun fetchTimeline() = firebase.fetchTimeline()
-
-    fun updateUserProfile(selectedPhotoUri: Uri?) = firebase.updateUserProfile(selectedPhotoUri)
-
-    fun logout() = firebase.logout()
+    fun logout(): MutableLiveData<Result<Boolean>> {
+        val result = MutableLiveData<Result<Boolean>>()
+        firebase.logout().observeForever {
+            it.onSuccess {
+                result.value = Result.success(it)
+            }
+            it.onFailure {
+                result.value = Result.failure(it)
+            }
+        }
+        return result
+    }
 
 
 }

@@ -12,13 +12,22 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
+import com.example.galleryappmvvm.viewmodel.LoginViewModel
+import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
+import com.example.galleryappmvvm.viewmodel.SignUpViewModel
 import kotlinx.android.synthetic.main.signup_fragment_layout.*
 import kotlinx.android.synthetic.main.signup_fragment_layout.view.*
 
 class SignUpFragment : Fragment() {
+    private lateinit var loadingDialog: LoadingDialog
+    private val mViewModel by lazy {
+        ViewModelProvider(this, MyViewModelfactory()).get(SignUpViewModel::class.java)
+    }
+
     private val TAG = "SIGNUP_FRAGMENT"
     private lateinit var viewModel: FirebaseViewModel
     private var selectedPhotoUri: Uri? = null
@@ -29,48 +38,60 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.signup_fragment_layout, container, false)
-        Log.d(TAG,"SIGNING UP ")
+        loadingDialog = LoadingDialog(activity!!)
+
+        setObservers()
+        setListeners(view)
+
+        return view
+    }
+
+    private fun setListeners(view: View) {
+        view.btn_login_signup.setOnClickListener {
+            onSignUpClicked()
+        }
+        view.btn_already_existing.setOnClickListener {
+            startActivity(Intent(activity, MainActivity::class.java))
+        }
         view.image_view_signup.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 0)
         }
+    }
 
-        view.btn_login_signup.setOnClickListener {
+    private fun onSignUpClicked() {
+        mViewModel.onSignUpClicked(
+            name_txt_signup.text.toString(),
+            email_txt_signup.text.toString(),
+            password_txt_signup.text.toString(),
+            selectedPhotoUri
+        )
+    }
 
-            val name = name_txt_signup.text.toString().trim()
-            val email = email_txt_signup.text.toString().trim()
-            val pass = password_txt_signup.text.toString()
-            if (selectedPhotoUri == null) {
-                Toast.makeText(activity, "Please select a profile image", Toast.LENGTH_LONG).show()
+    private fun setObservers() {
+        mViewModel.getErrMessage().observe(viewLifecycleOwner, Observer {
+            Toast.makeText(view!!.context, it, Toast.LENGTH_LONG).show()
+        })
+        mViewModel.getSignUpState().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                SignUpViewModel.SignUpState.SHOW_PROGRESS -> showProgress()
+                SignUpViewModel.SignUpState.HIDE_PROGRESS -> hideProgress()
+                SignUpViewModel.SignUpState.GO_TO_LOGIN_SCREEN -> goToLoginScreen()
             }
-            if (name.isEmpty()) {
-                name_txt_signup.error = "Name can't be empty"
-            }
-            if (pass.isEmpty()) {
-                password_txt_signup.error = "Password can't be empty"
-            }
-            if (email.isEmpty()) {
-                email_txt_signup.error = "Email can't be empty"
-            }
-            if (!(email.isEmpty() || pass.isEmpty() || name.isEmpty() || selectedPhotoUri == null)) {
-                viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+        })
+    }
 
-                viewModel.signup(
-                    name_txt_signup.text.toString(),
-                    email_txt_signup.text.toString(),
-                    password_txt_signup.text.toString(),
-                    selectedPhotoUri!!,
-                    activity!!
-                )
-//                val loadingDialog = LoadingDialog(activity!!)
-                startActivity(Intent(activity, MainActivity::class.java))
-            }
-        }
-        view.btn_already_existing.setOnClickListener {
-            startActivity(Intent(activity, MainActivity::class.java))
-        }
-        return view
+    private fun goToLoginScreen() {
+        startActivity(Intent(activity, MainActivity::class.java))
+    }
+
+    private fun showProgress() {
+        loadingDialog.startLoadingAnimation()
+    }
+
+    private fun hideProgress() {
+        loadingDialog.dismissDialog()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

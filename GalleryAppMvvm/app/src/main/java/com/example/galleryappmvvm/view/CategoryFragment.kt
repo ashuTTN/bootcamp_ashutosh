@@ -10,15 +10,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.*
+import com.example.galleryappmvvm.viewmodel.CategoryViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
-import kotlinx.android.synthetic.main.category_fragment_layout.view.*
+import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
+import kotlinx.android.synthetic.main.category_fragment_layout.view.addCategoryFloatingActionButton
 
 
 class CategoryFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: CategoryAdapter
     private lateinit var viewModel: FirebaseViewModel
-
+    private val mViewModel by lazy {
+        ViewModelProvider(this, MyViewModelfactory()).get(CategoryViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,38 +31,33 @@ class CategoryFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.category_fragment_layout, container, false)
-        recyclerView = view.findViewById(R.id.category_recycler_view)
 
+        fetchCategories(view)
+        setListeners(view)
+
+        return view
+    }
+
+    private fun fetchCategories(view: View){
+        recyclerView = view.findViewById(R.id.category_recycler_view)
         viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
         recyclerAdapter = CategoryAdapter(this.context!!, this)
 
-        viewModel.getSavedCategories().observe(viewLifecycleOwner, Observer { categories ->
-            categories?.let {
+        mViewModel.getSavedCategories().observe(viewLifecycleOwner, Observer {
+            it?.let{
                 recyclerAdapter.setCategories(it)
                 recyclerView.adapter = recyclerAdapter
                 recyclerView.layoutManager = GridLayoutManager(this.context,2)
             }
         })
-
-//        viewModel.isLoaded.observe(viewLifecycleOwner, Observer {
-//            val loadingDialog =
-//                LoadingDialog(activity!!)
-//            if(it == true){
-//
-//                loadingDialog.startLoadingAnimation()
-//            }
-//            else{
-//                loadingDialog.dismissDialog()
-//            }
-//        })
+    }
 
 
-        view.addCategoryFloatingActionButton.setOnClickListener {
-            //-- recycler view is provided all categories
+
+    private fun setListeners(view:View) {
+        view.addCategoryFloatingActionButton.setOnClickListener{
             addAddCategoryFragment()
         }
-
-        return view
     }
 
 
@@ -69,6 +68,5 @@ class CategoryFragment : Fragment() {
             .addToBackStack(null)
             .commit()
     }
-
 }
 

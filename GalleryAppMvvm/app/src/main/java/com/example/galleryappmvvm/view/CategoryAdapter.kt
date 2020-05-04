@@ -16,7 +16,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.View.CategoryFragment
 
 
 class CategoryAdapter (private val mContext:Context, _categoryFragment: CategoryFragment):RecyclerView.Adapter<CategoryAdapter.RecyclerViewHolder>(){
@@ -83,25 +82,17 @@ class CategoryAdapter (private val mContext:Context, _categoryFragment: Category
             })
             .into(holder.categoryImage)
 
-
-
-
-
-
-
-
         holder.itemView.setOnClickListener {
             Log.d(TAG,"Recler item clicked,${currentCategory.categoryID}")
             val categoryInformationFragment =
                 CategoryInfoFragment()
             val args = Bundle()
-            args.putString("data","${currentCategory.categoryID}")
+            args.putString("categoryID","${currentCategory.categoryID}")
             categoryInformationFragment.arguments = args
             val transaction = categoryFragment.activity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container2,categoryInformationFragment)
             transaction.addToBackStack(null)
             transaction.commit()
-
         }
     }
 }

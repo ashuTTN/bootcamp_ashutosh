@@ -13,17 +13,22 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
+import com.example.galleryappmvvm.viewmodel.LoginViewModel
 
+private var TAG = MainActivity::class.java.simpleName
 class MainActivity : AppCompatActivity() {
-    private var TAG = "MainActivity"
     private lateinit var fragment: Fragment
     private lateinit var fragmentManager: FragmentManager
     private lateinit var fragmentTransaction: FragmentTransaction
+
+    override fun onResume() {
+        super.onResume()
+        this.finish()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupPermissions()
-
 
         val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
         val currentUser = viewModel.currentUser()
@@ -44,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private var CAMERA_REQUEST_CODE = 101
+    private val CAMERA_REQUEST_CODE = 101
     private fun makePermissionRequest() {
         ActivityCompat.requestPermissions(
             this,
