@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val currentUser = viewModel.currentUser()
         if(currentUser != null){
             startActivity(Intent(this,CategoryActivity::class.java))
+            finish()
         }
         else{
             addLoginFragment()

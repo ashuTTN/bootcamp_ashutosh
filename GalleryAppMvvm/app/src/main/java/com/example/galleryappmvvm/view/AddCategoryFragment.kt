@@ -47,6 +47,7 @@ class AddCategoryFragment : Fragment() {
                 AddCategoryViewModel.AddCatStat.HIDE_PROGRESS -> hideProgress()
                 AddCategoryViewModel.AddCatStat.COMPLETE -> complete()
                 AddCategoryViewModel.AddCatStat.SHOW_PROGRESS -> showProgress()
+                else->hideProgress()
             }
         })
         mViewModel.getErrMessage().observe(viewLifecycleOwner, Observer {

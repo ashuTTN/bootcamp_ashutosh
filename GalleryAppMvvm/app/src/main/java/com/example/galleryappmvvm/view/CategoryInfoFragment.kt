@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.view.Interfaces.CategoryInfoClickListener
 import com.example.galleryappmvvm.viewmodel.CategoryInfoViewModel
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.category_inforamtion_fragment_layout.view.*
 
@@ -99,7 +98,7 @@ class CategoryInfoFragment : Fragment(),CategoryInfoClickListener {
             args.putString("currentImageId",currentImageId)
             fullscreenViewFragment.arguments = args
             val transaction = activity!!.supportFragmentManager.beginTransaction()
-            transaction.add(R.id.fragment_container2,fullscreenViewFragment)
+            transaction.replace(R.id.fragment_container2,fullscreenViewFragment)
             transaction.addToBackStack(null);
             transaction.commit();
     }

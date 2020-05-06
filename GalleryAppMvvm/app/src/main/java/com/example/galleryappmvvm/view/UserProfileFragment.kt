@@ -107,6 +107,7 @@ class UserProfileFragment : Fragment() {
 
     private fun complete() {
         startActivity(Intent(activity, MainActivity::class.java))
+        this.activity!!.finish()
     }
 
     private fun setListeners(view: View) {

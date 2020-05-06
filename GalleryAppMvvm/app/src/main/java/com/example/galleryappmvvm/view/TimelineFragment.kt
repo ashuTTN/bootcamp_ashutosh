@@ -49,6 +49,7 @@ class TimelineFragment :Fragment(){
             when(it){
                 TimelineViewModel.TimelineStatus.SHOW_PROGRESS -> loadingDialog.startLoadingAnimation()
                 TimelineViewModel.TimelineStatus.HIDE_PROGRESS -> loadingDialog.dismissDialog()
+                else -> loadingDialog.dismissDialog()
             }
         })
         mViewModel.getErrorMessage().observe(viewLifecycleOwner, Observer {
