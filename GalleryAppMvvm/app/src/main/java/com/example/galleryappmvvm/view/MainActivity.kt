@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
-import com.example.galleryappmvvm.viewmodel.LoginViewModel
 
 private var TAG = MainActivity::class.java.simpleName
 class MainActivity : AppCompatActivity() {
@@ -21,15 +20,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fragmentManager: FragmentManager
     private lateinit var fragmentTransaction: FragmentTransaction
 
-    override fun onResume() {
-        super.onResume()
-        this.finish()
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        addLoginFragment()
         setupPermissions()
-
+        addLoginFragment()
         val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
         val currentUser = viewModel.currentUser()
         if(currentUser != null){

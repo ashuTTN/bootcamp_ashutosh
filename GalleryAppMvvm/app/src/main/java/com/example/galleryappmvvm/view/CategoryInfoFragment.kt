@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.view.Interfaces.CategoryInfoClickListener
 import com.example.galleryappmvvm.viewmodel.CategoryInfoViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.category_inforamtion_fragment_layout.view.
 
 private val TAG = CategoryInfoViewModel::class.java.simpleName
 
-class CategoryInfoFragment : Fragment() {
+class CategoryInfoFragment : Fragment(),CategoryInfoClickListener {
     private lateinit var loadingDialog: LoadingDialog
     private val mViewModel by lazy {
         ViewModelProvider(this, MyViewModelfactory()).get(CategoryInfoViewModel::class.java)
@@ -88,5 +89,18 @@ class CategoryInfoFragment : Fragment() {
             selectedPhotoUri = data.data!!
             mViewModel.uploadCategoryImage(selectedPhotoUri!!, categoryId)
         }
+    }
+
+    override fun onClick(imageUrl: String, categoryId: String, currentImageId: String) {
+        val fullscreenViewFragment = FullscreenViewFragment()
+            val args: Bundle = Bundle()
+            args.putString("imageUrl",imageUrl)
+            args.putString("categoryId",categoryId)
+            args.putString("currentImageId",currentImageId)
+            fullscreenViewFragment.arguments = args
+            val transaction = activity!!.supportFragmentManager.beginTransaction()
+            transaction.add(R.id.fragment_container2,fullscreenViewFragment)
+            transaction.addToBackStack(null);
+            transaction.commit();
     }
 }

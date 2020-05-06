@@ -10,13 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.*
+import com.example.galleryappmvvm.view.Interfaces.CategoryClickListener
 import com.example.galleryappmvvm.viewmodel.CategoryViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.category_fragment_layout.view.addCategoryFloatingActionButton
 
 
-class CategoryFragment : Fragment() {
+class CategoryFragment : Fragment() ,
+    CategoryClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: CategoryAdapter
     private lateinit var viewModel: FirebaseViewModel
@@ -31,10 +33,8 @@ class CategoryFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.category_fragment_layout, container, false)
-
         fetchCategories(view)
         setListeners(view)
-
         return view
     }
 
@@ -67,6 +67,17 @@ class CategoryFragment : Fragment() {
             .replace(R.id.fragment_container2, nextFrag, "add_category")
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onClick(categoryID: Any) {
+        val categoryInformationFragment = CategoryInfoFragment()
+            val args = Bundle()
+            args.putString("categoryID","${categoryID}")
+            categoryInformationFragment.arguments = args
+            val transaction = activity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container2,categoryInformationFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
     }
 }
 

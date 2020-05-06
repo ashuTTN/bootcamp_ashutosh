@@ -21,15 +21,14 @@ import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import com.example.galleryappmvvm.viewmodel.SignUpViewModel
 import kotlinx.android.synthetic.main.signup_fragment_layout.*
 import kotlinx.android.synthetic.main.signup_fragment_layout.view.*
-
+private const val TAG = "SIGNUP_FRAGMENT"
 class SignUpFragment : Fragment() {
     private lateinit var loadingDialog: LoadingDialog
     private val mViewModel by lazy {
         ViewModelProvider(this, MyViewModelfactory()).get(SignUpViewModel::class.java)
     }
 
-    private val TAG = "SIGNUP_FRAGMENT"
-    private lateinit var viewModel: FirebaseViewModel
+
     private var selectedPhotoUri: Uri? = null
 
     override fun onCreateView(

@@ -14,24 +14,30 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.view.Interfaces.CategoryInfoClickListener
+
+private const val TAG = "CategoryInfoAdapter"
+
+class CategoryInfoAdapter(
+    private val mContext: Context,
+    private var categoryInfoClickListener: CategoryInfoClickListener
+) : RecyclerView.Adapter<CategoryInfoAdapter.RecyclerViewHolder>() {
 
 
-class CategoryInfoAdapter(private val mContext:Context,_categoryInfoFragment:CategoryInfoFragment)
-    :RecyclerView.Adapter<CategoryInfoAdapter.RecyclerViewHolder>(){
+    private lateinit var mCategoryData: List<CategoryImages>
 
-    private val TAG = "CategoryInfoAdapter"
-    private lateinit var mCategoryData:List<CategoryImages>
-    private var categoryInfoFragment:CategoryInfoFragment = _categoryInfoFragment
 
-    fun setCategoriesInfo(category: List<CategoryImages>){
+    fun setCategoriesInfo(category: List<CategoryImages>) {
         mCategoryData = category
         notifyDataSetChanged()
     }
 
 
-    class RecyclerViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        var categoryInfoItemImageView:ImageView = itemView.findViewById(R.id.categoryInfoItemimageView)
-        var categoryInfoItemProgressBar:ProgressBar = itemView.findViewById(R.id.categoryInfoItemProgressBar)
+    class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var categoryInfoItemImageView: ImageView =
+            itemView.findViewById(R.id.categoryInfoItemimageView)
+        var categoryInfoItemProgressBar: ProgressBar =
+            itemView.findViewById(R.id.categoryInfoItemProgressBar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -67,6 +73,7 @@ class CategoryInfoAdapter(private val mContext:Context,_categoryInfoFragment:Cat
                     holder.categoryInfoItemProgressBar.visibility = View.GONE
                     return false
                 }
+
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,
@@ -78,19 +85,23 @@ class CategoryInfoAdapter(private val mContext:Context,_categoryInfoFragment:Cat
             })
             .into(holder.categoryInfoItemImageView)
 
+//        holder.itemView.setOnClickListener {
+//            val fullscreenViewFragment = FullscreenViewFragment()
+//            val args: Bundle = Bundle()
+//            args.putString("imageUrl",imageUrl)
+//            args.putString("categoryId",categoryId)
+//            args.putString("currentImageId",currentImageId)
+//
+//            fullscreenViewFragment.arguments = args
+//            val transaction = categoryInfoFragment.activity!!.supportFragmentManager.beginTransaction()
+//            transaction.add(R.id.fragment_container2,fullscreenViewFragment)
+//            transaction.addToBackStack(null);
+//            transaction.commit();
+//        }
         holder.itemView.setOnClickListener {
-            val fullscreenViewFragment = FullscreenViewFragment()
-            val args: Bundle = Bundle()
-            args.putString("imageUrl",imageUrl)
-            args.putString("categoryId",categoryId)
-            args.putString("currentImageId",currentImageId)
-
-            fullscreenViewFragment.arguments = args
-            val transaction = categoryInfoFragment.activity!!.supportFragmentManager.beginTransaction()
-            transaction.add(R.id.fragment_container2,fullscreenViewFragment)
-            transaction.addToBackStack(null);
-            transaction.commit();
+            categoryInfoClickListener.onClick(imageUrl, categoryId, currentImageId)
         }
+
     }
 
 }

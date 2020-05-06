@@ -44,7 +44,7 @@ class LoginViewModel(private val repository:Repository): ViewModel() {
             }
             it.onFailure {
                 signInState.value = SignInState.HIDE_PROGRESS
-                errMessage.value = "LOGIN FAILED !!"
+                errMessage.value = "LOGIN FAILED !! ${it.message}"
             }
         })
 
