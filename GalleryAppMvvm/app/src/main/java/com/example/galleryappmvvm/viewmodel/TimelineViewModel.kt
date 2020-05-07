@@ -23,7 +23,7 @@ class TimelineViewModel(private var repository: Repository):ViewModel(){
                 status.value = TimelineStatus.COMPLETE
             }
             it.onFailure {
-                errMessage.value = it.toString()
+                errMessage.value = it.message.toString()
                 status.value = TimelineStatus.HIDE_PROGRESS
             }
         })

@@ -14,14 +14,10 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var fragmentTransaction: FragmentTransaction
     private lateinit var selectedFragment: Fragment
 
-    override fun onResume() {
-        super.onResume()
-        addCategoryFragment()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
+
         bottom_nav_bar.setOnNavigationItemSelectedListener {
             if (it.itemId == R.id.nav_category)
                 selectedFragment = CategoryFragment()
@@ -33,16 +29,13 @@ class CategoryActivity : AppCompatActivity() {
                 selectedFragment = UserProfileFragment()
 
             val fragmentManager = supportFragmentManager
-            if (fragmentManager.backStackEntryCount == 0) {
+            if(fragmentManager.backStackEntryCount == 0){
                 val fragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(
-                    R.id.fragment_container2,
-                    selectedFragment,
-                    "selectedFrag"
-                )
+                fragmentTransaction.replace(R.id.fragment_container2, selectedFragment,"selectedFrag")
                 fragmentTransaction.commit()
-            } else {
-                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            } else{
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.fragment_container2, selectedFragment)
                 fragmentTransaction.commit()
@@ -50,7 +43,7 @@ class CategoryActivity : AppCompatActivity() {
 
             true
         }
-
+        addCategoryFragment()
     }
 
     private fun addCategoryFragment() {
@@ -61,4 +54,3 @@ class CategoryActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 }
-

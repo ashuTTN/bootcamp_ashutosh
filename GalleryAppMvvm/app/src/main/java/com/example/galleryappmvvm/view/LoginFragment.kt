@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -37,7 +38,7 @@ class LoginFragment : Fragment() {
         return view
     }
 
-    private fun setListeners(view: View) {
+    private fun setListeners(view:View){
         view.btn_login.setOnClickListener {
             onLogInClicked()
         }
@@ -45,25 +46,12 @@ class LoginFragment : Fragment() {
             addSignUpFragment()
         }
     }
-
-    private fun onLogInClicked() {
-        mViewModel.onLogInClicked(email_txt.text.toString(), password_txt.text.toString())
+    private fun onLogInClicked(){
+        mViewModel.onLogInClicked(email_txt.text.toString(),password_txt.text.toString())
     }
 
     private fun setObservers() {
-        mViewModel.getErrorState().observe(viewLifecycleOwner, Observer {
-            when(it){
-                LoginViewModel.ErrorState.EMAIL_BLANK -> email_txt.setError("Email can't be blank")
-                LoginViewModel.ErrorState.PASSWORD_BLANK -> password_txt.setError("Password can't be blank ")
-                LoginViewModel.ErrorState.EMAIL_PASSWORD_BLANK ->{
-                    email_txt.setError("Email can't be blank")
-                    password_txt.setError("Password can't be blan")
-                }
-            }
-
-        })
         mViewModel.getErrMessage().observe(viewLifecycleOwner, Observer {
-            error_text_view.setText(it)
             Toast.makeText(view!!.context, it, Toast.LENGTH_LONG).show()
         })
         mViewModel.getSignInState().observe(viewLifecycleOwner, Observer {
@@ -79,9 +67,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun goToCategoryScreen() {
-        val intent = Intent(activity, CategoryActivity::class.java)
-        startActivity(intent)
-        activity!!.finish()
+        addCategoryActivity()
     }
 
     private fun hideProgress() {
@@ -92,6 +78,11 @@ class LoginFragment : Fragment() {
         loadingDialog.startLoadingAnimation()
     }
 
+    private fun addCategoryActivity() {
+        val intent = Intent(activity, CategoryActivity::class.java)
+        startActivity(intent)
+        activity!!.finish()
+    }
 
     private fun addSignUpFragment() {
         val nextFrag = SignUpFragment()

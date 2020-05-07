@@ -79,20 +79,10 @@ class SignUpFragment : Fragment() {
                 SignUpViewModel.SignUpState.GO_TO_LOGIN_SCREEN -> goToLoginScreen()
             }
         })
-        mViewModel.getErrState().observe(viewLifecycleOwner
-        , Observer {
-                when(it){
-                    SignUpViewModel.ErrState.EMAIL_BLANK -> email_txt_signup.setError("Email can't be blank")
-                    SignUpViewModel.ErrState.PASSWORD_BLANK -> password_txt_signup.setError("Password can't be blank")
-                    SignUpViewModel.ErrState.NAME_BLANK -> name_txt_signup.setError("Name can't be blank")
-                }
-            })
     }
 
     private fun goToLoginScreen() {
-        val intent = Intent(activity, CategoryActivity::class.java)
-        startActivity(intent)
-        activity!!.finish()
+        startActivity(Intent(activity, MainActivity::class.java))
     }
 
     private fun showProgress() {

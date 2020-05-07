@@ -10,14 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.*
-import com.example.galleryappmvvm.view.interfaces.CategoryClickListener
+import com.example.galleryappmvvm.view.Interfaces.CategoryClickListener
 import com.example.galleryappmvvm.viewmodel.CategoryViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.category_fragment_layout.view.addCategoryFloatingActionButton
 
 
-class CategoryFragment : Fragment(),
+class CategoryFragment : Fragment() ,
     CategoryClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: CategoryAdapter
@@ -38,23 +38,24 @@ class CategoryFragment : Fragment(),
         return view
     }
 
-    private fun fetchCategories(view: View) {
+    private fun fetchCategories(view: View){
         recyclerView = view.findViewById(R.id.category_recycler_view)
         viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
         recyclerAdapter = CategoryAdapter(this.context!!, this)
 
         mViewModel.getSavedCategories().observe(viewLifecycleOwner, Observer {
-            it?.let {
+            it?.let{
                 recyclerAdapter.setCategories(it)
                 recyclerView.adapter = recyclerAdapter
-                recyclerView.layoutManager = GridLayoutManager(this.context, 2)
+                recyclerView.layoutManager = GridLayoutManager(this.context,2)
             }
         })
     }
 
 
-    private fun setListeners(view: View) {
-        view.addCategoryFloatingActionButton.setOnClickListener {
+
+    private fun setListeners(view:View) {
+        view.addCategoryFloatingActionButton.setOnClickListener{
             addAddCategoryFragment()
         }
     }
@@ -70,13 +71,13 @@ class CategoryFragment : Fragment(),
 
     override fun onClick(categoryID: Any) {
         val categoryInformationFragment = CategoryInfoFragment()
-        val args = Bundle()
-        args.putString("categoryID", "$categoryID")
-        categoryInformationFragment.arguments = args
-        val transaction = activity!!.supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container2, categoryInformationFragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+            val args = Bundle()
+            args.putString("categoryID","${categoryID}")
+            categoryInformationFragment.arguments = args
+            val transaction = activity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container2,categoryInformationFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
     }
 }
 

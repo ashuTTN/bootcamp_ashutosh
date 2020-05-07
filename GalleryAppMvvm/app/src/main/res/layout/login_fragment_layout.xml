@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:background="@drawable/edit_text_background"
         android:inputType="textEmailAddress"
         android:id="@+id/email_txt"
         android:layout_width="match_parent"
@@ -71,16 +70,7 @@
         app:layout_constraintEnd_toEndOf="@id/password_txt"
         app:layout_constraintStart_toStartOf="@id/password_txt"
         app:layout_constraintTop_toBottomOf="@id/password_txt" />
-    <TextView
-        android:textStyle="bold"
-        android:textColor="@android:color/holo_red_dark"
-        android:id="@+id/error_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_login"
-        app:layout_constraintStart_toStartOf="@id/btn_login"
-        app:layout_constraintEnd_toEndOf="@id/btn_login"
-        />
+
 
     <Button
         android:id="@+id/btn_sign_up"
@@ -92,7 +82,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@id/btn_login"
         app:layout_constraintStart_toStartOf="@id/btn_login"
-        app:layout_constraintTop_toBottomOf="@id/error_text_view" />
+        app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

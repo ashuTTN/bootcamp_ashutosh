@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import com.example.galleryappmvvm.viewmodel.TimelineViewModel
 
@@ -49,7 +47,7 @@ class TimelineFragment :Fragment(){
             when(it){
                 TimelineViewModel.TimelineStatus.SHOW_PROGRESS -> loadingDialog.startLoadingAnimation()
                 TimelineViewModel.TimelineStatus.HIDE_PROGRESS -> loadingDialog.dismissDialog()
-                else -> loadingDialog.dismissDialog()
+                TimelineViewModel.TimelineStatus.COMPLETE -> loadingDialog.dismissDialog()
             }
         })
         mViewModel.getErrorMessage().observe(viewLifecycleOwner, Observer {
