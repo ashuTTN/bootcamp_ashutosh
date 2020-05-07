@@ -11,6 +11,7 @@ class UserProfileViewModel(private var repository: Repository): ViewModel() {
     private var documentSnapshot = MutableLiveData<DocumentSnapshot>()
 
 
+
     fun updateUserProfile(selectedPhotoUri: Uri){
         status.value = Status.SHOW_PROGRESS
         status.addSource(repository.updateUserProfile(selectedPhotoUri),Observer{
@@ -40,17 +41,9 @@ class UserProfileViewModel(private var repository: Repository): ViewModel() {
         return documentSnapshot
     }
     fun logout(){
-        status.value = Status.SHOW_PROGRESS
-        status.addSource(repository.logout(), Observer {
-            it.onSuccess {
-                status.value = Status.HIDE_PROGRESS
-                status.value = Status.COMPLETE
-            }
-            it.onFailure{
-               errMessage.value = it.toString()
-            }
-        })
+        repository.logout()
     }
+
 
     fun getUserProfileStatus(): MediatorLiveData<Status> {
         return status
@@ -59,9 +52,10 @@ class UserProfileViewModel(private var repository: Repository): ViewModel() {
         return errMessage
     }
 
+
     enum class Status{
         SHOW_PROGRESS,
         HIDE_PROGRESS,
-        COMPLETE
+        COMPLETE,
     }
 }

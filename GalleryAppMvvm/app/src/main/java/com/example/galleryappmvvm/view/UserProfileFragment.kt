@@ -60,6 +60,7 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun setObservers() {
+
         mViewModel.fetchUserDetails().observe(viewLifecycleOwner, Observer {
             text_username.text = it.get("name").toString()
             text_email.text = it.get("email").toString()
@@ -97,7 +98,7 @@ class UserProfileFragment : Fragment() {
         })
         mViewModel.getUserProfileStatus().observe(viewLifecycleOwner, Observer {
             when (it) {
-                UserProfileViewModel.Status.COMPLETE -> complete()
+                UserProfileViewModel.Status.COMPLETE -> loadingDialog.dismissDialog()
                 UserProfileViewModel.Status.HIDE_PROGRESS -> loadingDialog.dismissDialog()
                 UserProfileViewModel.Status.SHOW_PROGRESS -> loadingDialog.startLoadingAnimation()
             }
@@ -105,13 +106,13 @@ class UserProfileFragment : Fragment() {
 
     }
 
-    private fun complete() {
-        startActivity(Intent(activity, MainActivity::class.java))
-    }
+
 
     private fun setListeners(view: View) {
         view.btn_logout.setOnClickListener {
             mViewModel.logout()
+            startActivity(Intent(activity,MainActivity::class.java))
+            activity!!.finish()
         }
 
         view.edit_profile_image_fab.setOnClickListener {

@@ -317,15 +317,8 @@ class FirebaseSource {
     }
 
 
-    fun logout(): LiveData<Result<Boolean>> {
-        val result = MutableLiveData<Result<Boolean>>()
-        try {
-            firebaseAuth.signOut()
-            result.value = Result.success(true)
-        } catch (e: Exception) {
-            result.value = Result.failure(e)
-        }
-        return result
+    fun logout() {
+        firebaseAuth.signOut()
     }
 
     fun isLoggedIn(): LiveData<Boolean> {

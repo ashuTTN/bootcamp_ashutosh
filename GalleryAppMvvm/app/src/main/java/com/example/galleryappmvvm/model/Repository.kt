@@ -144,17 +144,8 @@ class Repository {
     }
 
 
-    fun logout(): MutableLiveData<Result<Boolean>> {
-        val result = MutableLiveData<Result<Boolean>>()
-        firebase.logout().observeForever {
-            it.onSuccess {
-                result.value = Result.success(it)
-            }
-            it.onFailure {
-                result.value = Result.failure(it)
-            }
-        }
-        return result
+    fun logout() {
+        firebase.logout()
     }
 
 
