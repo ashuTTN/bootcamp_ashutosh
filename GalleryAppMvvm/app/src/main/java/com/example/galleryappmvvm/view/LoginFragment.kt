@@ -51,6 +51,12 @@ class LoginFragment : Fragment() {
     }
 
     private fun setObservers() {
+        mViewModel.getValidationMessage().observe(viewLifecycleOwner, Observer {
+            when(it){
+                LoginViewModel.ValidationMessage.EMAIL_BLANK -> email_txt.setError("Email can't be blank")
+                LoginViewModel.ValidationMessage.PASSWORD_BLANK -> password_txt.setError("Password can't be blank")
+            }
+        })
         mViewModel.getErrMessage().observe(viewLifecycleOwner, Observer {
             Toast.makeText(view!!.context, it, Toast.LENGTH_LONG).show()
         })

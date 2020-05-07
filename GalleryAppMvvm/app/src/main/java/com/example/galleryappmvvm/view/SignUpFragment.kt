@@ -79,6 +79,13 @@ class SignUpFragment : Fragment() {
                 SignUpViewModel.SignUpState.GO_TO_LOGIN_SCREEN -> goToLoginScreen()
             }
         })
+        mViewModel.getValidationMessage().observe(viewLifecycleOwner, Observer {
+            when(it){
+                SignUpViewModel.SignUpValidaiton.EMAIL_BLANK -> email_txt_signup.setError("Email can't be blank")
+                SignUpViewModel.SignUpValidaiton.PASSWORD_BLANK -> password_txt_signup.setError("Password can't br blank")
+                SignUpViewModel.SignUpValidaiton.NAME_BLANK -> name_txt_signup.setError("Name can't be blank")
+            }
+        })
     }
 
     private fun goToLoginScreen() {

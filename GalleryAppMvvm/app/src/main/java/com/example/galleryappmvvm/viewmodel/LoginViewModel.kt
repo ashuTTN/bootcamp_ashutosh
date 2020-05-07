@@ -10,24 +10,32 @@ import com.example.galleryappmvvm.model.Repository
 private val TAG:String = LoginViewModel::class.java.simpleName
 
 class LoginViewModel(private val repository:Repository): ViewModel() {
-
+    private var validationMessage = MutableLiveData<ValidationMessage>()
     private var errMessage = MutableLiveData<String>()
     private var signInState = MediatorLiveData<SignInState>()
+
+
     init{
         checkIsAlreadyLoggedIn()
     }
 
-
     fun onLogInClicked(email:String , password:String){
         //Check validations
+        var flag = 0
         if(TextUtils.isEmpty(email)){
-            errMessage.value = "Email cannot be left blank"
-            return
-        } else if(!ValidationUtils.isValidEmail(email)){
+            validationMessage.value = ValidationMessage.EMAIL_BLANK
+            flag = 1
+        }
+        if(!ValidationUtils.isValidEmail(email)){
             errMessage.value = "Please enter valid email address"
+            flag = 1
+        }
+        if(TextUtils.isEmpty(password)){
+            validationMessage.value = ValidationMessage.PASSWORD_BLANK
+            flag = 1
+        }
+        if(flag == 1){
             return
-        } else if(TextUtils.isEmpty(password)){
-            errMessage.value = "Password cannot be left blank"
         }
 
 //        if(!context.isNetworkAvailable()){
@@ -69,9 +77,16 @@ class LoginViewModel(private val repository:Repository): ViewModel() {
         return signInState
     }
 
+    fun getValidationMessage(): MutableLiveData<ValidationMessage> {
+        return validationMessage
+    }
+    enum class ValidationMessage{
+        EMAIL_BLANK,
+        PASSWORD_BLANK
+    }
     enum class SignInState{
         SHOW_PROGRESS,
         HIDE_PROGRESS,
-        GO_TO_CATEGORY_SCREEN
+        GO_TO_CATEGORY_SCREEN,
     }
 }

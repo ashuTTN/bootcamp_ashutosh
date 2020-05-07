@@ -12,27 +12,33 @@ import com.example.galleryappmvvm.model.Repository
 
 private val TAG = SignUpViewModel::class.java.simpleName
 class SignUpViewModel(private val repository: Repository):ViewModel() {
+    private var validationMessage = MutableLiveData<SignUpValidaiton>()
     private var errMessage = MutableLiveData<String>()
     private var signUpState = MediatorLiveData<SignUpState>()
 
     fun onSignUpClicked(name:String,email:String,password:String,selectedPhotoUri: Uri?){
+        var flag = 0
         if(TextUtils.isEmpty(name)){
-            errMessage.value = "Name cannot be blank"
-            return
+            validationMessage.value = SignUpValidaiton.NAME_BLANK
+            flag = 1
         }
         if(TextUtils.isEmpty(password)){
-            errMessage.value = "Password cannot be blank"
-            return
+            validationMessage.value = SignUpValidaiton.PASSWORD_BLANK
+            flag = 1
         }
         if(TextUtils.isEmpty(email)){
-            errMessage.value = "Email cannot be blank"
+            validationMessage.value = SignUpValidaiton.EMAIL_BLANK
+            flag = 1
         }
         if(selectedPhotoUri == null) {
             errMessage.value = "Please select a photo"
+            flag = 1
+        }
+        if (flag == 1){
             return
         }
         signUpState.value = SignUpState.SHOW_PROGRESS
-        signUpState.addSource(repository.signup1(name,email,password,selectedPhotoUri), Observer {
+        signUpState.addSource(repository.signup1(name,email,password,selectedPhotoUri!!), Observer {
             it.onSuccess {
                 signUpState.value = SignUpState.HIDE_PROGRESS
                 signUpState.value = SignUpState.GO_TO_LOGIN_SCREEN
@@ -48,6 +54,14 @@ class SignUpViewModel(private val repository: Repository):ViewModel() {
     }
     fun getSignUpState():LiveData<SignUpState>{
         return signUpState
+    }
+    fun getValidationMessage():LiveData<SignUpValidaiton>{
+        return validationMessage
+    }
+    enum class SignUpValidaiton{
+        EMAIL_BLANK,
+        PASSWORD_BLANK,
+        NAME_BLANK
     }
     enum class SignUpState{
         SHOW_PROGRESS,
