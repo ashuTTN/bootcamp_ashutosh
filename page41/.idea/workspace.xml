@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34f98ccb-de82-4b52-a97a-f0e2d1503151" name="Default Changelist" comment="" />
+    <list default="true" id="34f98ccb-de82-4b52-a97a-f0e2d1503151" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../page28/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Question2.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../page28/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../page28/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../page28/out/production/page28/META-INF/page28.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/../page28/out/production/page28/META-INF/page28.kotlin_module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +22,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1ZqdRC1ixeXNFBS1QAbUIGpcmvy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -23,8 +34,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.Question2Kt">
     <configuration name="Question1Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="page41" />
       <option name="VM_PARAMETERS" />
@@ -38,8 +51,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Question2Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="page41" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Question2Kt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Question2Kt" />
         <item itemvalue="Kotlin.Question1Kt" />
       </list>
     </recent_temporary>
@@ -58,21 +85,21 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1322" height="192" key="GridCell.Tab.0.bottom" timestamp="1585571313971">
+    <state width="1322" height="189" key="GridCell.Tab.0.bottom" timestamp="1588822365691">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state width="1322" height="192" key="GridCell.Tab.0.bottom/0.0.1366.739@0.0.1366.739" timestamp="1585571313971" />
-    <state width="1322" height="192" key="GridCell.Tab.0.center" timestamp="1585571313971">
+    <state width="1322" height="189" key="GridCell.Tab.0.bottom/0.0.1366.739@0.0.1366.739" timestamp="1588822365691" />
+    <state width="1322" height="189" key="GridCell.Tab.0.center" timestamp="1588822365691">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state width="1322" height="192" key="GridCell.Tab.0.center/0.0.1366.739@0.0.1366.739" timestamp="1585571313971" />
-    <state width="1322" height="192" key="GridCell.Tab.0.left" timestamp="1585571313971">
+    <state width="1322" height="189" key="GridCell.Tab.0.center/0.0.1366.739@0.0.1366.739" timestamp="1588822365691" />
+    <state width="1322" height="189" key="GridCell.Tab.0.left" timestamp="1588822365690">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state width="1322" height="192" key="GridCell.Tab.0.left/0.0.1366.739@0.0.1366.739" timestamp="1585571313971" />
-    <state width="1322" height="192" key="GridCell.Tab.0.right" timestamp="1585571313971">
+    <state width="1322" height="189" key="GridCell.Tab.0.left/0.0.1366.739@0.0.1366.739" timestamp="1588822365690" />
+    <state width="1322" height="189" key="GridCell.Tab.0.right" timestamp="1588822365691">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state width="1322" height="192" key="GridCell.Tab.0.right/0.0.1366.739@0.0.1366.739" timestamp="1585571313971" />
+    <state width="1322" height="189" key="GridCell.Tab.0.right/0.0.1366.739@0.0.1366.739" timestamp="1588822365691" />
   </component>
 </project>

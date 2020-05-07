@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b536a69-f230-4901-9e0f-ef59565c8ee0" name="Default Changelist" comment="" />
+    <list default="true" id="8b536a69-f230-4901-9e0f-ef59565c8ee0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,10 +14,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1ZcrumRNVSw8nbj34GDz0xphfBD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,12 +32,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../page41" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Kotlin.Question1Kt">
+  <component name="RunManager" selected="Kotlin.Question4.StudentKt">
     <configuration name="MyfirstKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="page28" />
       <option name="VM_PARAMETERS" />
@@ -67,27 +78,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Question7Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+    <configuration name="Question4.StudentKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="page28" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Question7Kt" />
+      <option name="MAIN_CLASS_NAME" value="Question4.StudentKt" />
       <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Question8Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+    <configuration name="Question6Kt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="page28" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Question8Kt" />
+      <option name="MAIN_CLASS_NAME" value="Question6Kt" />
       <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -95,11 +106,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Question4.StudentKt" />
+        <item itemvalue="Kotlin.Question6Kt" />
         <item itemvalue="Kotlin.Question1Kt" />
         <item itemvalue="Kotlin.MyfirstKt" />
         <item itemvalue="Kotlin.Question2Kt" />
-        <item itemvalue="Kotlin.Question7Kt" />
-        <item itemvalue="Kotlin.Question8Kt" />
       </list>
     </recent_temporary>
   </component>
@@ -121,26 +132,26 @@
       <screen x="0" y="0" width="1366" height="739" />
     </state>
     <state x="0" y="62" width="800" height="677" key="#Project_Structure/0.0.1366.739@0.0.1366.739" timestamp="1585149460092" />
-    <state x="660" y="255" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585150404336">
+    <state x="660" y="255" width="424" height="484" key="FileChooserDialogImpl" timestamp="1588822166620">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state x="660" y="255" width="424" height="484" key="FileChooserDialogImpl/0.0.1366.739@0.0.1366.739" timestamp="1585150404336" />
-    <state width="1322" height="146" key="GridCell.Tab.0.bottom" timestamp="1585482772864">
+    <state x="660" y="255" width="424" height="484" key="FileChooserDialogImpl/0.0.1366.739@0.0.1366.739" timestamp="1588822166620" />
+    <state width="1322" height="142" key="GridCell.Tab.0.bottom" timestamp="1588822168011">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state width="1322" height="146" key="GridCell.Tab.0.bottom/0.0.1366.739@0.0.1366.739" timestamp="1585482772864" />
-    <state width="1322" height="146" key="GridCell.Tab.0.center" timestamp="1585482772864">
+    <state width="1322" height="142" key="GridCell.Tab.0.bottom/0.0.1366.739@0.0.1366.739" timestamp="1588822168011" />
+    <state width="1322" height="142" key="GridCell.Tab.0.center" timestamp="1588822168009">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state width="1322" height="146" key="GridCell.Tab.0.center/0.0.1366.739@0.0.1366.739" timestamp="1585482772864" />
-    <state width="1322" height="146" key="GridCell.Tab.0.left" timestamp="1585482772863">
+    <state width="1322" height="142" key="GridCell.Tab.0.center/0.0.1366.739@0.0.1366.739" timestamp="1588822168009" />
+    <state width="1322" height="142" key="GridCell.Tab.0.left" timestamp="1588822168007">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state width="1322" height="146" key="GridCell.Tab.0.left/0.0.1366.739@0.0.1366.739" timestamp="1585482772863" />
-    <state width="1322" height="146" key="GridCell.Tab.0.right" timestamp="1585482772864">
+    <state width="1322" height="142" key="GridCell.Tab.0.left/0.0.1366.739@0.0.1366.739" timestamp="1588822168007" />
+    <state width="1322" height="142" key="GridCell.Tab.0.right" timestamp="1588822168010">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
-    <state width="1322" height="146" key="GridCell.Tab.0.right/0.0.1366.739@0.0.1366.739" timestamp="1585482772864" />
+    <state width="1322" height="142" key="GridCell.Tab.0.right/0.0.1366.739@0.0.1366.739" timestamp="1588822168010" />
     <state x="31" y="96" width="1294" height="545" key="new project wizard" timestamp="1585482771456">
       <screen x="0" y="0" width="1366" height="739" />
     </state>
