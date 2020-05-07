@@ -17,9 +17,10 @@ import com.example.galleryappmvvm.viewmodel.TimelineViewModel
 
 
 private val TAG = "TIMELINE_FRAG"
-class TimelineFragment :Fragment(){
+
+class TimelineFragment : Fragment() {
     private val mViewModel by lazy {
-        ViewModelProvider(this,MyViewModelfactory()).get(TimelineViewModel::class.java)
+        ViewModelProvider(this, MyViewModelfactory()).get(TimelineViewModel::class.java)
     }
     private lateinit var loadingDialog: LoadingDialog
     override fun onCreateView(
@@ -27,31 +28,34 @@ class TimelineFragment :Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.tmeline_fragment_layout,container,false)
+        val view = inflater.inflate(R.layout.tmeline_fragment_layout, container, false)
         loadingDialog = LoadingDialog(activity!!)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.timeline_recycler_view)
         val recyclerAdapter =
             TimelineAdapter(this.context!!, this)
 
-        mViewModel.fetchTimeline().observe(viewLifecycleOwner, Observer { times->
-            times?.let{
-                Log.d(TAG,"$it")
+        mViewModel.fetchTimeline().observe(viewLifecycleOwner, Observer { times ->
+            times?.let {
+                Log.d(TAG, "$it")
                 recyclerAdapter.setImageTime(it)
                 recyclerView.adapter = recyclerAdapter
-                recyclerView.layoutManager = GridLayoutManager(this.context,2)
+                recyclerView.layoutManager = GridLayoutManager(this.context, 2)
             }
         })
 
         mViewModel.getStatus().observe(viewLifecycleOwner, Observer {
-            when(it){
-                TimelineViewModel.TimelineStatus.SHOW_PROGRESS -> loadingDialog.startLoadingAnimation()
+            when (it) {
+                TimelineViewModel.TimelineStatus.SHOW_PROGRESS -> {
+                    loadingDialog.startLoadingAnimation()
+                    loadingDialog.setTitle("Fetching Timeline")
+                }
                 TimelineViewModel.TimelineStatus.HIDE_PROGRESS -> loadingDialog.dismissDialog()
                 TimelineViewModel.TimelineStatus.COMPLETE -> loadingDialog.dismissDialog()
             }
         })
         mViewModel.getErrorMessage().observe(viewLifecycleOwner, Observer {
-            Toast.makeText(activity!!,it,Toast.LENGTH_LONG).show()
+            Toast.makeText(activity!!, it, Toast.LENGTH_LONG).show()
         })
 
         return view

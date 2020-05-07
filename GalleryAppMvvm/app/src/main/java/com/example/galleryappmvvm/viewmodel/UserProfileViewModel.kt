@@ -13,7 +13,7 @@ class UserProfileViewModel(private var repository: Repository): ViewModel() {
 
 
     fun updateUserProfile(selectedPhotoUri: Uri){
-        status.value = Status.SHOW_PROGRESS
+        status.value = Status.SHOW_PROGRESS_UPDATE_USER_IMAGE
         status.addSource(repository.updateUserProfile(selectedPhotoUri),Observer{
             it.onSuccess {
                 status.value = Status.HIDE_PROGRESS
@@ -57,5 +57,6 @@ class UserProfileViewModel(private var repository: Repository): ViewModel() {
         SHOW_PROGRESS,
         HIDE_PROGRESS,
         COMPLETE,
+        SHOW_PROGRESS_UPDATE_USER_IMAGE
     }
 }

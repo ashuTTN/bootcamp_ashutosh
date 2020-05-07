@@ -92,26 +92,32 @@ class UserProfileFragment : Fragment() {
                 .into(image_view_userprofile)
         })
 
-
         mViewModel.getErrorMessage().observe(viewLifecycleOwner, Observer {
             Toast.makeText(activity!!, it.toString(), Toast.LENGTH_LONG).show()
         })
+
         mViewModel.getUserProfileStatus().observe(viewLifecycleOwner, Observer {
             when (it) {
+                UserProfileViewModel.Status.SHOW_PROGRESS_UPDATE_USER_IMAGE -> {
+                    loadingDialog.startLoadingAnimation()
+                    loadingDialog.setTitle("Updating Profile Image")
+                }
                 UserProfileViewModel.Status.COMPLETE -> loadingDialog.dismissDialog()
                 UserProfileViewModel.Status.HIDE_PROGRESS -> loadingDialog.dismissDialog()
-                UserProfileViewModel.Status.SHOW_PROGRESS -> loadingDialog.startLoadingAnimation()
+                UserProfileViewModel.Status.SHOW_PROGRESS -> {
+                    loadingDialog.startLoadingAnimation()
+                    loadingDialog.setTitle("Fetching User Information")
+                }
             }
         })
 
     }
 
 
-
     private fun setListeners(view: View) {
         view.btn_logout.setOnClickListener {
             mViewModel.logout()
-            startActivity(Intent(activity,MainActivity::class.java))
+            startActivity(Intent(activity, MainActivity::class.java))
             activity!!.finish()
         }
 
@@ -141,7 +147,8 @@ class UserProfileFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             val photo = data?.extras?.get("data") as Bitmap
-            val path = MediaStore.Images.Media.insertImage(context!!.contentResolver, photo, "Title", null)
+            val path =
+                MediaStore.Images.Media.insertImage(context!!.contentResolver, photo, "Title", null)
             selectedPhotoUri = Uri.parse(path)
             Log.d(TAG, "$selectedPhotoUri")
             view!!.image_view_userprofile.setImageURI(selectedPhotoUri)

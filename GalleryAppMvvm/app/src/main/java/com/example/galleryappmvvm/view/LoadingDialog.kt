@@ -4,6 +4,7 @@ package com.example.galleryappmvvm.view
 import android.app.Activity
 import android.app.AlertDialog
 import com.example.galleryappmvvm.R
+import kotlinx.android.synthetic.main.custom_dialog.*
 
 class LoadingDialog(_activity: Activity){
     private var activity = Activity()
@@ -24,5 +25,8 @@ class LoadingDialog(_activity: Activity){
 
     fun dismissDialog(){
         dialog.dismiss()
+    }
+    fun setTitle(title:String){
+        dialog.loadingHeading.setText(title)
     }
 }
