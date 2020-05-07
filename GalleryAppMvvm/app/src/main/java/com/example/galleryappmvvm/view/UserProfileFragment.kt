@@ -37,7 +37,6 @@ class UserProfileFragment : Fragment() {
     }
     private lateinit var loadingDialog: LoadingDialog
 
-
     private var selectedPhotoUri: Uri? = null
     private val CAMERA_REQUEST = 0
     private val GALLERY_REQUEST = 1

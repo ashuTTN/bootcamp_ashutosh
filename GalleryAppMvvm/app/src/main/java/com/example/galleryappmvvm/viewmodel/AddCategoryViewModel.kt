@@ -11,30 +11,36 @@ import com.example.galleryappmvvm.model.Repository
 
 private val TAG = AddCategoryViewModel::class.java.simpleName
 
+val  VALIDATION_ERROR = "empty"
 class AddCategoryViewModel(private var repository: Repository) : ViewModel() {
+
     private var errMessage = MutableLiveData<String>()
     private var status = MediatorLiveData<AddCatStat>()
 
     fun addCategory(selectedPhotoUri: Uri?, addCategoryName: String) {
-        if(selectedPhotoUri == null){
-            errMessage.value = "Please select a category image"
-            return
+        var flag = 0
+        if (selectedPhotoUri == null) {
+            errMessage.value = "Please select a Category Image"
+            flag = 1
         }
-        if(TextUtils.isEmpty(addCategoryName)){
-            errMessage.value = "Please Enter a category name"
+        if (TextUtils.isEmpty(addCategoryName)) {
+            errMessage.value = VALIDATION_ERROR
+            flag = 1
+        }
+        if(flag == 1){
             return
         }
 
 
         status.value = AddCatStat.SHOW_PROGRESS
-        status.addSource(repository.addCategory1(selectedPhotoUri, addCategoryName), Observer {
+        status.addSource(repository.addCategory1(selectedPhotoUri!!, addCategoryName), Observer {
             it.onSuccess {
                 status.value = AddCatStat.HIDE_PROGRESS
                 status.value = AddCatStat.COMPLETE
             }
             it.onFailure {
                 status.value = AddCatStat.HIDE_PROGRESS
-                errMessage.value = "ADD CATEGORY ERROR"
+                errMessage.value = "ADD CATEGORY ERROR ${it.message}"
             }
         })
     }

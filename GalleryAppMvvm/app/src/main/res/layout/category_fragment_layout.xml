@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_recycler_view"
@@ -27,7 +28,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/margin_20dp"
         android:layout_marginBottom="@dimen/margin_20dp"
-
         />
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/empty_text_category_fragmnet"
+        android:textColor="@android:color/white"
+        android:text="Get Started By Addding Your First Category"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.AddCategoryViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
+import com.example.galleryappmvvm.viewmodel.VALIDATION_ERROR
 import kotlinx.android.synthetic.main.add_category_layout.*
 import kotlinx.android.synthetic.main.add_category_layout.view.*
 import kotlinx.android.synthetic.main.custom_dialog.*
@@ -50,7 +51,11 @@ class AddCategoryFragment : Fragment() {
             }
         })
         mViewModel.getErrMessage().observe(viewLifecycleOwner, Observer {
-            Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
+            if(it == VALIDATION_ERROR){
+                add_category_name.error = "Please select a category name"
+            }
+            else
+                Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         })
     }
 
