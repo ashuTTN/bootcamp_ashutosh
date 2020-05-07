@@ -13,21 +13,30 @@ class LoginViewModel(private val repository:Repository): ViewModel() {
 
     private var errMessage = MutableLiveData<String>()
     private var signInState = MediatorLiveData<SignInState>()
+    private var errorState = MutableLiveData<ErrorState>()
     init{
         checkIsAlreadyLoggedIn()
     }
 
-
     fun onLogInClicked(email:String , password:String){
         //Check validations
+        if(TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+            errorState.value = ErrorState.EMAIL_PASSWORD_BLANK
+            return
+        }
         if(TextUtils.isEmpty(email)){
             errMessage.value = "Email cannot be left blank"
+            errorState.value = ErrorState.EMAIL_BLANK
             return
-        } else if(!ValidationUtils.isValidEmail(email)){
+        }
+        if(!ValidationUtils.isValidEmail(email)) {
             errMessage.value = "Please enter valid email address"
             return
-        } else if(TextUtils.isEmpty(password)){
+        }
+        if(TextUtils.isEmpty(password)){
             errMessage.value = "Password cannot be left blank"
+            errorState.value = ErrorState.PASSWORD_BLANK
+            return
         }
 
 //        if(!context.isNetworkAvailable()){
@@ -69,9 +78,18 @@ class LoginViewModel(private val repository:Repository): ViewModel() {
         return signInState
     }
 
+    fun getErrorState():LiveData<ErrorState>{
+        return errorState
+    }
+
     enum class SignInState{
         SHOW_PROGRESS,
         HIDE_PROGRESS,
         GO_TO_CATEGORY_SCREEN
+    }
+    enum class ErrorState{
+        PASSWORD_BLANK,
+        EMAIL_BLANK,
+        EMAIL_PASSWORD_BLANK
     }
 }

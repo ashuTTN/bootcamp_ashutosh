@@ -2,7 +2,6 @@ package com.example.galleryappmvvm.view
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.view.Interfaces.CategoryInfoClickListener
+import com.example.galleryappmvvm.view.interfaces.CategoryInfoClickListener
 
 private const val TAG = "CategoryInfoAdapter"
 

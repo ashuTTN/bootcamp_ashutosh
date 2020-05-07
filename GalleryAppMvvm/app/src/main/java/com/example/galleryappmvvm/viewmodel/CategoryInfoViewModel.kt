@@ -8,8 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.galleryappmvvm.model.Repository
 import com.example.galleryappmvvm.view.CategoryImages
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.QuerySnapshot
 
 private val TAG = CategoryInfoViewModel::class.java.simpleName
 

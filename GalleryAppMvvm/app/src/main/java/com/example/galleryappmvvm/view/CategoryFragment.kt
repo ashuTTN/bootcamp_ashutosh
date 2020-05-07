@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.*
-import com.example.galleryappmvvm.view.Interfaces.CategoryClickListener
+import com.example.galleryappmvvm.view.interfaces.CategoryClickListener
 import com.example.galleryappmvvm.viewmodel.CategoryViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
@@ -71,7 +71,7 @@ class CategoryFragment : Fragment(),
     override fun onClick(categoryID: Any) {
         val categoryInformationFragment = CategoryInfoFragment()
         val args = Bundle()
-        args.putString("categoryID", "${categoryID}")
+        args.putString("categoryID", "$categoryID")
         categoryInformationFragment.arguments = args
         val transaction = activity!!.supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container2, categoryInformationFragment)

@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.view.Interfaces.CategoryInfoClickListener
+import com.example.galleryappmvvm.view.interfaces.CategoryInfoClickListener
 import com.example.galleryappmvvm.viewmodel.CategoryInfoViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.category_inforamtion_fragment_layout.view.*

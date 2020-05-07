@@ -14,32 +14,41 @@ private val TAG = SignUpViewModel::class.java.simpleName
 class SignUpViewModel(private val repository: Repository):ViewModel() {
     private var errMessage = MutableLiveData<String>()
     private var signUpState = MediatorLiveData<SignUpState>()
+    private var errState = MutableLiveData<SignUpViewModel.ErrState>()
+
 
     fun onSignUpClicked(name:String,email:String,password:String,selectedPhotoUri: Uri?){
+        var flag = 0
         if(TextUtils.isEmpty(name)){
-            errMessage.value = "Name cannot be blank"
-            return
+            errState.value = ErrState.NAME_BLANK
+            flag = 1
         }
         if(TextUtils.isEmpty(password)){
-            errMessage.value = "Password cannot be blank"
-            return
+            errState.value = ErrState.PASSWORD_BLANK
+            flag = 1
         }
         if(TextUtils.isEmpty(email)){
-            errMessage.value = "Email cannot be blank"
+            errState.value = ErrState.EMAIL_BLANK
+            flag = 1
         }
         if(selectedPhotoUri == null) {
             errMessage.value = "Please select a photo"
+            flag = 1
+        }
+        if(flag == 1){
             return
         }
+
+
         signUpState.value = SignUpState.SHOW_PROGRESS
-        signUpState.addSource(repository.signup1(name,email,password,selectedPhotoUri), Observer {
+        signUpState.addSource(repository.signup1(name,email,password,selectedPhotoUri!!), Observer {
             it.onSuccess {
                 signUpState.value = SignUpState.HIDE_PROGRESS
                 signUpState.value = SignUpState.GO_TO_LOGIN_SCREEN
             }
             it.onFailure {
                 signUpState.value = SignUpState.HIDE_PROGRESS
-                errMessage.value = "Login Error !! "
+                errMessage.value = it.message
             }
         })
     }
@@ -49,9 +58,17 @@ class SignUpViewModel(private val repository: Repository):ViewModel() {
     fun getSignUpState():LiveData<SignUpState>{
         return signUpState
     }
+    fun getErrState():LiveData<ErrState>{
+        return errState
+    }
     enum class SignUpState{
         SHOW_PROGRESS,
         HIDE_PROGRESS,
         GO_TO_LOGIN_SCREEN
+    }
+    enum class ErrState{
+        PASSWORD_BLANK,
+        EMAIL_BLANK,
+        NAME_BLANK
     }
 }
