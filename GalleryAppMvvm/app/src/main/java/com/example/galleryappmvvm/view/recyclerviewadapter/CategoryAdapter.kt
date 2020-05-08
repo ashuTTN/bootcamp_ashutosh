@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.recyclerviewadapter
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -14,14 +14,15 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.view.Interfaces.CategoryClickListener
+import com.example.galleryappmvvm.view.Category
+import com.example.galleryappmvvm.view.interfaces.CategoryClickListener
 
 
 class CategoryAdapter(
     private val mContext: Context,
     private val categoryClickListener: CategoryClickListener
 ) : RecyclerView.Adapter<CategoryAdapter.RecyclerViewHolder>() {
-    private val TAG = "RecyclerViewAdapter"
+
     private lateinit var mCategoryData: List<Category>
 
     fun setCategories(category: List<Category>) {
@@ -84,17 +85,6 @@ class CategoryAdapter(
             })
             .into(holder.categoryImage)
 
-//        holder.itemView.setOnClickListener {
-//            Log.d(TAG,"Recler item clicked,${currentCategory.categoryID}")
-//            val categoryInformationFragment = CategoryInfoFragment()
-//            val args = Bundle()
-//            args.putString("categoryID","${currentCategory.categoryID}")
-//            categoryInformationFragment.arguments = args
-//            val transaction = categoryFragment.activity!!.supportFragmentManager.beginTransaction()
-//            transaction.replace(R.id.fragment_container2,categoryInformationFragment)
-//            transaction.addToBackStack(null)
-//            transaction.commit()
-//        }
         holder.itemView.setOnClickListener {
             categoryClickListener.onClick(currentCategory.categoryID)
         }

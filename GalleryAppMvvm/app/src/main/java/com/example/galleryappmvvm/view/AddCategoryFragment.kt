@@ -19,15 +19,16 @@ import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import com.example.galleryappmvvm.viewmodel.VALIDATION_ERROR
 import kotlinx.android.synthetic.main.add_category_layout.*
 import kotlinx.android.synthetic.main.add_category_layout.view.*
-import kotlinx.android.synthetic.main.custom_dialog.*
 
 class AddCategoryFragment : Fragment() {
+
     private val mViewModel by lazy {
         ViewModelProvider(this, MyViewModelfactory()).get(AddCategoryViewModel::class.java)
     }
     private lateinit var loadingDialog: LoadingDialog
     private lateinit var viewModel: FirebaseViewModel
     private var selectedPhotoUri: Uri? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

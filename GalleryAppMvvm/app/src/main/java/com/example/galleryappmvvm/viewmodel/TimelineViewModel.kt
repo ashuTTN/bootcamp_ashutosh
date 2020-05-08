@@ -1,5 +1,7 @@
 package com.example.galleryappmvvm.viewmodel
 
+import Utils.isNetworkAvailable
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,11 +11,20 @@ import com.example.galleryappmvvm.model.Repository
 import com.example.galleryappmvvm.view.ImageTime
 private val TAG = TimelineViewModel::class.java.simpleName
 
-class TimelineViewModel(private var repository: Repository):ViewModel(){
+class TimelineViewModel(private var context: Context,private var repository: Repository):ViewModel(){
     private var status = MediatorLiveData<TimelineStatus>()
     private var errMessage = MutableLiveData<String>()
     private var timelineList = MutableLiveData<List<ImageTime>>()
 
+    fun checkNetworkStatus(): Boolean {
+        if (!context.isNetworkAvailable()) {
+            errMessage.value = "Network not available"
+            return false
+        }
+        else{
+            return true
+        }
+    }
     fun fetchTimeline(): MutableLiveData<List<ImageTime>> {
         status.value = TimelineStatus.SHOW_PROGRESS
         status.addSource(repository.fetchTimeline(), Observer {

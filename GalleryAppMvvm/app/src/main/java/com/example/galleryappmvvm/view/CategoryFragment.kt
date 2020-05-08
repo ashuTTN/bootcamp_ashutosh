@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.*
-import com.example.galleryappmvvm.view.Interfaces.CategoryClickListener
+import com.example.galleryappmvvm.view.interfaces.CategoryClickListener
+import com.example.galleryappmvvm.view.recyclerviewadapter.CategoryAdapter
 import com.example.galleryappmvvm.viewmodel.CategoryViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
@@ -42,7 +43,11 @@ class CategoryFragment : Fragment(),
     private fun fetchCategories(view: View) {
         recyclerView = view.findViewById(R.id.category_recycler_view)
         viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-        recyclerAdapter = CategoryAdapter(this.context!!, this)
+        recyclerAdapter =
+            CategoryAdapter(
+                this.context!!,
+                this
+            )
 
         mViewModel.getSavedCategories().observe(viewLifecycleOwner, Observer {
             it?.let {

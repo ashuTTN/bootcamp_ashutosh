@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.view.recyclerviewadapter.TimelineAdapter
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import com.example.galleryappmvvm.viewmodel.TimelineViewModel
 
@@ -33,16 +34,23 @@ class TimelineFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.timeline_recycler_view)
         val recyclerAdapter =
-            TimelineAdapter(this.context!!, this)
+            TimelineAdapter(
+                this.context!!,
+                this
+            )
 
-        mViewModel.fetchTimeline().observe(viewLifecycleOwner, Observer { times ->
-            times?.let {
-                Log.d(TAG, "$it")
-                recyclerAdapter.setImageTime(it)
-                recyclerView.adapter = recyclerAdapter
-                recyclerView.layoutManager = GridLayoutManager(this.context, 2)
-            }
-        })
+        if (mViewModel.checkNetworkStatus()){
+            mViewModel.fetchTimeline().observe(viewLifecycleOwner, Observer { times ->
+                times?.let {
+                    Log.d(TAG, "$it")
+                    recyclerAdapter.setImageTime(it)
+                    recyclerView.adapter = recyclerAdapter
+                    recyclerView.layoutManager = GridLayoutManager(this.context, 2)
+                }
+            })
+        }
+
+
 
         mViewModel.getStatus().observe(viewLifecycleOwner, Observer {
             when (it) {

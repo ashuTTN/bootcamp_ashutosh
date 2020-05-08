@@ -102,11 +102,12 @@ class UserProfileFragment : Fragment() {
                     loadingDialog.setTitle("Updating Profile Image")
                 }
                 UserProfileViewModel.Status.COMPLETE -> loadingDialog.dismissDialog()
-                UserProfileViewModel.Status.HIDE_PROGRESS -> loadingDialog.dismissDialog()
                 UserProfileViewModel.Status.SHOW_PROGRESS -> {
                     loadingDialog.startLoadingAnimation()
                     loadingDialog.setTitle("Fetching User Information")
                 }
+                UserProfileViewModel.Status.HIDE_PROGRESS -> loadingDialog.dismissDialog()
+
             }
         })
 

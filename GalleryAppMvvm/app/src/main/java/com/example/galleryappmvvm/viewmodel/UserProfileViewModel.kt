@@ -1,18 +1,23 @@
 package com.example.galleryappmvvm.viewmodel
 
+import Utils.isNetworkAvailable
+import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.*
 import com.example.galleryappmvvm.model.Repository
 import com.google.firebase.firestore.DocumentSnapshot
 
-class UserProfileViewModel(private var repository: Repository): ViewModel() {
+class UserProfileViewModel(private var context: Context , private var repository: Repository): ViewModel() {
+
     private var errMessage = MutableLiveData<String>()
     private var status = MediatorLiveData<Status>()
     private var documentSnapshot = MutableLiveData<DocumentSnapshot>()
 
-
-
     fun updateUserProfile(selectedPhotoUri: Uri){
+        if(!context.isNetworkAvailable()){
+            errMessage.value  = "Network not available"
+            return
+        }
         status.value = Status.SHOW_PROGRESS_UPDATE_USER_IMAGE
         status.addSource(repository.updateUserProfile(selectedPhotoUri),Observer{
             it.onSuccess {
@@ -25,9 +30,12 @@ class UserProfileViewModel(private var repository: Repository): ViewModel() {
             }
         })
     }
+
     fun fetchUserDetails():LiveData<DocumentSnapshot>{
         status.value = Status.SHOW_PROGRESS
-
+        if(!(context.isNetworkAvailable())){
+            errMessage.value = "Network not available"
+        }
         status.addSource(repository.fetchUserDetails1(), Observer {
             it.onSuccess {
                 documentSnapshot.value = it
@@ -40,10 +48,16 @@ class UserProfileViewModel(private var repository: Repository): ViewModel() {
         })
         return documentSnapshot
     }
-    fun logout(){
-        repository.logout()
-    }
 
+    fun logout(){
+        if(!(context.isNetworkAvailable())){
+            errMessage.value = "Network not available"
+            return
+        }
+        else{
+            repository.logout()
+        }
+    }
 
     fun getUserProfileStatus(): MediatorLiveData<Status> {
         return status

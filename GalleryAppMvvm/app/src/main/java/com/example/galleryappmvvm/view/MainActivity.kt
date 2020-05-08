@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun makePermissionRequest() {
         ActivityCompat.requestPermissions(
             this,
-            arrayOf(android.Manifest.permission.CAMERA),
+            arrayOf(android.Manifest.permission.CAMERA,android.Manifest.permission.READ_EXTERNAL_STORAGE,android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
             CAMERA_REQUEST_CODE
         )
     }
@@ -65,7 +65,11 @@ class MainActivity : AppCompatActivity() {
             CAMERA_REQUEST_CODE -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Log.d(TAG, "Permission has been denied by user")
-                } else {
+                }
+                else if(grantResults.isEmpty() || grantResults[1] != PackageManager.PERMISSION_GRANTED){
+                    Log.d(TAG, "Permission has been denied by user")
+                }
+                else {
                     Log.d(TAG, "Permission has been granted by user")
                 }
             }

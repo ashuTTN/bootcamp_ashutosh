@@ -1,5 +1,7 @@
 package com.example.galleryappmvvm.viewmodel
 
+import Utils.isNetworkAvailable
+import android.content.Context
 import android.net.Uri
 import android.text.TextUtils
 import androidx.lifecycle.LiveData
@@ -11,13 +13,17 @@ import com.example.galleryappmvvm.model.Repository
 
 
 private val TAG = SignUpViewModel::class.java.simpleName
-class SignUpViewModel(private val repository: Repository):ViewModel() {
+class SignUpViewModel(private val context: Context,private val repository: Repository):ViewModel() {
     private var validationMessage = MutableLiveData<SignUpValidaiton>()
     private var errMessage = MutableLiveData<String>()
     private var signUpState = MediatorLiveData<SignUpState>()
 
     fun onSignUpClicked(name:String,email:String,password:String,selectedPhotoUri: Uri?){
         var flag = 0
+        if(!(context.isNetworkAvailable())){
+            errMessage.value = "Network Not Available"
+            flag = 1
+        }
         if(TextUtils.isEmpty(name)){
             validationMessage.value = SignUpValidaiton.NAME_BLANK
             flag = 1

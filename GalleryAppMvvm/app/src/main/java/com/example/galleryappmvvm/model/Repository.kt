@@ -8,7 +8,7 @@ import com.example.galleryappmvvm.view.ImageTime
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 
-private const val TAG = "REPOSITORY"
+
 class Repository {
     private val firebase: FirebaseSource = FirebaseSource()
 

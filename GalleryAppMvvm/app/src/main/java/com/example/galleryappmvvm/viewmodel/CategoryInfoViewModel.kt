@@ -1,5 +1,8 @@
 package com.example.galleryappmvvm.viewmodel
 
+import Utils.isNetworkAvailable
+import android.content.Context
+import android.net.Network
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -13,7 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot
 
 private val TAG = CategoryInfoViewModel::class.java.simpleName
 
-class CategoryInfoViewModel(private var repository: Repository) : ViewModel() {
+class CategoryInfoViewModel(private var context: Context,private var repository: Repository) : ViewModel() {
     private var saveImagesUrl: MutableLiveData<List<CategoryImages>> = MutableLiveData()
     private var errMessage = MutableLiveData<String>()
     private var status = MediatorLiveData<Status>()
@@ -26,7 +29,12 @@ class CategoryInfoViewModel(private var repository: Repository) : ViewModel() {
     fun fetchCategoryInfo(categoryId: String) : MutableLiveData<List<CategoryImages>>{
         return repository.fetchCategoryInfo1(categoryId)
     }
+
     fun uploadCategoryImage(selectedPhotoUri: Uri, categoryId: String) {
+        if(!(context.isNetworkAvailable())){
+            errMessage.value = "Network not available"
+            return
+        }
         status.value = Status.SHOW_PROGRESS
         status.addSource(repository.uploadCategoryImage1(selectedPhotoUri, categoryId), Observer {
             it.onSuccess {
@@ -38,9 +46,11 @@ class CategoryInfoViewModel(private var repository: Repository) : ViewModel() {
             }
         })
     }
+
     fun getStatus():LiveData<Status>{
         return status
     }
+
     fun getError():LiveData<String>{
         return errMessage
     }

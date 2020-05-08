@@ -3,23 +3,27 @@ package com.example.galleryappmvvm.viewmodel
 import Utils.ValidationUtils
 import Utils.isNetworkAvailable
 import android.content.Context
+import android.net.ConnectivityManager
 import android.text.TextUtils
 import androidx.lifecycle.*
 import com.example.galleryappmvvm.model.Repository
 
 private val TAG:String = LoginViewModel::class.java.simpleName
 
-class LoginViewModel(private val repository:Repository): ViewModel() {
+class LoginViewModel(private val context: Context,private val repository:Repository): ViewModel() {
     private var validationMessage = MutableLiveData<ValidationMessage>()
     private var errMessage = MutableLiveData<String>()
     private var signInState = MediatorLiveData<SignInState>()
-
 
     init{
         checkIsAlreadyLoggedIn()
     }
 
     fun onLogInClicked(email:String , password:String){
+        if(!context.isNetworkAvailable()){
+            errMessage.value = "Network not available"
+            return
+        }
         //Check validations
         var flag = 0
         if(TextUtils.isEmpty(email)){
@@ -38,10 +42,7 @@ class LoginViewModel(private val repository:Repository): ViewModel() {
             return
         }
 
-//        if(!context.isNetworkAvailable()){
-//            errMessage.value = "No internet connection."
-//            return
-//        }
+
         //validations passed
         //Connect to firebase
         signInState.value = SignInState.SHOW_PROGRESS
@@ -57,6 +58,8 @@ class LoginViewModel(private val repository:Repository): ViewModel() {
         })
 
     }
+
+
 
 
     private fun checkIsAlreadyLoggedIn(){

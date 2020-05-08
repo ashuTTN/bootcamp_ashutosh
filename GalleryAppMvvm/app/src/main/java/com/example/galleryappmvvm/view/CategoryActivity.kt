@@ -17,7 +17,11 @@ class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
+        bottomNavBarListener()
+    }
 
+    //setOnNaviagtionItemSelectedListener
+    private fun bottomNavBarListener() {
         bottom_nav_bar.setOnNavigationItemSelectedListener {
             if (it.itemId == R.id.nav_category)
                 selectedFragment = CategoryFragment()
@@ -46,6 +50,7 @@ class CategoryActivity : AppCompatActivity() {
         addCategoryFragment()
     }
 
+    //initial fragment viewed in Category Activity
     private fun addCategoryFragment() {
         fragment = CategoryFragment()
         val fragmentManager = supportFragmentManager

@@ -1,8 +1,7 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.recyclerviewadapter
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,9 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.view.Interfaces.CategoryInfoClickListener
+import com.example.galleryappmvvm.view.CategoryImages
+import com.example.galleryappmvvm.view.interfaces.CategoryInfoClickListener
 
-private const val TAG = "CategoryInfoAdapter"
 
 class CategoryInfoAdapter(
     private val mContext: Context,
@@ -60,7 +59,7 @@ class CategoryInfoAdapter(
         val categoryId = currentCategory.categoryId.toString()
         val currentImageId = currentCategory.categoryImageId.toString()
 
-        holder.categoryInfoItemProgressBar.visibility == View.VISIBLE
+        holder.categoryInfoItemProgressBar.visibility = View.VISIBLE
         Glide.with(mContext).load(imageUrl)
             .listener(object : RequestListener<Drawable> {
                 override fun onResourceReady(
@@ -85,19 +84,7 @@ class CategoryInfoAdapter(
             })
             .into(holder.categoryInfoItemImageView)
 
-//        holder.itemView.setOnClickListener {
-//            val fullscreenViewFragment = FullscreenViewFragment()
-//            val args: Bundle = Bundle()
-//            args.putString("imageUrl",imageUrl)
-//            args.putString("categoryId",categoryId)
-//            args.putString("currentImageId",currentImageId)
-//
-//            fullscreenViewFragment.arguments = args
-//            val transaction = categoryInfoFragment.activity!!.supportFragmentManager.beginTransaction()
-//            transaction.add(R.id.fragment_container2,fullscreenViewFragment)
-//            transaction.addToBackStack(null);
-//            transaction.commit();
-//        }
+
         holder.itemView.setOnClickListener {
             categoryInfoClickListener.onClick(imageUrl, categoryId, currentImageId)
         }

@@ -8,17 +8,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.FullScreenViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.fullscreen_fragment_layout.view.*
 
 class FullscreenViewFragment : Fragment() {
     private val mViewModel by lazy {
-        ViewModelProvider(this,MyViewModelfactory()).get(FullScreenViewModel::class.java)
+        ViewModelProvider(this, MyViewModelfactory()).get(FullScreenViewModel::class.java)
     }
     private lateinit var loadingDialog: LoadingDialog
     override fun onCreateView(
@@ -39,9 +37,7 @@ class FullscreenViewFragment : Fragment() {
         setObservers()
 
         view.deleteFab.setOnClickListener {
-                    mViewModel.deleteImage(imageUrl!!,categoryId!!,currentImageId!!)
-
-
+            mViewModel.deleteImage(imageUrl!!, categoryId!!, currentImageId!!)
         }
 
 
@@ -50,10 +46,10 @@ class FullscreenViewFragment : Fragment() {
 
     private fun setObservers() {
         mViewModel.getErrorMessage().observeForever {
-            Toast.makeText(activity,it,Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         }
         mViewModel.getDeleteStatus().observe(viewLifecycleOwner, Observer {
-            when(it){
+            when (it) {
                 FullScreenViewModel.DelteStatus.SHOW_PROGRESS -> loadingDialog.startLoadingAnimation()
                 FullScreenViewModel.DelteStatus.HIDE_PROGRESS -> loadingDialog.dismissDialog()
                 FullScreenViewModel.DelteStatus.COMPLETE -> activity!!.supportFragmentManager.popBackStack()

@@ -8,15 +8,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.view.Interfaces.CategoryInfoClickListener
+import com.example.galleryappmvvm.view.interfaces.CategoryInfoClickListener
+import com.example.galleryappmvvm.view.recyclerviewadapter.CategoryInfoAdapter
 import com.example.galleryappmvvm.viewmodel.CategoryInfoViewModel
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.category_inforamtion_fragment_layout.view.*
 
@@ -42,7 +43,11 @@ class CategoryInfoFragment : Fragment(),CategoryInfoClickListener {
         setObserver()
         setListeners(view)
         val recyclerView: RecyclerView = view.findViewById(R.id.category_information_recyclerview)
-        val recyclerAdapter = CategoryInfoAdapter(this.context!!, this)
+        val recyclerAdapter =
+            CategoryInfoAdapter(
+                this.context!!,
+                this
+            )
 
         mViewModel.fetchCategoryInfo(categoryId)
             .observe(viewLifecycleOwner, Observer { categories ->
@@ -63,7 +68,9 @@ class CategoryInfoFragment : Fragment(),CategoryInfoClickListener {
                 CategoryInfoViewModel.Status.HIDE_PROGRESS -> hideProgress()
             }
         })
-        mViewModel.getError()
+        mViewModel.getError().observe(viewLifecycleOwner, Observer {
+            Toast.makeText(view!!.context, it, Toast.LENGTH_LONG).show()
+        })
     }
 
     private fun hideProgress() {
