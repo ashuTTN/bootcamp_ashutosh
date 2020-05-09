@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun verifyPermission() {
+    private fun verifyPermission() {
         //asking user for perimissions
         val permissions = arrayOf(
             android.Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -84,9 +84,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 if (ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
                 ) {
-                    //allowed
+                    //permission allowed
                     Log.e("allowed", permission);
-                    addLoginFragment()
                 } else {
                     //set to never ask again
                     Log.e("set to never ask again", permission);
@@ -95,8 +94,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        if(flag == 1){
+        if(flag==0){   // all permissions allowed
+            addLoginFragment()
+        }
+        if(flag == 1){ //Some or all permissions denied
             AlertDialog.Builder(this)
                 .setTitle("Permission Request")
                 .setMessage("This app cannot function without the requested permissions please provide the permissions manually by going to [Settings] -> [Apps] ")
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .show()
         }
-        if(flag1 == 1){
+        if(flag1 == 1){ //  Never ask again ..
             AlertDialog.Builder(this)
                 .setTitle("Permission Request")
                 .setMessage("Permissions are required for the app to function properly ")
