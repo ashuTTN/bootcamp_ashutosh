@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -70,7 +70,8 @@ class CategoryFragment : Fragment(),
 
 
     private fun addAddCategoryFragment() {
-        val nextFrag = AddCategoryFragment()
+        val nextFrag =
+            AddCategoryFragment()
         activity!!.supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container2, nextFrag, "add_category")
             .addToBackStack(null)
@@ -78,7 +79,8 @@ class CategoryFragment : Fragment(),
     }
 
     override fun onClick(categoryID: Any) {
-        val categoryInformationFragment = CategoryInfoFragment()
+        val categoryInformationFragment =
+            CategoryInfoFragment()
         val args = Bundle()
         args.putString("categoryID", "${categoryID}")
         categoryInformationFragment.arguments = args

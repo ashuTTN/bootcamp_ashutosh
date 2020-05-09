@@ -13,7 +13,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.view.CategoryImages
+import com.example.galleryappmvvm.view.modelclass.CategoryImages
 import com.example.galleryappmvvm.view.interfaces.CategoryInfoClickListener
 
 

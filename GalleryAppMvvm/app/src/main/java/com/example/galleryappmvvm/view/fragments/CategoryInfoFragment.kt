@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.view.dialog.LoadingDialog
 import com.example.galleryappmvvm.view.interfaces.CategoryInfoClickListener
 import com.example.galleryappmvvm.view.recyclerviewadapter.CategoryInfoAdapter
 import com.example.galleryappmvvm.viewmodel.CategoryInfoViewModel
@@ -36,7 +37,8 @@ class CategoryInfoFragment : Fragment(),CategoryInfoClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        loadingDialog = LoadingDialog(activity!!)
+        loadingDialog =
+            LoadingDialog(activity!!)
         val view = inflater.inflate(R.layout.category_inforamtion_fragment_layout, container, false)
         val bundle = this.arguments
         categoryId = bundle!!.getString("categoryID")!!
@@ -99,7 +101,8 @@ class CategoryInfoFragment : Fragment(),CategoryInfoClickListener {
     }
 
     override fun onClick(imageUrl: String, categoryId: String, currentImageId: String) {
-        val fullscreenViewFragment = FullscreenViewFragment()
+        val fullscreenViewFragment =
+            FullscreenViewFragment()
             val args: Bundle = Bundle()
             args.putString("imageUrl",imageUrl)
             args.putString("categoryId",categoryId)

@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.activities
 
 
 import android.content.DialogInterface
@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -16,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.galleryappmvvm.R
-import java.util.jar.Manifest
+import com.example.galleryappmvvm.view.fragments.LoginFragment
 
 private var TAG = MainActivity::class.java.simpleName
 

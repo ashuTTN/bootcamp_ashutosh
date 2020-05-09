@@ -1,9 +1,8 @@
 package com.example.galleryappmvvm.viewmodel
 
-import Utils.ValidationUtils
-import Utils.isNetworkAvailable
+import com.example.galleryappmvvm.Utils.ValidationUtils
+import com.example.galleryappmvvm.Utils.isNetworkAvailable
 import android.content.Context
-import android.net.ConnectivityManager
 import android.text.TextUtils
 import androidx.lifecycle.*
 import com.example.galleryappmvvm.model.Repository

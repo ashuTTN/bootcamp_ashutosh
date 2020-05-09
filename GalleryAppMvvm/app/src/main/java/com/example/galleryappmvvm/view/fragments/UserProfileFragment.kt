@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.fragments
 
 import android.app.Activity
 import android.app.Dialog
@@ -6,13 +6,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
@@ -26,8 +24,9 @@ import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.userprofile_fragment_layout.*
 import kotlinx.android.synthetic.main.userprofile_fragment_layout.view.*
-import javax.sql.DataSource
 import com.bumptech.glide.request.target.Target
+import com.example.galleryappmvvm.view.dialog.LoadingDialog
+import com.example.galleryappmvvm.view.activities.MainActivity
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import com.example.galleryappmvvm.viewmodel.UserProfileViewModel
 
@@ -50,7 +49,8 @@ class UserProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.userprofile_fragment_layout, container, false)
-        loadingDialog = LoadingDialog(activity!!)
+        loadingDialog =
+            LoadingDialog(activity!!)
 
         setObservers()
         setListeners(view)

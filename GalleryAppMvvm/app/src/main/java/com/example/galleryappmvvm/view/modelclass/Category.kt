@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.modelclass
 
 import java.io.Serializable
 

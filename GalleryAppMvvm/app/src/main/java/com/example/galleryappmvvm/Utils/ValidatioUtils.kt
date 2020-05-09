@@ -1,4 +1,4 @@
-package Utils
+package com.example.galleryappmvvm.Utils
 
 class ValidationUtils {
     companion object{

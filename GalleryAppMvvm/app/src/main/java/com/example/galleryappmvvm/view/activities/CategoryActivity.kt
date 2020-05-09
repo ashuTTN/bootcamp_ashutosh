@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.view.fragments.CategoryFragment
+import com.example.galleryappmvvm.view.fragments.TimelineFragment
+import com.example.galleryappmvvm.view.fragments.UserProfileFragment
 import kotlinx.android.synthetic.main.activity_category.*
 
 
@@ -24,13 +27,16 @@ class CategoryActivity : AppCompatActivity() {
     private fun bottomNavBarListener() {
         bottom_nav_bar.setOnNavigationItemSelectedListener {
             if (it.itemId == R.id.nav_category)
-                selectedFragment = CategoryFragment()
+                selectedFragment =
+                    CategoryFragment()
 
             if (it.itemId == R.id.nav_timeline)
-                selectedFragment = TimelineFragment()
+                selectedFragment =
+                    TimelineFragment()
 
             if (it.itemId == R.id.nav_user)
-                selectedFragment = UserProfileFragment()
+                selectedFragment =
+                    UserProfileFragment()
 
             val fragmentManager = supportFragmentManager
             if(fragmentManager.backStackEntryCount == 0){

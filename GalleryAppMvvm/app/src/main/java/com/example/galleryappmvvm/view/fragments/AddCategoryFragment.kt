@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.view.dialog.LoadingDialog
 import com.example.galleryappmvvm.viewmodel.AddCategoryViewModel
 import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
@@ -35,7 +36,8 @@ class AddCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_category_layout, container, false)
-        loadingDialog = LoadingDialog(activity!!)
+        loadingDialog =
+            LoadingDialog(activity!!)
 
         setObservers()
         setListeners(view)

@@ -3,8 +3,8 @@ package com.example.galleryappmvvm.model
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.galleryappmvvm.view.CategoryImages
-import com.example.galleryappmvvm.view.ImageTime
+import com.example.galleryappmvvm.view.modelclass.CategoryImages
+import com.example.galleryappmvvm.view.modelclass.ImageTime
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 

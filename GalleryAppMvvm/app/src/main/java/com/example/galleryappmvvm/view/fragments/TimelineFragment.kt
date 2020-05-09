@@ -1,7 +1,6 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.view.dialog.LoadingDialog
 import com.example.galleryappmvvm.view.recyclerviewadapter.TimelineAdapter
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import com.example.galleryappmvvm.viewmodel.TimelineViewModel
 
 
-private val TAG = "TIMELINE_FRAG"
+
 
 class TimelineFragment : Fragment() {
     private val mViewModel by lazy {
@@ -30,7 +30,8 @@ class TimelineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.tmeline_fragment_layout, container, false)
-        loadingDialog = LoadingDialog(activity!!)
+        loadingDialog =
+            LoadingDialog(activity!!)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.timeline_recycler_view)
         val recyclerAdapter = TimelineAdapter(this.context!!, this)
@@ -38,7 +39,6 @@ class TimelineFragment : Fragment() {
         if (mViewModel.checkNetworkStatus()){
             mViewModel.fetchTimeline().observe(viewLifecycleOwner, Observer { times ->
                 times?.let {
-                    Log.d(TAG, "$it")
                     recyclerAdapter.setImageTime(it)
                     recyclerView.adapter = recyclerAdapter
                     recyclerView.layoutManager = GridLayoutManager(this.context, 2)

@@ -5,7 +5,8 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.galleryappmvvm.view.*
+import com.example.galleryappmvvm.view.modelclass.CategoryImages
+import com.example.galleryappmvvm.view.modelclass.ImageTime
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

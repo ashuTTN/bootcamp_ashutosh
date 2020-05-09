@@ -1,10 +1,9 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.fragments
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +11,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
-import com.example.galleryappmvvm.viewmodel.LoginViewModel
+import com.example.galleryappmvvm.view.dialog.LoadingDialog
+import com.example.galleryappmvvm.view.activities.MainActivity
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import com.example.galleryappmvvm.viewmodel.SignUpViewModel
 import kotlinx.android.synthetic.main.signup_fragment_layout.*
 import kotlinx.android.synthetic.main.signup_fragment_layout.view.*
-private const val TAG = "SIGNUP_FRAGMENT"
+
 class SignUpFragment : Fragment() {
     private lateinit var loadingDialog: LoadingDialog
     private val mViewModel by lazy {
@@ -37,7 +35,8 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.signup_fragment_layout, container, false)
-        loadingDialog = LoadingDialog(activity!!)
+        loadingDialog =
+            LoadingDialog(activity!!)
 
         setObservers()
         setListeners(view)
@@ -104,7 +103,6 @@ class SignUpFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             selectedPhotoUri = data.data
-            Log.d(TAG, "$selectedPhotoUri")
             //for large iamge setIamgeURI does not work
             //image_view_signup.setImageURI(selectedPhotoUri)
             Glide

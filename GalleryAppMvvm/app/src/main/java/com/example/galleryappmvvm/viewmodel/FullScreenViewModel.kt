@@ -1,6 +1,6 @@
 package com.example.galleryappmvvm.viewmodel
 
-import Utils.isNetworkAvailable
+import com.example.galleryappmvvm.Utils.isNetworkAvailable
 import android.content.Context
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData

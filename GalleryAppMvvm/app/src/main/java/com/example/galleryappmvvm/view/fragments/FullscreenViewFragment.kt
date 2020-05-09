@@ -1,4 +1,4 @@
-package com.example.galleryappmvvm.view
+package com.example.galleryappmvvm.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
+import com.example.galleryappmvvm.view.dialog.LoadingDialog
 import com.example.galleryappmvvm.viewmodel.FullScreenViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.fullscreen_fragment_layout.view.*
@@ -25,7 +26,8 @@ class FullscreenViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fullscreen_fragment_layout, container, false)
-        loadingDialog = LoadingDialog(activity!!)
+        loadingDialog =
+            LoadingDialog(activity!!)
         val bundle = this.arguments
         val imageUrl = bundle!!.getString("imageUrl")
         val categoryId = bundle.getString("categoryId")
@@ -50,7 +52,10 @@ class FullscreenViewFragment : Fragment() {
         }
         mViewModel.getDeleteStatus().observe(viewLifecycleOwner, Observer {
             when (it) {
-                FullScreenViewModel.DelteStatus.SHOW_PROGRESS -> loadingDialog.startLoadingAnimation()
+                FullScreenViewModel.DelteStatus.SHOW_PROGRESS -> {
+                    loadingDialog.startLoadingAnimation()
+                    loadingDialog.setTitle("Deleting Image")
+                }
                 FullScreenViewModel.DelteStatus.HIDE_PROGRESS -> loadingDialog.dismissDialog()
                 FullScreenViewModel.DelteStatus.COMPLETE -> activity!!.supportFragmentManager.popBackStack()
             }

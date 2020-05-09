@@ -1,6 +1,6 @@
 package com.example.galleryappmvvm.viewmodel
 
-import Utils.isNetworkAvailable
+import com.example.galleryappmvvm.Utils.isNetworkAvailable
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.galleryappmvvm.model.Repository
-import com.example.galleryappmvvm.view.ImageTime
+import com.example.galleryappmvvm.view.modelclass.ImageTime
 private val TAG = TimelineViewModel::class.java.simpleName
 
 class TimelineViewModel(private var context: Context,private var repository: Repository):ViewModel(){
