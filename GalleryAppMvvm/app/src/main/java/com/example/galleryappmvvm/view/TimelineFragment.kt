@@ -33,11 +33,7 @@ class TimelineFragment : Fragment() {
         loadingDialog = LoadingDialog(activity!!)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.timeline_recycler_view)
-        val recyclerAdapter =
-            TimelineAdapter(
-                this.context!!,
-                this
-            )
+        val recyclerAdapter = TimelineAdapter(this.context!!, this)
 
         if (mViewModel.checkNetworkStatus()){
             mViewModel.fetchTimeline().observe(viewLifecycleOwner, Observer { times ->

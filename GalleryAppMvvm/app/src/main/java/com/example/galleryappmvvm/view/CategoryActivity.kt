@@ -38,7 +38,7 @@ class CategoryActivity : AppCompatActivity() {
                 fragmentTransaction.replace(R.id.fragment_container2, selectedFragment,"selectedFrag")
                 fragmentTransaction.commit()
             } else{
-                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.fragment_container2, selectedFragment)

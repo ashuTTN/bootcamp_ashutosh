@@ -1,59 +1,72 @@
 package com.example.galleryappmvvm.view
 
+
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
+import java.util.jar.Manifest
 
 private var TAG = MainActivity::class.java.simpleName
+
 class MainActivity : AppCompatActivity() {
+    private val REQUEST_CODE = 101
     private lateinit var fragment: Fragment
     private lateinit var fragmentManager: FragmentManager
     private lateinit var fragmentTransaction: FragmentTransaction
+    private var appPermissions = arrayOf(
+        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        android.Manifest.permission.CAMERA
+    )
 
+
+    override fun onStart() {
+        super.onStart()
+        verifyPermission()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        addLoginFragment()
-        setupPermissions()
-        addLoginFragment()
-        val viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-        val currentUser = viewModel.currentUser()
-        if(currentUser != null){
-            startActivity(Intent(this,CategoryActivity::class.java))
-            finish()
-        }
-        else{
-            addLoginFragment()
-        }
-
     }
 
-    private fun setupPermissions() {
-        val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            Log.d(TAG, "Permission to camera denied")
-            makePermissionRequest()
-        }
-    }
-
-    private val CAMERA_REQUEST_CODE = 101
-    private fun makePermissionRequest() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(android.Manifest.permission.CAMERA,android.Manifest.permission.READ_EXTERNAL_STORAGE,android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-            CAMERA_REQUEST_CODE
+    fun verifyPermission() {
+        //asking user for perimissions
+        val permissions = arrayOf(
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.CAMERA
         )
+        //check if permissions already granted
+        if (ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                permissions[0]
+            ) == PackageManager.PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                permissions[1]
+            ) == PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                permissions[2]
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            addLoginFragment()
+        } else {
+            ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE)    //if not request again
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -61,19 +74,50 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when (requestCode) {
-            CAMERA_REQUEST_CODE -> {
-                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    Log.d(TAG, "Permission has been denied by user")
-                }
-                else if(grantResults.isEmpty() || grantResults[1] != PackageManager.PERMISSION_GRANTED){
-                    Log.d(TAG, "Permission has been denied by user")
-                }
-                else {
-                    Log.d(TAG, "Permission has been granted by user")
+        var flag = 0
+        var flag1 = 0
+        for (permission in permissions) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                //denied
+                //Ask again
+                flag1 = 1
+            } else {
+                if (ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    //allowed
+                    Log.e("allowed", permission);
+                    addLoginFragment()
+                } else {
+                    //set to never ask again
+                    Log.e("set to never ask again", permission);
+                    //do something here.
+                    flag = 1
                 }
             }
         }
+
+        if(flag == 1){
+            AlertDialog.Builder(this)
+                .setTitle("Permission Request")
+                .setMessage("This app cannot function without the requested permissions please provide the permissions manually by going to [Settings] -> [Apps] ")
+                .setPositiveButton("OK",DialogInterface.OnClickListener { dialog, which ->
+                    startActivity( Intent(Settings.ACTION_SETTINGS))
+                })
+                .setCancelable(false)
+                .show()
+        }
+        if(flag1 == 1){
+            AlertDialog.Builder(this)
+                .setTitle("Permission Request")
+                .setMessage("Permissions are required for the app to function properly ")
+                .setPositiveButton("OK",DialogInterface.OnClickListener { dialog, which ->
+                    ActivityCompat.requestPermissions(this,permissions, requestCode)
+                })
+                .setCancelable(false)
+                .show()
+        }
+
+
     }
 
     private fun addLoginFragment() {
@@ -83,5 +127,4 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.add(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
     }
-
 }
