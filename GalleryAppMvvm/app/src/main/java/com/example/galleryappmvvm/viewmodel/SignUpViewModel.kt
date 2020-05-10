@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModel
 import com.example.galleryappmvvm.model.Repository
 
 
-private val TAG = SignUpViewModel::class.java.simpleName
 class SignUpViewModel(private val context: Context,private val repository: Repository):ViewModel() {
     private var validationMessage = MutableLiveData<SignUpValidaiton>()
     private var errMessage = MutableLiveData<String>()

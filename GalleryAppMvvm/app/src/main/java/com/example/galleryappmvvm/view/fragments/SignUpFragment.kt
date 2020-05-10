@@ -111,4 +111,8 @@ class SignUpFragment : Fragment() {
                 .into(image_view_signup)
         }
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
 }

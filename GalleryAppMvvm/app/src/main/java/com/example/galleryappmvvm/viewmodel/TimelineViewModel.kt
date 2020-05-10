@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.galleryappmvvm.model.Repository
 import com.example.galleryappmvvm.view.modelclass.ImageTime
-private val TAG = TimelineViewModel::class.java.simpleName
 
 class TimelineViewModel(private var context: Context,private var repository: Repository):ViewModel(){
     private var status = MediatorLiveData<TimelineStatus>()

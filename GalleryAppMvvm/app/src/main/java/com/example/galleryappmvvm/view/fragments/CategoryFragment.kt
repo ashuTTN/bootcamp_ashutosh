@@ -13,7 +13,6 @@ import com.example.galleryappmvvm.*
 import com.example.galleryappmvvm.view.interfaces.CategoryClickListener
 import com.example.galleryappmvvm.view.recyclerviewadapter.CategoryAdapter
 import com.example.galleryappmvvm.viewmodel.CategoryViewModel
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.category_fragment_layout.*
 import kotlinx.android.synthetic.main.category_fragment_layout.view.addCategoryFloatingActionButton
@@ -23,7 +22,6 @@ class CategoryFragment : Fragment(),
     CategoryClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: CategoryAdapter
-    private lateinit var viewModel: FirebaseViewModel
     private val mViewModel by lazy {
         ViewModelProvider(this, MyViewModelfactory()).get(CategoryViewModel::class.java)
     }
@@ -42,7 +40,6 @@ class CategoryFragment : Fragment(),
 
     private fun fetchCategories(view: View) {
         recyclerView = view.findViewById(R.id.category_recycler_view)
-        viewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
         recyclerAdapter =
             CategoryAdapter(
                 this.context!!,

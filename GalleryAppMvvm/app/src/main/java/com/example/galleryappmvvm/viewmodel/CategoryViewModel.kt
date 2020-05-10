@@ -6,7 +6,6 @@ import com.example.galleryappmvvm.view.modelclass.Category
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 
-private val TAG = CategoryViewModel::class.java.simpleName
 class CategoryViewModel(private val repository : Repository):ViewModel() {
     private var savedCategories: MutableLiveData<List<Category>> = MutableLiveData()
 
@@ -18,7 +17,7 @@ class CategoryViewModel(private val repository : Repository):ViewModel() {
                     return@EventListener
                 }
 
-                var savedCategoryList: MutableList<Category> = mutableListOf()
+                val savedCategoryList: MutableList<Category> = mutableListOf()
                 for (doc in value!!) {
                     //var categoryItem = doc.toObject(Category::class.java)
                     val categoryItem =
@@ -34,9 +33,5 @@ class CategoryViewModel(private val repository : Repository):ViewModel() {
         return savedCategories
     }
 
-    enum class CategoryState{
-        HIDE_PROGRESS,
-        SHOW_PROGRESS,
-        SUCCESS
-    }
+
 }

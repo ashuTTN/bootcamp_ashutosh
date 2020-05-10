@@ -21,7 +21,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.example.galleryappmvvm.R
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import kotlinx.android.synthetic.main.userprofile_fragment_layout.*
 import kotlinx.android.synthetic.main.userprofile_fragment_layout.view.*
 import com.bumptech.glide.request.target.Target
@@ -40,9 +39,8 @@ class UserProfileFragment : Fragment() {
     private val CAMERA_REQUEST = 0
     private val GALLERY_REQUEST = 1
     private val TAG = "UserProfileFragment"
-    private lateinit var viewModel: FirebaseViewModel
     private var userProfileImageUrl: String? = ""
-    private var savedUser = mutableMapOf<String, String>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

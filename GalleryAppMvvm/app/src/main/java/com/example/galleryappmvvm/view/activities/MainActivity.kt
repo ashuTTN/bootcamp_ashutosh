@@ -31,14 +31,11 @@ class MainActivity : AppCompatActivity() {
     )
 
 
-    override fun onStart() {
-        super.onStart()
-        verifyPermission()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        verifyPermission()
     }
 
     private fun verifyPermission() {
@@ -109,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         if(flag1 == 1){ //  Never ask again ..
             AlertDialog.Builder(this)
                 .setTitle("Permission Request")
-                .setMessage("Permissions are required for the app to function properly ")
+                .setMessage("These permissions are required for saving and capturing photos for your gallery the app cannot function without the asked permissions ")
                 .setPositiveButton("OK",DialogInterface.OnClickListener { dialog, which ->
                     ActivityCompat.requestPermissions(this,permissions, requestCode)
                 })
@@ -119,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
+    //all permissions granted login fragment is added..
     private fun addLoginFragment() {
         fragment = LoginFragment()
         fragmentManager = supportFragmentManager

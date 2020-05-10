@@ -7,7 +7,6 @@ import android.text.TextUtils
 import androidx.lifecycle.*
 import com.example.galleryappmvvm.model.Repository
 
-private val TAG:String = LoginViewModel::class.java.simpleName
 
 class LoginViewModel(private val context: Context,private val repository:Repository): ViewModel() {
     private var validationMessage = MutableLiveData<ValidationMessage>()

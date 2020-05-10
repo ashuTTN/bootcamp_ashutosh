@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.view.dialog.LoadingDialog
 import com.example.galleryappmvvm.view.activities.CategoryActivity
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.LoginViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import kotlinx.android.synthetic.main.login_fragment_layout.*
@@ -20,7 +19,6 @@ import kotlinx.android.synthetic.main.login_fragment_layout.view.*
 
 
 class LoginFragment : Fragment() {
-    private lateinit var viewModel: FirebaseViewModel
     private val mViewModel by lazy {
         ViewModelProvider(this, MyViewModelfactory()).get(LoginViewModel::class.java)
     }
@@ -59,8 +57,8 @@ class LoginFragment : Fragment() {
     private fun addSignUpFragment() {
         val nextFrag = SignUpFragment()
         activity!!.supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, nextFrag, "signup_fragment")
-            .addToBackStack("SignUpFragment")
+            .add(R.id.fragment_container, nextFrag, "signup_fragment")
+            .addToBackStack(null)
             .commit()
     }
 

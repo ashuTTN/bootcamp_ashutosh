@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.galleryappmvvm.model.Repository
-private val TAG = FullScreenViewModel::class.java.simpleName
+
 class FullScreenViewModel(private var context: Context,private var repository: Repository): ViewModel(){
     private var status = MediatorLiveData<DelteStatus>()
     private var errMessage = MutableLiveData<String>()

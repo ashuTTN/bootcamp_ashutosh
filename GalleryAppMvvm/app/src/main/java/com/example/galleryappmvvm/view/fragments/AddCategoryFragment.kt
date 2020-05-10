@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide
 import com.example.galleryappmvvm.R
 import com.example.galleryappmvvm.view.dialog.LoadingDialog
 import com.example.galleryappmvvm.viewmodel.AddCategoryViewModel
-import com.example.galleryappmvvm.viewmodel.FirebaseViewModel
 import com.example.galleryappmvvm.viewmodel.MyViewModelfactory
 import com.example.galleryappmvvm.viewmodel.VALIDATION_ERROR
 import kotlinx.android.synthetic.main.add_category_layout.*
@@ -27,7 +26,6 @@ class AddCategoryFragment : Fragment() {
         ViewModelProvider(this, MyViewModelfactory()).get(AddCategoryViewModel::class.java)
     }
     private lateinit var loadingDialog: LoadingDialog
-    private lateinit var viewModel: FirebaseViewModel
     private var selectedPhotoUri: Uri? = null
 
     override fun onCreateView(

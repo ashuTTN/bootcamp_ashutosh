@@ -11,10 +11,8 @@ import androidx.lifecycle.ViewModel
 import com.example.galleryappmvvm.model.Repository
 import com.example.galleryappmvvm.view.modelclass.CategoryImages
 
-private val TAG = CategoryInfoViewModel::class.java.simpleName
 
 class CategoryInfoViewModel(private var context: Context,private var repository: Repository) : ViewModel() {
-    private var saveImagesUrl: MutableLiveData<List<CategoryImages>> = MutableLiveData()
     private var errMessage = MutableLiveData<String>()
     private var status = MediatorLiveData<Status>()
 
